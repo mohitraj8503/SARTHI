@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html data-wf-page="signup-page" data-wf-site="68e8faad0906611bc5b881dc" lang="en">
+<html data-wf-page="login-page" data-wf-site="68e8faad0906611bc5b881dc" lang="en">
 <head>
   <meta charset="utf-8"/>
   <link href="https://cdn.prod.website-files.com" rel="preconnect" />
-  <title>Sign Up - SARTHI – Digital Capacity Building & Learning Management Portal | IMD, Ministry of Earth Sciences</title>
-  <meta content="Create your SARTHI account to access digital capacity building courses, MCQ assessments, and official certifications." name="description"/>
+  <title>Sign In - SARTHI – Digital Capacity Building & Learning Management Portal | IMD, Ministry of Earth Sciences</title>
+  <meta content="Log in to your SARTHI account to access digital capacity building modules, track course progress, attempt MCQ assessments, and download certificates." name="description"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <link href="css/eduraflow-template.webflow.shared.b247299fc.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -185,58 +185,30 @@
       margin: 8px 0 0 0;
     }
     
-    /* Animated Sliding Role Toggle */
-    .role-toggle-group {
-      position: relative;
-      display: flex;
-      background-color: #f7f5ee;
-      border: 1px solid #ced3d2;
-      border-radius: 35px;
-      padding: 4px;
-      margin-bottom: 22px;
-      z-index: 1;
-    }
-    .role-slider-pill {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      left: 4px;
-      width: calc((100% - 8px) / 3);
-      background-color: var(--_colors---color--heading);
-      border-radius: 30px;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 10px rgba(12, 33, 29, 0.2);
-      z-index: 1;
-    }
-    .role-toggle-btn {
-      position: relative;
-      z-index: 2;
-      flex: 1;
-      border: none;
-      background: transparent;
-      padding: 10px 12px;
-      border-radius: 30px;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--_colors---color--heading);
-      cursor: pointer;
-      transition: color 0.25s ease;
-      text-align: center;
-    }
-    .role-toggle-btn.active {
-      color: #ffffff;
-    }
-    
     .auth-input-group {
       margin-bottom: 18px;
+    }
+    .auth-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
     }
     .auth-input-label {
       font-size: 13px;
       font-weight: 600;
       color: var(--_colors---color--heading);
-      margin-bottom: 6px;
-      display: block;
+      margin-bottom: 0;
+    }
+    .forgot-pass-link {
+      font-size: 13px;
+      color: #6d7a77;
+      text-decoration: none;
+      transition: color 0.2s linear;
+    }
+    .forgot-pass-link:hover {
+      color: var(--_colors---color--heading);
+      text-decoration: underline;
     }
     .auth-input-field {
       width: 100%;
@@ -354,70 +326,33 @@
         <div class="auth-heading-wrap">
           <div class="regular-subtitle">
             <div class="regular-subtitle-icon"></div>
-            <div class="regular-subtitle-text">get started</div>
+            <div class="regular-subtitle-text">welcome back</div>
           </div>
-          <h1 class="auth-heading-title">Join SARTHI Today</h1>
+          <h1 class="auth-heading-title">Log In to SARTHI</h1>
         </div>
 
-        <form id="signup-form" action="#" method="post">
-          <!-- Role Selector with Animated Slider -->
-          <div class="auth-input-group">
-            <label class="auth-input-label">Account Role</label>
-            <div class="role-toggle-group">
-              <div class="role-slider-pill" id="role-pill"></div>
-              <button type="button" class="role-toggle-btn active" data-role="Trainee" data-index="0">Trainee</button>
-              <button type="button" class="role-toggle-btn" data-role="Trainer" data-index="1">Trainer</button>
-              <button type="button" class="role-toggle-btn" data-role="Admin" data-index="2">Admin</button>
-            </div>
-            <input type="hidden" name="user_role" id="selected-role" value="Trainee"/>
-          </div>
-
-          <!-- Form Fields -->
-          <div class="auth-input-group">
-            <label for="full-name" class="auth-input-label">Full Name</label>
-            <input type="text" id="full-name" name="full_name" class="auth-input-field" placeholder="e.g. Dr. Rajesh Kumar" required/>
-          </div>
-
+        <form id="login-form" action="#" method="post">
           <div class="auth-input-group">
             <label for="email" class="auth-input-label">Official Email Address</label>
             <input type="email" id="email" name="email" class="auth-input-field" placeholder="name@imd.gov.in" required/>
           </div>
 
           <div class="auth-input-group">
-            <label for="password" class="auth-input-label">Password</label>
+            <div class="auth-label-row">
+              <label for="password" class="auth-input-label">Password</label>
+              <a href="contact.html" class="forgot-pass-link">Forgot password?</a>
+            </div>
             <input type="password" id="password" name="password" class="auth-input-field" placeholder="••••••••" required/>
           </div>
 
-          <div class="auth-input-group">
-            <label for="confirm-password" class="auth-input-label">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm_password" class="auth-input-field" placeholder="••••••••" required/>
-          </div>
-
-          <button type="submit" class="auth-submit-btn">Create Account</button>
+          <button type="submit" class="auth-submit-btn">Log In</button>
 
           <div class="auth-footer-link">
-            Already have an account? <a href="login.html">Log in</a>
+            Don't have an account? <a href="signup.html">Sign up</a>
           </div>
         </form>
       </div>
     </div>
   </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var roleBtns = document.querySelectorAll(".role-toggle-btn");
-      var roleInput = document.getElementById("selected-role");
-      var pill = document.getElementById("role-pill");
-
-      roleBtns.forEach(function (btn, idx) {
-        btn.addEventListener("click", function () {
-          roleBtns.forEach(function (b) { b.classList.remove("active"); });
-          btn.classList.add("active");
-          roleInput.value = btn.getAttribute("data-role");
-          pill.style.transform = "translateX(" + (idx * 100) + "%)";
-        });
-      });
-    });
-  </script>
 </body>
 </html>

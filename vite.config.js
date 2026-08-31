@@ -12,6 +12,8 @@ export default defineConfig({
         contact: resolve(__dirname, 'contact.html'),
         events: resolve(__dirname, 'events.html'),
         membership: resolve(__dirname, 'membership.html'),
+        signup: resolve(__dirname, 'signup.html'),
+        login: resolve(__dirname, 'login.html'),
         courses: resolve(__dirname, 'courses/index.html'),
         team: resolve(__dirname, 'team/index.html'),
         blog: resolve(__dirname, 'blog/index.html'),
