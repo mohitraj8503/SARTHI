@@ -2333,6 +2333,15 @@ figcaption {
 .brand-logo-wrap {
   padding-left: 0;
   display: flex;
+  background: transparent !important;
+}
+
+.brand-logo {
+  max-height: 54px;
+  width: auto;
+  object-fit: contain;
+  background: transparent !important;
+  mix-blend-mode: screen;
 }
 
 .nav-menu-area {
