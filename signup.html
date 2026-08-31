@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html data-wf-page="signup-page" data-wf-site="68e8faad0906611bc5b881dc" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link href="https://cdn.prod.website-files.com" rel="preconnect" />
+  <title>Sign Up - SARTHI – Digital Capacity Building & Learning Management Portal | IMD, Ministry of Earth Sciences</title>
+  <meta content="Create your SARTHI account to access digital capacity building courses, MCQ assessments, and official certifications for IMD and MoES personnel." name="description"/>
+  <meta content="Sign Up - SARTHI – Digital Capacity Building & Learning Management Portal | IMD, Ministry of Earth Sciences" property="og:title"/>
+  <meta content="Create your SARTHI account to access digital capacity building courses, MCQ assessments, and official certifications." property="og:description"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="css/eduraflow-template.webflow.shared.b247299fc.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" />
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      google: { families: ["DM Sans:300,400,500,600,700","Instrument Sans:300,400,500,600,700","Inter:300,400,500,600,700"] }
+    });
+  </script>
+  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+  <link href="images/app-icon.png" rel="apple-touch-icon"/>
+  <style>
+    .auth-card-wrap {
+      max-width: 540px;
+      margin: 0 auto;
+      background-color: var(--_colors---bg-color--white-smoke);
+      border-radius: var(--_border-radius---border-radius--radius-15);
+      padding: 40px;
+      border: 1px solid #ced3d2;
+      box-shadow: 0 4px 20px #0c211d14;
+    }
+    .role-toggle-group {
+      display: flex;
+      background-color: #e8eceb;
+      border-radius: 35px;
+      padding: 5px;
+      margin-bottom: 25px;
+      gap: 5px;
+    }
+    .role-toggle-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 15px;
+      border-radius: 30px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--_colors---color--heading);
+      cursor: pointer;
+      transition: all 0.2s linear;
+      text-align: center;
+    }
+    .role-toggle-btn.active {
+      background-color: var(--_colors---color--heading);
+      color: var(--_colors---bg-color--white);
+      box-shadow: 0 2px 10px rgba(12, 33, 29, 0.15);
+    }
+    .auth-input-group {
+      margin-bottom: 20px;
+    }
+    .auth-input-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--_colors---color--heading);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .auth-input-field {
+      width: 100%;
+      height: 48px;
+      background-color: var(--_colors---bg-color--white);
+      border: 1px solid #ced3d2;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 15px;
+      color: var(--_colors---color--heading);
+      transition: border-color 0.2s linear;
+      box-sizing: border-box;
+    }
+    .auth-input-field:focus {
+      border-color: var(--_colors---color--heading);
+      outline: none;
+    }
+    .auth-submit-btn {
+      width: 100%;
+      height: 52px;
+      background-color: var(--_colors---color--heading);
+      color: var(--_colors---bg-color--white);
+      border: 1px solid var(--_colors---color--heading);
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s linear;
+      margin-top: 10px;
+    }
+    .auth-submit-btn:hover {
+      background-color: var(--_colors---bg-color--primary);
+      color: var(--_colors---color--heading);
+      border-color: var(--_colors---bg-color--primary);
+    }
+    .auth-footer-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #6d7a77;
+    }
+    .auth-footer-link a {
+      color: var(--_colors---color--heading);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .auth-footer-link a:hover {
+      color: var(--_colors---bg-color--orange);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Navbar -->
+  <div class="header-area">
+    <div class="regular-bg-wrap">
+      <div class="regular-bg-pattern-wrap">
+        <img src="images/regular-banner-bg-pattern.png" loading="eager" alt="Regular BG Pattern" class="header-bg-pattern"/>
+      </div>
+    </div>
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+      <div class="container-large w-container">
+        <div class="navbar-area">
+          <a href="home.html" class="brand-logo-wrap w-nav-brand">
+            <img src="images/sarthi-logo.png" loading="eager" alt="SARTHI Logo" class="brand-logo" style="max-height: 70px; width: auto; object-fit: contain;"/>
+          </a>
+          <nav role="navigation" class="nav-menu-area w-nav-menu">
+            <div class="nav-menu-wrap">
+              <a href="home.html" class="nav-link w-nav-link">Home</a>
+              <a href="about.html" class="nav-link w-nav-link">About</a>
+              <a href="courses/index.html" class="nav-link w-nav-link">Courses</a>
+              <div data-hover="true" data-delay="0" class="nav-dropdown w-dropdown">
+                <div class="nav-link navbar-dropdown w-dropdown-toggle">
+                  <div>Pages</div>
+                  <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
+                </div>
+                <nav class="navigation-menu-area w-dropdown-list">
+                  <div class="navigation-menu-wrap">
+                    <a href="membership.html" class="navigation-menu w-dropdown-link">User Roles</a>
+                    <a href="events.html" class="navigation-menu w-dropdown-link">Events</a>
+                    <a href="team/index.html" class="navigation-menu w-dropdown-link">Team</a>
+                    <a href="contact.html" class="navigation-menu w-dropdown-link">Contact</a>
+                  </div>
+                </nav>
+              </div>
+              <a href="login.html" class="nav-link w-nav-link">Sign In</a>
+            </div>
+            <div class="nav-button-wrap">
+              <a href="signup.html" class="white-button w-inline-block">
+                <div class="button-text">Sign Up</div>
+                <div class="button-bg green-bg"></div>
+              </a>
+            </div>
+          </nav>
+          <div class="nav-menu-button w-nav-button">
+            <div class="w-icon-nav-menu"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="header-section">
+      <div class="w-layout-blockcontainer container w-container">
+        <div class="header-wrap">
+          <div class="regular-subtitle">
+            <div class="regular-subtitle-icon"></div>
+            <div>get started</div>
+          </div>
+          <div class="header-title-wrap medium">
+            <h1 class="banner-title">Join SARTHI Today</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Sign Up Form Section -->
+  <section class="regular-section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="auth-card-wrap">
+        <form id="signup-form" action="#" method="post">
+          
+          <!-- Unified Role Toggle Group -->
+          <div class="auth-input-group">
+            <label class="auth-input-label">Select Account Role</label>
+            <div class="role-toggle-group">
+              <button type="button" class="role-toggle-btn active" data-role="Trainee">Trainee</button>
+              <button type="button" class="role-toggle-btn" data-role="Trainer">Trainer</button>
+              <button type="button" class="role-toggle-btn" data-role="Admin">Admin</button>
+            </div>
+            <input type="hidden" name="user_role" id="selected-role" value="Trainee"/>
+          </div>
+
+          <!-- Input Fields -->
+          <div class="auth-input-group">
+            <label for="full-name" class="auth-input-label">Full Name</label>
+            <input type="text" id="full-name" name="full_name" class="auth-input-field" placeholder="e.g. Dr. Rajesh Kumar" required/>
+          </div>
+
+          <div class="auth-input-group">
+            <label for="email" class="auth-input-label">Official Email Address</label>
+            <input type="email" id="email" name="email" class="auth-input-field" placeholder="name@imd.gov.in" required/>
+          </div>
+
+          <div class="auth-input-group">
+            <label for="password" class="auth-input-label">Password</label>
+            <input type="password" id="password" name="password" class="auth-input-field" placeholder="••••••••" required/>
+          </div>
+
+          <div class="auth-input-group">
+            <label for="confirm-password" class="auth-input-label">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm_password" class="auth-input-field" placeholder="••••••••" required/>
+          </div>
+
+          <!-- Submit CTA -->
+          <button type="submit" class="auth-submit-btn">Create Account</button>
+
+          <!-- Footer Link -->
+          <div class="auth-footer-link">
+            Already have an account? <a href="login.html">Log in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="footer-top-wrap">
+        <div class="footer-widget-area">
+          <div class="footer-widget-wrap small">
+            <div class="footer-widget-link-area contact">
+              <p class="footer-widget-title">Contact</p>
+              <div class="footer-widget-link-wrap">
+                <a href="mailto:sarthi.support@imd.gov.in" class="footer-widget-link w-inline-block">
+                  <div class="footer-widget-icon"></div>
+                  <div class="footer-widget-text">sarthi.support@imd.gov.in</div>
+                </a>
+                <a href="tel:+911124631913" class="footer-widget-link w-inline-block">
+                  <div class="footer-widget-icon"></div>
+                  <div class="footer-widget-text">+91 11 2463 1913</div>
+                </a>
+              </div>
+            </div>
+            <div class="footer-widget-link-area medium">
+              <p class="footer-widget-title">Address</p>
+              <div class="footer-widget-link-wrap">
+                <p class="footer-widget-text">India Meteorological Department, Ministry of Earth Sciences, Mausam Bhawan, Lodi Road, New Delhi 110003</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-widget-wrap">
+            <div class="footer-widget-link-area">
+              <p class="footer-widget-title">Main Pages</p>
+              <div class="footer-widget-link-wrap">
+                <a href="home.html" class="footer-widget-link w-inline-block"><div class="footer-widget-icon"></div><div class="footer-widget-text">Home</div></a>
+                <a href="about.html" class="footer-widget-link w-inline-block"><div class="footer-widget-icon"></div><div class="footer-widget-text">About</div></a>
+                <a href="events.html" class="footer-widget-link w-inline-block"><div class="footer-widget-icon"></div><div class="footer-widget-text">Events</div></a>
+                <a href="membership.html" class="footer-widget-link w-inline-block"><div class="footer-widget-icon"></div><div class="footer-widget-text">User Roles</div></a>
+                <a href="contact.html" class="footer-widget-link w-inline-block"><div class="footer-widget-icon"></div><div class="footer-widget-text">Contact</div></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-title-area">
+          <div class="footer-title-wrap">
+            <a href="home.html" class="footer-title">S</a><a href="home.html" class="footer-title">A</a><a href="home.html" class="footer-title">R</a><a href="home.html" class="footer-title">T</a><a href="home.html" class="footer-title">H</a><a href="home.html" class="footer-title">I</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-wrap">
+        <div class="footer-copyright-text-wrap">
+          <p class="footer-copyright-text">Copyright © SARTHI — India Meteorological Department, Ministry of Earth Sciences</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery.js?site=68e8faad0906611bc5b881dc" type="text/javascript"></script>
+  <script src="js/webflow-script.js" type="text/javascript"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var roleBtns = document.querySelectorAll(".role-toggle-btn");
+      var roleInput = document.getElementById("selected-role");
+      roleBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          roleBtns.forEach(function (b) { b.classList.remove("active"); });
+          btn.classList.add("active");
+          roleInput.value = btn.getAttribute("data-role");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
