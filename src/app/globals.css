@@ -1,0 +1,563 @@
+/* Lenis Smooth Scroll Core Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* High-Hz (90Hz / 120Hz / 144Hz) GPU Acceleration & Smooth Rendering */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hardware Layer Promotion for Smooth Compositor Animations */
+.home-header-image,
+.cta-image,
+.course-card,
+.about-card,
+.why-card,
+.primary-button,
+.secondary-button,
+.white-button,
+.testimonial-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* 3D Green Robot Eye Blinking & Precise Alignment */
+@keyframes robotBlink {
+  0%, 88%, 100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  92% {
+    transform: scaleY(0.08);
+    opacity: 0.3;
+  }
+  96% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.robo-eye,
+.cta-eye {
+  animation: robotBlink 3.6s infinite ease-in-out !important;
+  transform-origin: center !important;
+  will-change: transform, opacity !important;
+}
+
+/* Hero & Landing Page Robot Eye Positioning & Full Original Sizing */
+.robo-eye-animation {
+  position: absolute !important;
+  top: 28% !important;
+  left: 30% !important;
+  width: 6% !important;
+  height: 10% !important;
+  z-index: 5 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.robo-eye-animation.right {
+  left: 50% !important;
+}
+
+.robo-eye {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: var(--_colors---bg-color--secondary, #bcff26) !important;
+  border-radius: 45px !important;
+  box-shadow: 0 0 37px #cbff5466 !important;
+}
+
+.cta-eye-animation {
+  position: absolute !important;
+  top: 26% !important;
+  left: 35% !important;
+  width: 6% !important;
+  height: 10% !important;
+  z-index: 5 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.cta-eye-animation.right {
+  left: 53% !important;
+}
+
+.cta-eye {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: var(--_colors---bg-color--secondary, #bcff26) !important;
+  border-radius: 45px !important;
+  box-shadow: 0 0 37px #cbff5466 !important;
+}
+
+/* Mobile Screen 100vh Full Screen Hero Fill & Larger Prominent Robot */
+@media screen and (max-width: 991px) {
+  .header-area {
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    padding-bottom: 20px !important;
+    overflow: hidden !important;
+  }
+
+  .home-header-area {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .home-header-section {
+    order: 1 !important;
+    padding-top: 6px !important;
+  }
+
+  .home-header-bg-area {
+    order: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex: 1 !important;
+  }
+
+  .home-header-image-whole-wrap {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-header-image-wrap {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+    max-width: 310px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .home-header-image {
+    max-height: 285px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  .banner-title {
+    font-size: 24px !important;
+    line-height: 1.28 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .home-header-button-wrap {
+    gap: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .header-student-area {
+    margin-top: 6px !important;
+  }
+}
+
+/* Interactive Suggestion Chips */
+.suggestion-chip {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0c211d;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(30, 82, 70, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.suggestion-chip:hover {
+  background: #25bb84;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   MOBILE NAVBAR DRAWER FIX (Hidden by default, opens only on ☰ button tap)
+   ========================================================================== */
+@media screen and (max-width: 991px) {
+  .nav-menu-area.w-nav-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 16px !important;
+    right: 16px !important;
+    background: #091e19 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 24px 20px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+    z-index: 9999 !important;
+    backdrop-filter: blur(16px) !important;
+  }
+
+  .nav-menu-area.w-nav-menu.w--open {
+    display: block !important;
+    animation: mobileNavFadeIn 0.3s ease-out forwards;
+  }
+}
+
+@keyframes mobileNavFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   AUTHENTICATION LAYOUT (Desktop & Mobile Pixel-Perfect Hero Response)
+   ========================================================================== */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  width: 100vw;
+  background: #f8faf9;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.auth-mobile-header {
+  display: none;
+}
+
+.auth-left-panel {
+  flex: 1.1;
+  background-image: linear-gradient(180deg, rgba(12, 33, 29, 0.78) 0%, rgba(8, 23, 20, 0.88) 100%), url('https://cdn.pixabay.com/photo/2014/03/10/18/46/clouds-284688_1280.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 50px 60px;
+  position: relative;
+}
+
+.auth-left-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.auth-logo-badge {
+  display: inline-block;
+  background: #081714;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+.auth-headline {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 18px;
+  color: #ffffff;
+}
+
+.auth-subtext {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.auth-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.auth-stat-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #bcff26;
+  margin: 0;
+}
+
+.auth-stat-label {
+  font-size: 11px;
+  margin: 4px 0 0 0;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.auth-right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 40px;
+  background: #ffffff;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-desktop-back {
+  display: block;
+}
+
+.auth-back-link {
+  font-size: 13px;
+  color: #1e5246;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  transition: opacity 0.2s ease;
+}
+
+.auth-back-link:hover {
+  opacity: 0.8;
+}
+
+.social-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.google-btn {
+  border: 1px solid #dcdfe3;
+  background: #ffffff;
+  color: #202124;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.google-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.github-btn {
+  border: 1px solid #24292e;
+  background: #24292e;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.github-btn:hover {
+  background: #0f1419;
+  transform: translateY(-1px);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-input:focus {
+  border-color: #25bb84;
+  box-shadow: 0 0 0 3px rgba(37, 187, 132, 0.15);
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0c211d 0%, #1e5246 100%);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+  box-shadow: 0 4px 14px rgba(12, 33, 29, 0.3);
+  transition: all 0.2s ease;
+}
+
+.auth-submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 187, 132, 0.35);
+}
+
+/* Mobile Optimizations (< 768px): Top Hero Header Outside Card + Floating White Card */
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 32px 18px 48px 18px;
+    min-height: 100vh;
+    background-image: linear-gradient(180deg, rgba(12, 33, 29, 0.84) 0%, rgba(8, 23, 20, 0.94) 100%), url('https://cdn.pixabay.com/photo/2014/03/10/18/46/clouds-284688_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .auth-mobile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .auth-mobile-home-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 16px;
+  }
+
+  .auth-mobile-logo-wrap {
+    margin-bottom: 12px;
+  }
+
+  .auth-mobile-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+  }
+
+  .auth-mobile-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin: 0;
+    max-width: 320px;
+  }
+
+  .auth-left-panel {
+    display: none;
+  }
+
+  .auth-right-panel {
+    background: transparent;
+    padding: 0;
+    width: 100%;
+  }
+
+  .auth-desktop-back {
+    display: none;
+  }
+
+  .auth-card {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 32px 24px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* Custom Ultra-Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #091e19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e5246;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #25bb84;
+}
