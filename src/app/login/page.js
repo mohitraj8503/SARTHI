@@ -2,19 +2,61 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+  const router = useRouter();
+  const supabase = createClient();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setErrorMsg("");
+    setSuccessMsg("");
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setErrorMsg(error.message);
+      } else {
+        setSuccessMsg(`Welcome back! Logged in as ${data.user.email}`);
+        setTimeout(() => {
+          router.push("/");
+          router.refresh();
+        }, 1000);
+      }
+    } catch (err) {
+      setErrorMsg("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleOAuthLogin = (provider) => {
-    alert(`Initiating ${provider} Sign In for SARTHI Portal...`);
+  const handleOAuthLogin = async (provider) => {
+    setErrorMsg("");
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: provider.toLowerCase(),
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+      if (error) {
+        setErrorMsg(error.message);
+      }
+    } catch (err) {
+      setErrorMsg(`Failed to initiate ${provider} login.`);
+    }
   };
 
   return (
@@ -89,6 +131,18 @@ export default function LoginPage() {
             </p>
           </div>
 
+          {errorMsg && (
+            <div style={{ marginBottom: "14px", padding: "10px 14px", borderRadius: "8px", background: "#fef2f2", border: "1px solid #fecaca", color: "#b91c1c", fontSize: "13px" }}>
+              ⚠️ {errorMsg}
+            </div>
+          )}
+
+          {successMsg && (
+            <div style={{ marginBottom: "14px", padding: "10px 14px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", color: "#166534", fontSize: "13px" }}>
+              ✓ {successMsg}
+            </div>
+          )}
+
           {/* Email Form */}
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             <div>
@@ -120,16 +174,10 @@ export default function LoginPage() {
               />
             </div>
 
-            <button type="submit" className="auth-submit-btn">
-              Sign In →
+            <button type="submit" disabled={loading} className="auth-submit-btn" style={{ opacity: loading ? 0.7 : 1 }}>
+              {loading ? "Signing in..." : "Sign In →"}
             </button>
           </form>
-
-          {submitted && (
-            <div style={{ marginTop: "14px", padding: "12px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", color: "#166534", fontSize: "13px" }}>
-              ✓ Logging in as <strong>{email}</strong>. Access granted!
-            </div>
-          )}
 
           {/* Divider */}
           <div style={{ display: "flex", alignItems: "center", gap: "12px", margin: "24px 0 20px 0" }}>
