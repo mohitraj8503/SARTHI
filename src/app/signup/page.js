@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { createClient } from "@/utils/supabase/client";
 
 export default function SignupPage() {
   const [role, setRole] = useState("trainee");
@@ -10,15 +12,69 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [division, setDivision] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+  const router = useRouter();
+  const supabase = createClient();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setErrorMsg("");
+    setSuccessMsg("");
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name,
+            role: role,
+            division: division,
+          },
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+
+      if (error) {
+        setErrorMsg(error.message);
+      } else {
+        if (data?.session) {
+          setSuccessMsg(`✓ Account successfully created for ${name} (${role.toUpperCase()})! Redirecting...`);
+          setTimeout(() => {
+            router.push("/");
+            router.refresh();
+          }, 1200);
+        } else {
+          setSuccessMsg(
+            `✓ Account registered for ${name}! Please check your email (${email}) to confirm your official registration.`
+          );
+        }
+      }
+    } catch (err) {
+      setErrorMsg("Failed to complete registration. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleOAuthSignup = (provider) => {
-    alert(`Initiating ${provider} Registration for SARTHI Portal...`);
+  const handleOAuthSignup = async (provider) => {
+    setErrorMsg("");
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: provider.toLowerCase(),
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+      if (error) {
+        setErrorMsg(error.message);
+      }
+    } catch (err) {
+      setErrorMsg(`Failed to initiate ${provider} registration.`);
+    }
   };
 
   const roles = [
@@ -98,6 +154,18 @@ export default function SignupPage() {
               Select your role and enter your official details.
             </p>
           </div>
+
+          {errorMsg && (
+            <div style={{ marginBottom: "14px", padding: "10px 14px", borderRadius: "8px", background: "#fef2f2", border: "1px solid #fecaca", color: "#b91c1c", fontSize: "13px" }}>
+              ⚠️ {errorMsg}
+            </div>
+          )}
+
+          {successMsg && (
+            <div style={{ marginBottom: "14px", padding: "10px 14px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", color: "#166534", fontSize: "13px" }}>
+              {successMsg}
+            </div>
+          )}
 
           {/* Animated Framer Motion Role Switcher */}
           <div style={{ display: "flex", background: "#f0f4f3", borderRadius: "30px", padding: "4px", marginBottom: "20px", position: "relative" }}>
@@ -201,16 +269,10 @@ export default function SignupPage() {
               />
             </div>
 
-            <button type="submit" className="auth-submit-btn">
-              Create Account →
+            <button type="submit" disabled={loading} className="auth-submit-btn" style={{ opacity: loading ? 0.7 : 1 }}>
+              {loading ? "Creating Account..." : "Create Account →"}
             </button>
           </form>
-
-          {submitted && (
-            <div style={{ marginTop: "14px", padding: "12px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", color: "#166534", fontSize: "13px" }}>
-              ✓ Account created for <strong>{name}</strong> as <strong>{role.toUpperCase()}</strong> ({division}). Registration request sent for approval!
-            </div>
-          )}
 
           {/* Divider */}
           <div style={{ display: "flex", alignItems: "center", gap: "12px", margin: "24px 0 20px 0" }}>

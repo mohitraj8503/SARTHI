@@ -1,11 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
 
 export default function Navbar({ activePage = "" }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const supabase = createClient();
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    window.location.reload();
+  };
 
   return (
     <div
@@ -138,15 +161,40 @@ export default function Navbar({ activePage = "" }) {
               </Link>
             </div>
             <div className="nav-button-wrap">
-              <Link
-                href="/login"
-                title="Left-click: Sign In | Right-click: Sign Up"
-                className="white-button w-variant-b5e20566-3477-dba0-25ea-a79fe332753d w-inline-block"
-                onClick={() => setIsMobileOpen(false)}
-              >
-                <div className="button-text">Sign In / Sign Up</div>
-                <div className="button-bg green-bg"></div>
-              </Link>
+              {user ? (
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "#1e5246",
+                      background: "#e6f4f1",
+                      padding: "6px 12px",
+                      borderRadius: "20px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    👤 {user.user_metadata?.full_name || user.email?.split("@")[0]}
+                  </span>
+                  <button
+                    onClick={handleSignOut}
+                    className="white-button w-variant-b5e20566-3477-dba0-25ea-a79fe332753d w-inline-block"
+                    style={{ cursor: "pointer", border: "none" }}
+                  >
+                    <div className="button-text">Sign Out</div>
+                    <div className="button-bg green-bg"></div>
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  title="Sign In / Sign Up to SARTHI Portal"
+                  className="white-button w-variant-b5e20566-3477-dba0-25ea-a79fe332753d w-inline-block"
+                  onClick={() => setIsMobileOpen(false)}
+                >
+                  <div className="button-text">Sign In / Sign Up</div>
+                  <div className="button-bg green-bg"></div>
+                </Link>
+              )}
             </div>
           </nav>
           <div
