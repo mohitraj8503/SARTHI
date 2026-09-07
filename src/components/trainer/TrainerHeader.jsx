@@ -267,6 +267,9 @@ export default function TrainerHeader({
               <Link href="/dashboard" onClick={() => setShowUserMenu(false)} style={{ display: "block", padding: "6px 10px", textDecoration: "none", color: "#059669", fontSize: "13px", fontWeight: "700", borderRadius: "6px" }}>
                 Switch to Student View &rarr;
               </Link>
+              <Link href="/admin" onClick={() => setShowUserMenu(false)} style={{ display: "block", padding: "6px 10px", textDecoration: "none", color: "#ea580c", fontSize: "13px", fontWeight: "700", borderRadius: "6px" }}>
+                👑 Admin Console &rarr;
+              </Link>
               <button
                 onClick={() => router.push("/login")}
                 style={{ width: "100%", textAlign: "left", background: "none", border: "none", padding: "6px 10px", color: "#dc2626", fontSize: "13px", cursor: "pointer", borderTop: "1px solid var(--tr-border)", marginTop: "6px" }}

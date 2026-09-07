@@ -396,6 +396,11 @@ export default function StudentHeader({
                   Switch to Trainer View &rarr;
                 </Link>
               </div>
+              <div className="db-notification-item">
+                <Link href="/admin" onClick={() => setShowUserMenu(false)} style={{ textDecoration: "none", color: "#ea580c", fontWeight: "700" }}>
+                  👑 Admin Console &rarr;
+                </Link>
+              </div>
               <div className="db-notification-item" style={{ color: "#dc2626" }}>
                 <button
                   onClick={handleLogout}

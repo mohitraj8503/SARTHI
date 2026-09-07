@@ -50,6 +50,20 @@ export default function LoginPage() {
       return;
     }
 
+    // Instant Demo Admin Login
+    if (
+      (email.trim().toLowerCase() === "admin.demo@imd.gov.in" ||
+        email.trim().toLowerCase() === "admin@sarthi.gov.in" ||
+        email.trim().toLowerCase() === "mukul.pandey@imd.gov.in") &&
+      (password === "AdminDemo@123" || password === "admin123" || password === "Admin@123")
+    ) {
+      setSuccessMsg("Welcome back, Administrator Mukul Pandey! Redirecting to Admin Console...");
+      setTimeout(() => {
+        router.push("/admin");
+      }, 700);
+      return;
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -161,7 +175,7 @@ export default function LoginPage() {
             </p>
 
             {/* Instant Demo Role Fill Buttons */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "10px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", marginTop: "10px" }}>
               <button
                 type="button"
                 onClick={() => {
@@ -169,18 +183,18 @@ export default function LoginPage() {
                   setPassword("StudentDemo@123");
                 }}
                 style={{
-                  padding: "8px 10px",
+                  padding: "8px 6px",
                   borderRadius: "8px",
                   background: "#f0fdf4",
                   border: "1px solid #86efac",
                   color: "#15803d",
-                  fontSize: "12px",
+                  fontSize: "11.5px",
                   fontWeight: "700",
                   cursor: "pointer",
                   textAlign: "center",
                 }}
               >
-                👨‍🎓 Demo Trainee
+                👨‍🎓 Trainee
               </button>
               <button
                 type="button"
@@ -189,18 +203,38 @@ export default function LoginPage() {
                   setPassword("TrainerDemo@123");
                 }}
                 style={{
-                  padding: "8px 10px",
+                  padding: "8px 6px",
                   borderRadius: "8px",
                   background: "#ecfdf5",
                   border: "1px solid #6ee7b7",
                   color: "#047857",
-                  fontSize: "12px",
+                  fontSize: "11.5px",
                   fontWeight: "700",
                   cursor: "pointer",
                   textAlign: "center",
                 }}
               >
-                👨‍🏫 Demo Trainer
+                👨‍🏫 Trainer
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail("admin.demo@imd.gov.in");
+                  setPassword("AdminDemo@123");
+                }}
+                style={{
+                  padding: "8px 6px",
+                  borderRadius: "8px",
+                  background: "#fff7ed",
+                  border: "1px solid #fdba74",
+                  color: "#c2410c",
+                  fontSize: "11.5px",
+                  fontWeight: "700",
+                  cursor: "pointer",
+                  textAlign: "center",
+                }}
+              >
+                👑 Admin
               </button>
             </div>
           </div>
