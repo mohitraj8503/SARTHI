@@ -129,9 +129,9 @@ export default function FeedbackWidget() {
 
   return (
     <>
-      {/* Floating Feedback Trigger Button (Desktop & Mobile safe placement) */}
+      {/* Floating Feedback Trigger Button (Desktop only, hidden on mobile view) */}
       {!isVideoPlaying && (
-        <div className="flex fixed right-4 sm:right-6 bottom-24 lg:bottom-8 lg:right-[108px] z-[1000] items-center">
+        <div className="hidden lg:flex fixed bottom-8 right-[108px] z-[1000] items-center">
           <div className="relative group">
             <motion.button
               whileHover={{ scale: 1.05 }}

@@ -53,10 +53,14 @@ export default function Footer() {
                 />
               </Link>
               <div className="flex flex-col justify-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-none">
-                  SARTHI
-                </span>
-                <span className="text-[11px] sm:text-xs font-bold text-[#34d399] uppercase tracking-[0.14em] leading-tight mt-1.5">
+                <Link href="/" className="inline-block mb-2" aria-label="SARTHI Home">
+                  <img
+                    src="/sarthi-logo.png"
+                    alt="SARTHI"
+                    className="h-10 sm:h-12 md:h-14 w-auto object-contain object-left drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] hover:scale-[1.03] transition-transform duration-200"
+                  />
+                </Link>
+                <span className="text-[11px] sm:text-xs font-bold text-[#34d399] uppercase tracking-[0.14em] leading-tight mt-0.5">
                   Ministry of Earth Sciences
                 </span>
                 <span className="text-[11px] sm:text-[12px] font-bold text-white uppercase tracking-[0.12em] leading-tight mt-1">

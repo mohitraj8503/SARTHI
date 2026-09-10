@@ -104,26 +104,25 @@ export default function MobileNav() {
               if (item.isPrimary) {
                 return (
                   <div key={item.label} className="relative w-[70px] h-full flex flex-col items-center justify-end pb-2 z-20">
-                    <div className="absolute top-[-30px] w-[68px] h-[68px] rounded-full bg-[#16A34A]/10 blur-md pointer-events-none animate-pulse" />
+                    <div className="absolute top-[-30px] w-[68px] h-[68px] rounded-full bg-[#16A34A]/20 blur-md pointer-events-none animate-pulse" />
 
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.9 }}
                       aria-label="Open AI Assistant"
-                      className="absolute top-[-24px] w-[58px] h-[58px] bg-white rounded-full flex items-center justify-center text-slate-900 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border-[3px] border-black active:scale-95 transition-all duration-300 group overflow-hidden"
+                      className="absolute top-[-24px] w-[58px] h-[58px] bg-black rounded-full flex items-center justify-center text-white shadow-[0_8px_22px_rgba(0,0,0,0.35)] border-[3.5px] border-white active:scale-95 transition-all duration-300 group overflow-hidden cursor-pointer"
                       onClick={() => {
                         triggerHaptic('medium');
                         window.dispatchEvent(new CustomEvent('open-ai-assistant'));
                       }}
                     >
-                      <img
-                        src="/sarthi-logo.png"
-                        alt="SARTHI Logo"
-                        className="w-9 h-9 object-contain relative z-10"
-                      />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#16A34A]/15 to-transparent pointer-events-none" />
+                      <span className="font-black tracking-wider text-[16px] text-white relative z-10 select-none drop-shadow-[0_0_8px_rgba(34,197,94,0.95)]">
+                        AI
+                      </span>
                     </motion.button>
-                    <span className="text-[10px] font-black text-[#1A3C2E] opacity-80 tracking-tight leading-none">
-                      {item.label}
+                    <span className="text-[10px] font-black text-[#1A3C2E] opacity-80 tracking-tight leading-none mt-1">
+                      AI
                     </span>
                   </div>
                 );

@@ -27,8 +27,12 @@ export default function Hero() {
             <h1 className="font-instrument text-[36px] sm:text-[52px] lg:text-[66px] xl:text-[72px] font-bold text-white tracking-[-0.03em] leading-[1.12] max-w-[780px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
               SARTHI — Building Capacity, Empowering IMD&apos;s Workforce
             </h1>
-            <div className="mt-3 sm:mt-4 flex items-center justify-center lg:justify-start gap-2 text-white/90 text-[15px] sm:text-[18px] font-medium font-instrument tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-              <span className="text-lg sm:text-xl select-none" role="img" aria-label="Indian Flag">🇮🇳</span>
+            <div className="mt-3 sm:mt-4 flex items-center justify-center lg:justify-start gap-2.5 text-white/90 text-[15px] sm:text-[18px] font-medium font-instrument tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+              <img
+                src="/india-flag.png"
+                alt="🇮🇳"
+                className="w-5.5 h-3.5 sm:w-6 sm:h-4 object-cover rounded-[2px] shadow-sm select-none shrink-0"
+              />
               <span>Making India Future Ready</span>
             </div>
           </div>

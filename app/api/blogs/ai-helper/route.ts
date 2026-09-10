@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/auth';
+import { callGemini } from '@/lib/ai/gemini';
 
 const MODEL_CASCADE = [
   // === Ultra Low Latency (Small / Nano models) ===
@@ -33,9 +34,20 @@ const MODEL_CASCADE = [
 ];
 
 async function callOpenRouter(systemPrompt: string, userPrompt: string): Promise<string> {
+  // 1. Try Gemini AI first (fastest, high quality)
+  try {
+    const geminiRes = await callGemini(userPrompt, systemPrompt, 'gemini-3.6-flash');
+    if (geminiRes.success && geminiRes.text) {
+      console.log('[AI-Helper] Success with Gemini model:', geminiRes.model);
+      return geminiRes.text;
+    }
+  } catch (err: any) {
+    console.warn('[AI-Helper] Gemini direct failed, falling back to cascade:', err?.message);
+  }
+
   const apiKey = process.env.NVIDIA_API_KEY || process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
-    throw new Error('AI configuration missing (NVIDIA_API_KEY or OPENROUTER_API_KEY)');
+    throw new Error('AI configuration missing (GEMINI_API_KEY or OPENROUTER_API_KEY)');
   }
 
   console.log('[AI-Helper] Starting cascade with', MODEL_CASCADE.length, 'models');

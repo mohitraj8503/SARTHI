@@ -190,15 +190,23 @@ export default function Header() {
             <Link
               href="/"
               onClick={handleLogoClick}
-              className="z-10 flex items-center transition-transform hover:scale-[1.02] duration-200"
+              className="z-10 flex items-center transition-transform hover:scale-[1.04] duration-200"
               aria-label="SARTHI Home"
             >
-              <span className={cn(
-                "font-instrument text-[22px] sm:text-[24px] lg:text-[26px] font-bold tracking-[0.14em] block whitespace-nowrap select-none transition-all duration-300 uppercase",
-                transparent ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]" : "text-slate-900"
-              )}>
-                SARTHI
-              </span>
+              <motion.div
+                animate={isLogoRotating ? { rotate: 360 } : { rotate: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="relative w-[115px] sm:w-[135px] lg:w-[165px] h-[40px] sm:h-[46px] lg:h-[56px] flex items-center justify-start flex-shrink-0"
+              >
+                <Image
+                  src={transparent ? "/sarthi-logo.png" : "/images/sarthi-logo-forest.png"}
+                  alt="SARTHI"
+                  width={220}
+                  height={80}
+                  priority
+                  className="w-full h-full object-contain object-left drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]"
+                />
+              </motion.div>
             </Link>
           </div>
 
@@ -662,10 +670,15 @@ export default function Header() {
               aria-label="Navigation menu"
             >
               <div className="flex justify-between items-center h-16 px-6 border-b border-gray-100 shrink-0">
-                <span className="text-xl font-black tracking-tight">
-                  <span className="text-[#FF8A00]">SAR</span>
-                  <span className="text-[#16A34A]">THI</span>
-                </span>
+                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center">
+                  <Image
+                    src="/images/sarthi-logo-forest.png"
+                    alt="SARTHI"
+                    width={140}
+                    height={50}
+                    className="h-10 w-auto object-contain"
+                  />
+                </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   aria-label="Close menu"

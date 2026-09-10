@@ -1,5 +1,7 @@
 import { retrieveRelevantKnowledge } from './knowledge';
 import { callLocalOllama } from './ollama';
+import { callGemini } from './gemini';
+import { callOpenRouter } from './router';
 
 export interface CounselorAction {
   label: string;
@@ -9,7 +11,7 @@ export interface CounselorAction {
 
 export interface CounselorResult {
   reply: string;
-  source: 'ollama' | 'counselor_engine';
+  source: 'gemini' | 'openrouter' | 'ollama' | 'counselor_engine';
   recommendedAction?: CounselorAction;
   suggestions?: { id: string; label: string; link: string }[];
   model?: string;
@@ -133,21 +135,61 @@ function generateDynamicCounselorResponse(message: string, retrievedContext: str
 
 /**
  * Main AI counselor orchestration:
- * 1. Checks local Ollama / VPS LLM first
- * 2. If available, generates dynamic model text
- * 3. If unavailable (e.g. shared host), seamlessly falls back to RAG counselor engine with full knowledge & helpful answers
+ * 1. Calls Google Gemini (Fast, intelligent, contextual)
+ * 2. Checks local Ollama / VPS LLM if Gemini is unavailable
+ * 3. Falls back seamlessly to dynamic RAG counselor engine
  */
 export async function processCounselorMessage(message: string): Promise<CounselorResult> {
   const relevantKnowledge = retrieveRelevantKnowledge(message, 3);
+  const startTime = Date.now();
 
-  const systemPrompt = `You are SARTHI AI — the official student counselor and support assistant for SARTHI (an MSME-registered EdTech platform in India).
-Be warm, conversational, encouraging, and accurate. Use natural conversational Hinglish or English based on user query.
+  const systemPrompt = `You are SARTHI AI — the official student counselor and intelligent support assistant for SARTHI (an MSME-registered EdTech platform in India).
+Be warm, conversational, encouraging, clear, and accurate. Use natural conversational Hinglish or English based on user query. Keep responses crisp (under 3-4 paragraphs), well-formatted with markdown bullet points and bold highlights.
 
 KNOWLEDGE BASE:
 ${relevantKnowledge || 'SARTHI offers Python & AI, Full Stack Web Development, Machine Learning, Power BI, Summer Camp 2026, and Industry Internships.'}
 `;
 
-  // 1. Attempt local/VPS Ollama generation
+  // 1. Call Gemini AI (Primary Tier)
+  try {
+    const geminiRes = await callGemini(message, systemPrompt, 'gemini-3.6-flash');
+    if (geminiRes.success && geminiRes.text) {
+      const dynamic = generateDynamicCounselorResponse(message, relevantKnowledge);
+      return {
+        reply: geminiRes.text,
+        source: 'gemini',
+        recommendedAction: dynamic.action,
+        suggestions: dynamic.suggestions,
+        model: geminiRes.model,
+        latencyMs: Date.now() - startTime,
+      };
+    }
+  } catch (e: any) {
+    console.warn('[AI Counselor] Gemini fallback triggered:', e?.message);
+  }
+
+  // 2. Call OpenRouter Fast Cascade (Secondary Tier)
+  try {
+    const openRouterRes = await callOpenRouter([
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: message }
+    ]);
+    if (openRouterRes.success && openRouterRes.content) {
+      const dynamic = generateDynamicCounselorResponse(message, relevantKnowledge);
+      return {
+        reply: openRouterRes.content,
+        source: 'openrouter',
+        recommendedAction: dynamic.action,
+        suggestions: dynamic.suggestions,
+        model: openRouterRes.model,
+        latencyMs: Date.now() - startTime,
+      };
+    }
+  } catch (e: any) {
+    console.warn('[AI Counselor] OpenRouter fallback triggered:', e?.message);
+  }
+
+  // 3. Attempt local/VPS Ollama generation
   const ollamaResult = await callLocalOllama([
     { role: 'system', content: systemPrompt },
     { role: 'user', content: message }
@@ -165,12 +207,13 @@ ${relevantKnowledge || 'SARTHI offers Python & AI, Full Stack Web Development, M
     };
   }
 
-  // 2. Intelligent RAG Counselor Engine fallback (Provides instant, accurate guidance)
+  // 3. Intelligent RAG Counselor Engine fallback
   const fallbackResponse = generateDynamicCounselorResponse(message, relevantKnowledge);
   return {
     reply: fallbackResponse.reply,
     source: 'counselor_engine',
     recommendedAction: fallbackResponse.action,
     suggestions: fallbackResponse.suggestions,
+    latencyMs: Date.now() - startTime,
   };
 }
