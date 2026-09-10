@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "node scripts/run-dev.js",
     "prebuild": "rimraf .next .next_stable tsconfig.tsbuildinfo",
-    "build": "prisma generate && npx tsx scripts/rebuild-all-certificate-snapshots.ts --apply && cross-env GENERATE_SOURCEMAP=false NODE_OPTIONS=\"--max-old-space-size=2048\" NEXT_TELEMETRY_DISABLED=1 NEXT_CPU_COUNT=1 next build",
-    "build:hostinger": "prisma generate && npx tsx scripts/rebuild-all-certificate-snapshots.ts --apply && cross-env GENERATE_SOURCEMAP=false NODE_OPTIONS=\"--max-old-space-size=2048\" NEXT_TELEMETRY_DISABLED=1 NEXT_CPU_COUNT=1 next build",
+    "build": "prisma generate && next build",
+    "build:hostinger": "prisma generate && next build",
     "seed:projects": "npx tsx scripts/seed-all-projects.ts",
     "build:local": "prisma generate && cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" NEXT_CPU_COUNT=12 next build",
     "test": "jest",
