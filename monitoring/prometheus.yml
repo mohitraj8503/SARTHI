@@ -1,0 +1,458 @@
+# PHASE 8 — DevOps Recovery Plan Audit
+
+## Production Infrastructure Stack
+
+### Monitoring & Observability
+
+**Grafana + Prometheus Stack:**
+```yaml
+# docker-compose.monitoring.yml
+version: '3.8'
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - monitoring
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - "9100:9100"
+    networks:
+      - monitoring
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+    ports:
+      - "8080:8080"
+    networks:
+      - monitoring
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  monitoring:
+    driver: bridge
+```
+
+**Application Metrics Collection:**
+```typescript
+// lib/metrics/application-metrics.ts
+const promClient = require('prom-client');
+
+export class ApplicationMetrics {
+  private register: any;
+  private metrics: any;
+
+  constructor() {
+    this.register = new promClient.Registry();
+
+    // Enable default metrics
+    promClient.collectDefaultMetrics({ register: this.register });
+
+    this.initializeMetrics();
+  }
+
+  private initializeMetrics() {
+    // HTTP request metrics
+    this.metrics.httpRequestDuration = new promClient.Histogram({
+      name: 'http_request_duration_seconds',
+      help: 'Duration of HTTP requests in seconds',
+      labelNames: ['method', 'route', 'status_code'],
+      buckets: [0.1, 0.5, 1, 2, 5, 10]
+    });
+
+    // WebSocket connections
+    this.metrics.websocketConnections = new promClient.Gauge({
+      name: 'websocket_active_connections',
+      help: 'Number of active WebSocket connections'
+    });
+
+    // LiveKit room metrics
+    this.metrics.activeRooms = new promClient.Gauge({
+      name: 'livekit_active_rooms',
+      help: 'Number of active LiveKit rooms'
+    });
+
+    this.metrics.roomParticipants = new promClient.Gauge({
+      name: 'livekit_room_participants',
+      help: 'Number of participants per room',
+      labelNames: ['room_name']
+    });
+
+    // Database metrics
+    this.metrics.dbQueryDuration = new promClient.Histogram({
+      name: 'db_query_duration_seconds',
+      help: 'Duration of database queries',
+      labelNames: ['query_type'],
+      buckets: [0.01, 0.05, 0.1, 0.5, 1, 5]
+    });
+
+    // Memory usage
+    this.metrics.memoryUsage = new promClient.Gauge({
+      name: 'nodejs_memory_usage_bytes',
+      help: 'Node.js memory usage',
+      labelNames: ['type']
+    });
+
+    // Error rate
+    this.metrics.errorRate = new promClient.Counter({
+      name: 'application_errors_total',
+      help: 'Total number of application errors',
+      labelNames: ['type', 'component']
+    });
+
+    // Register all metrics
+    this.register.registerMetric(this.metrics.httpRequestDuration);
+    this.register.registerMetric(this.metrics.websocketConnections);
+    // ... register all metrics
+  }
+
+  // Middleware for HTTP metrics
+  getHttpMetricsMiddleware() {
+    return (req: any, res: any, next: any) => {
+      const start = Date.now();
+
+      res.on('finish', () => {
+        const duration = (Date.now() - start) / 1000;
+        this.metrics.httpRequestDuration
+          .labels(req.method, req.route?.path || req.path, res.statusCode)
+          .observe(duration);
+      });
+
+      next();
+    };
+  }
+
+  // Update gauge metrics
+  updateWebSocketConnections(count: number) {
+    this.metrics.websocketConnections.set(count);
+  }
+
+  updateActiveRooms(count: number) {
+    this.metrics.activeRooms.set(count);
+  }
+
+  updateRoomParticipants(roomName: string, count: number) {
+    this.metrics.roomParticipants.labels(roomName).set(count);
+  }
+
+  // Record database query metrics
+  recordDbQuery(queryType: string, duration: number) {
+    this.metrics.dbQueryDuration.labels(queryType).observe(duration);
+  }
+
+  // Record memory usage
+  recordMemoryUsage() {
+    const memUsage = process.memoryUsage();
+    this.metrics.memoryUsage.labels('rss').set(memUsage.rss);
+    this.metrics.memoryUsage.labels('heap_used').set(memUsage.heapUsed);
+    this.metrics.memoryUsage.labels('heap_total').set(memUsage.heapTotal);
+    this.metrics.memoryUsage.labels('external').set(memUsage.external);
+  }
+
+  // Record errors
+  recordError(type: string, component: string) {
+    this.metrics.errorRate.labels(type, component).inc();
+  }
+
+  // Get metrics for Prometheus
+  async getMetrics() {
+    return this.register.metrics();
+  }
+
+  // Register with Prometheus registry
+  getRegister() {
+    return this.register;
+  }
+}
+```
+
+### Alerting System
+
+**Alert Manager Configuration:**
+```yaml
+# monitoring/alertmanager.yml
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'alerts@techtomorrow.com'
+  smtp_auth_username: 'alerts@techtomorrow.com'
+  smtp_auth_password: '${SMTP_PASSWORD}'
+
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'email'
+  routes:
+  - match:
+      severity: critical
+    receiver: 'pagerduty'
+  - match:
+      severity: warning
+    receiver: 'slack'
+
+receivers:
+- name: 'email'
+  email_configs:
+  - to: 'devops@techtomorrow.com'
+    send_resolved: true
+
+- name: 'slack'
+  slack_configs:
+  - api_url: '${SLACK_WEBHOOK_URL}'
+    channel: '#alerts'
+    send_resolved: true
+
+- name: 'pagerduty'
+  pagerduty_configs:
+  - service_key: '${PAGERDUTY_SERVICE_KEY}'
+```
+
+**Prometheus Alerting Rules:**
+```yaml
+# monitoring/prometheus/rules.yml
+groups:
+- name: techtomorrow
+  rules:
+
+  # Critical alerts - immediate response required
+  - alert: HighErrorRate
+    expr: rate(application_errors_total[5m]) > 0.1
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High error rate detected"
+      description: "Error rate is {{ $value }} errors per second"
+
+  - alert: ServiceDown
+    expr: up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Service {{ $labels.job }} is down"
+      description: "{{ $labels.job }} has been down for more than 1 minute"
+
+  # Memory alerts
+  - alert: HighMemoryUsage
+    expr: nodejs_memory_usage_bytes{type="heap_used"} / nodejs_memory_usage_bytes{type="heap_total"} > 0.9
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High memory usage"
+      description: "Memory usage is at {{ $value | humanizePercentage }}"
+
+  # WebSocket alerts
+  - alert: WebSocketConnectionSpike
+    expr: increase(websocket_active_connections[5m]) > 100
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "WebSocket connection spike"
+      description: "WebSocket connections increased by {{ $value }} in 5 minutes"
+
+  # Database alerts
+  - alert: SlowDatabaseQueries
+    expr: histogram_quantile(0.95, rate(db_query_duration_seconds_bucket[5m])) > 2
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Slow database queries detected"
+      description: "95th percentile query time is {{ $value }}s"
+
+  # LiveKit alerts
+  - alert: RoomCapacityExceeded
+    expr: livekit_room_participants > 45
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Room at capacity"
+      description: "Room {{ $labels.room_name }} has {{ $value }} participants"
+
+  - alert: TooManyActiveRooms
+    expr: livekit_active_rooms > 20
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High number of active rooms"
+      description: "{{ $value }} rooms are currently active"
+```
+
+### Self-Healing Architecture
+
+**Auto-Scaling Configuration:**
+```yaml
+# docker-compose.autoscale.yml
+version: '3.8'
+services:
+  app:
+    image: techtomorrow:latest
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Auto-scaler service
+  scaler:
+    image: techtomorrow-scaler:latest
+    environment:
+      - DOCKER_HOST=tcp://docker.sock:2376
+      - PROMETHEUS_URL=http://prometheus:9090
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      sh -c "
+      while true; do
+        # Check CPU usage
+        CPU_USAGE=$(curl -s http://prometheus:9090/api/v1/query?query=100 - (avg(irate(node_cpu_seconds_total{mode='idle'}[5m])) * 100) | jq -r '.data.result[0].value[1]')
+        
+        # Check memory usage
+        MEM_USAGE=$(curl -s http://prometheus:9090/api/v1/query?query=(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 | jq -r '.data.result[0].value[1]')
+        
+        # Scale based on metrics
+        if (( $(echo \"$CPU_USAGE > 70\" | bc -l) )) || (( $(echo \"$MEM_USAGE > 80\" | bc -l) )); then
+          echo 'High load detected, scaling up...'
+          docker service scale techtomorrow_app=+1
+        elif (( $(echo \"$CPU_USAGE < 30\" | bc -l) )) && (( $(echo \"$MEM_USAGE < 50\" | bc -l) )); then
+          REPLICAS=$(docker service ls --filter name=techtomorrow_app --format '{{.Replicas}}' | cut -d'/' -f1)
+          if [ \"$REPLICAS\" -gt 3 ]; then
+            echo 'Low load detected, scaling down...'
+            docker service scale techtomorrow_app=-1
+          fi
+        fi
+        
+        sleep 60
+      done
+      "
+    networks:
+      - monitoring
+```
+
+**Automated Recovery Scripts:**
+```bash
+#!/bin/bash
+# auto-recovery.sh
+
+# Function to check service health
+check_service() {
+  local service=$1
+  local url=$2
+  
+  if curl -f -s "$url" > /dev/null; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Function to restart service
+restart_service() {
+  local service=$1
+  echo "$(date): Restarting $service due to health check failure"
+  
+  case $service in
+    "app")
+      docker-compose restart app
+      ;;
+    "redis")
+      docker-compose restart redis
+      ;;
+    "nginx")
+      docker-compose restart nginx
+      ;;
+    "livekit")
+      # Restart LiveKit server
+      systemctl restart livekit-server
+      ;;
+  esac
+}
+
+# Main monitoring loop
+while true; do
+  # Check application health
+  if ! check_service "app" "http://localhost:3000/api/health"; then
+    restart_service "app"
+  fi
+  
+  # Check Redis health
+  if ! check_service "redis" "http://localhost:6379"; then
+    restart_service "redis"
+  fi
+  
+  # Check Nginx health
+  if ! check_service "nginx" "http://localhost"; then
+    restart_service "nginx"
+  fi
+  
+  sleep 30
+done
+```
+
+---
+
+## CONTINUING TO PHASE 9 & 10...</content>
+<parameter name="filePath">C:\Users\mohit\Documents\Mission Impossible\techtomorrow\PHASE8_DEVOPS_RECOVERY_AUDIT.md

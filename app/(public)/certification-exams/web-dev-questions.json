@@ -1,0 +1,1332 @@
+{
+  "web-foundations": [
+    {
+      "question": "Which HTML5 semantic tag is the most appropriate for wrapping a self-contained composition in a document, such as a blog post or news article, that could be distributed independently?",
+      "options": [
+        "<section>",
+        "<div>",
+        "<article>",
+        "<main>"
+      ],
+      "correctIdx": 2,
+      "explanation": "Option C is the correct answer."
+    },
+    {
+      "question": "When utilizing the <picture> element to serve highly optimized WebP images with a standard JPEG fallback, which child element is used to define the alternative image formats?",
+      "options": [
+        "<src>",
+        "<source>",
+        "<track>",
+        "<image>"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "You are building a custom dropdown menu. To ensure screen readers announce whether the menu is currently open or closed, which ARIA attribute must be dynamically toggled?",
+      "options": [
+        "aria-hidden",
+        "aria-expanded",
+        "aria-haspopup",
+        "aria-pressed"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "Which Web Storage API mechanism is automatically cleared by the browser the moment the page session ends (e.g., when the specific browser tab is closed)?",
+      "options": [
+        "localStorage",
+        "sessionStorage",
+        "Cookies",
+        "IndexedDB"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "You want to execute a JavaScript file only AFTER the HTML parser has completely finished parsing the document, but you want to guarantee it executes in the order it appears in the HTML. Which attribute should you add to the <script> tag?",
+      "options": [
+        "async",
+        "defer",
+        "type=\"module\"",
+        "preload"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "When building a complex, two-dimensional user interface like a masonry photo gallery (where items span both multiple rows and multiple columns), which CSS layout module is the most structurally appropriate?",
+      "options": [
+        "CSS Flexbox",
+        "CSS Grid",
+        "CSS Floats",
+        "CSS Multi-column Layout"
+      ],
+      "correctIdx": 1,
+      "explanation": "Grid"
+    },
+    {
+      "question": "Which of the following CSS selectors carries the highest specificity, overriding the others if they target the same element?",
+      "options": [
+        "#sidebar button",
+        ".sidebar .btn-primary:hover",
+        "div.container ul li button",
+        "button[type=\"submit\"].btn-primary"
+      ],
+      "correctIdx": 0,
+      "explanation": "button"
+    },
+    {
+      "question": "A sticky navigation bar (z-index: 1000) is appearing behind a modal overlay (z-index: 10). What CSS concept is most likely causing this issue?",
+      "options": [
+        "Specificity mismatch",
+        "Stacking contexts",
+        "Box model collapse",
+        "Flexbox rendering bug"
+      ],
+      "correctIdx": 1,
+      "explanation": "contexts"
+    },
+    {
+      "question": "To achieve 60fps, jank-free animations in the browser, you should avoid triggering Layout and Paint operations. Which CSS property should you animate to scale up a promotional banner?",
+      "options": [
+        "width and height",
+        "margin",
+        "padding",
+        "transform: scale()"
+      ],
+      "correctIdx": 3,
+      "explanation": "scale()"
+    },
+    {
+      "question": "Which modern CSS function allows you to set a minimum, preferred, and maximum value for a property (like font-size), enabling fluid typography without media queries?",
+      "options": [
+        "calc()",
+        "minmax()",
+        "clamp()",
+        "fit-content()"
+      ],
+      "correctIdx": 2,
+      "explanation": "Option C is the correct answer."
+    },
+    {
+      "question": "Event Delegation is a performance optimization technique where you attach a single event listener to a parent element rather than attaching listeners to hundreds of individual child elements. This technique relies fundamentally on which phase of the DOM event flow?",
+      "options": [
+        "Event Capturing",
+        "Event Target Phase",
+        "Event Bubbling",
+        "Event Cancellation"
+      ],
+      "correctIdx": 2,
+      "explanation": "Bubbling"
+    },
+    {
+      "question": "You need to create a true, deep copy of a complex nested application state object that contains native JavaScript Date and Map objects. Which method is the most robust and modern approach?",
+      "options": [
+        "Object.assign({}, state)",
+        "The Spread Operator ({ ...state })",
+        "JSON.parse(JSON.stringify(state))",
+        "structuredClone(state)"
+      ],
+      "correctIdx": 3,
+      "explanation": "Option D is the correct answer."
+    },
+    {
+      "question": "A user is typing rapidly into a 'Search Products' input field. You want to trigger an API call to fetch suggestions, but only AFTER the user has stopped typing for at least 300 milliseconds. Which performance pattern is this?",
+      "options": [
+        "Throttling",
+        "Debouncing",
+        "Memoization",
+        "Event Polling"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "Unlike traditional JavaScript functions (function() {}), how does an ES6 arrow function (() => {}) determine the value of the 'this' keyword?",
+      "options": [
+        "It creates its own 'this' context based on invocation.",
+        "It inherits 'this' lexically from its surrounding scope at definition time.",
+        "It automatically binds 'this' to the global window object.",
+        "It binds 'this' directly to the DOM element that triggered an event."
+      ],
+      "correctIdx": 1,
+      "explanation": "inherits 'this' lexically from its surrounding scope at definition time."
+    },
+    {
+      "question": "You need to append 1,000 new <li> elements to an existing <ul> in the DOM. To minimize expensive browser reflows and repaints, what should you append the <li> elements to FIRST before attaching them to the live DOM?",
+      "options": [
+        "An invisible <div>",
+        "A DocumentFragment",
+        "A virtual DOM node",
+        "A Shadow DOM root"
+      ],
+      "correctIdx": 1,
+      "explanation": "DocumentFragment"
+    },
+    {
+      "question": "When making concurrent API requests where you need ALL requests to finish successfully before rendering the UI, but want to fail immediately if ANY single request fails, which Promise method should you use?",
+      "options": [
+        "Promise.allSettled()",
+        "Promise.race()",
+        "Promise.any()",
+        "Promise.all()"
+      ],
+      "correctIdx": 3,
+      "explanation": "Option D is the correct answer."
+    },
+    {
+      "question": "What is a JavaScript closure?",
+      "options": [
+        "A function that completes execution and is removed from the call stack.",
+        "A function bundled together with references to its surrounding lexical environment.",
+        "An object method that prevents property modification.",
+        "A block of code that strictly enforces type checking."
+      ],
+      "correctIdx": 1,
+      "explanation": "function bundled together with references to its surrounding lexical environment."
+    },
+    {
+      "question": "In CSS, how would you define a custom property (variable) named '--main-color' that is globally accessible across the entire document?",
+      "options": [
+        "@global { --main-color: blue; }",
+        "body { var(--main-color): blue; }",
+        ":root { --main-color: blue; }",
+        "* { $main-color: blue; }"
+      ],
+      "correctIdx": 2,
+      "explanation": "blue; }"
+    },
+    {
+      "question": "Which HTTP status code officially indicates that a requested resource was not found on the server?",
+      "options": [
+        "200",
+        "401",
+        "404",
+        ""
+      ],
+      "correctIdx": 2,
+      "explanation": "Option C is the correct answer."
+    },
+    {
+      "question": "Core Web Vitals are critical for SEO and UX. Which metric specifically measures visual stability by tracking unexpected layout shifts during page load?",
+      "options": [
+        "Largest Contentful Paint (LCP)",
+        "First Input Delay (FID)",
+        "Cumulative Layout Shift (CLS)",
+        "Time to First Byte (TTFB)"
+      ],
+      "correctIdx": 0,
+      "explanation": "Option A is the correct answer."
+    }
+  ],
+  "frontend-frameworks": [
+    {
+      "question": "What is the primary purpose of a 'Virtual DOM' in modern frontend frameworks like React or Vue?",
+      "options": [
+        "To replace the browser's native DOM entirely.",
+        "To provide an in-memory representation of the UI to calculate the most efficient way to update the actual DOM.",
+        "To allow developers to write HTML directly inside JavaScript files.",
+        "To securely store state data preventing XSS attacks."
+      ],
+      "correctIdx": 1,
+      "explanation": "provide an in-memory representation of the UI to calculate the most efficient way to update the actual DOM."
+    },
+    {
+      "question": "When rendering a dynamic list of components (e.g., a list of to-do items), why is it critical to assign a unique 'key' prop to each item?",
+      "options": [
+        "It allows the framework to uniquely identify which items have changed, been added, or been removed, optimizing rendering.",
+        "It automatically assigns an ID attribute to the resulting HTML element.",
+        "It is required for client-side routing to link to specific list items.",
+        "It prevents memory leaks when items are deleted."
+      ],
+      "correctIdx": 0,
+      "explanation": "allows the framework to uniquely identify which items have changed, been added, or been removed, optimizing rendering."
+    },
+    {
+      "question": "What is 'Prop Drilling' in component-based architectures?",
+      "options": [
+        "A security vulnerability where malicious code is injected via props.",
+        "The process of modifying a prop directly inside a child component.",
+        "Passing data down through multiple layers of nested components that do not actually need the data themselves.",
+        "Extracting data from a component to use it in a global state manager."
+      ],
+      "correctIdx": 2,
+      "explanation": "data down through multiple layers of nested components that do not actually need the data themselves."
+    },
+    {
+      "question": "Which pattern is typically used to solve the issue of severe Prop Drilling?",
+      "options": [
+        "Higher-Order Components (HOCs)",
+        "The Context API or a Global State Management library (like Redux/Vuex)",
+        "Two-way data binding",
+        "Component lazy loading"
+      ],
+      "correctIdx": 1,
+      "explanation": "Context API or a Global State Management library (like Redux/Vuex)"
+    },
+    {
+      "question": "In the context of functional UI programming, what does 'State Immutability' mean?",
+      "options": [
+        "State variables can never change their values once initialized.",
+        "Instead of modifying existing state objects directly, you create a new copy of the object with the updated values.",
+        "State can only be updated by the backend server, not the client.",
+        "State is strictly typed and cannot change its data type."
+      ],
+      "correctIdx": 1,
+      "explanation": "of modifying existing state objects directly, you create a new copy of the object with the updated values."
+    },
+    {
+      "question": "What is the fundamental difference between a 'Controlled' and an 'Uncontrolled' form component?",
+      "options": [
+        "Controlled components have form validation, uncontrolled do not.",
+        "Controlled components manage their own internal state using the DOM, while uncontrolled components are managed by the framework's state.",
+        "Controlled components derive their value from the framework's state, while uncontrolled components rely on the DOM to maintain their current value.",
+        "Uncontrolled components cannot be submitted via AJAX."
+      ],
+      "correctIdx": 2,
+      "explanation": "components derive their value from the framework's state, while uncontrolled components rely on the DOM to maintain their current value."
+    },
+    {
+      "question": "You need to fetch data from an API as soon as a component mounts to the screen. In a functional component environment (like React Hooks or Vue Composition API), where should this 'side effect' be placed?",
+      "options": [
+        "Directly inside the main render/component body.",
+        "Inside a dedicated lifecycle hook/effect function (e.g., useEffect or onMounted).",
+        "Inside the global state store setup.",
+        "In a separate JavaScript file that imports the component."
+      ],
+      "correctIdx": 1,
+      "explanation": "a dedicated lifecycle hook/effect function (e.g., useEffect or onMounted)."
+    },
+    {
+      "question": "What is the primary benefit of implement 'Code Splitting' or 'Lazy Loading' for UI components in a Single Page Application (SPA)?",
+      "options": [
+        "It reduces the initial bundle size loaded by the user, improving the application's initial load time.",
+        "It automatically minimizes and obfuscates the JavaScript code.",
+        "It caches components in LocalStorage for offline use.",
+        "It allows multiple developers to work on the same file without merge conflicts."
+      ],
+      "correctIdx": 0,
+      "explanation": "reduces the initial bundle size loaded by the user, improving the application's initial load time."
+    },
+    {
+      "question": "In modern SPA architecture, what does 'Client-Side Routing' achieve?",
+      "options": [
+        "It intercepts URL changes and dynamically swaps UI components without triggering a full page reload from the server.",
+        "It routes backend API requests to the closest geographic server.",
+        "It strictly enforces HTTPS connections for specific pages.",
+        "It tracks user mouse movements and routes the data to an analytics server."
+      ],
+      "correctIdx": 0,
+      "explanation": "intercepts URL changes and dynamically swaps UI components without triggering a full page reload from the server."
+    },
+    {
+      "question": "You have a complex component that recalculates a large dataset every time it renders, causing performance issues. Which concept should you use to cache the result of this calculation so it only runs when its inputs change?",
+      "options": [
+        "Hydration",
+        "Memoization",
+        "Debouncing",
+        "Event Delegation"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "Modern frameworks automatically escape string variables inserted into the UI. What specific security vulnerability does this primarily prevent?",
+      "options": [
+        "SQL Injection",
+        "Cross-Site Request Forgery (CSRF)",
+        "Cross-Site Scripting (XSS)",
+        "Man-in-the-Middle (MITM) attacks"
+      ],
+      "correctIdx": 2,
+      "explanation": "Scripting (XSS)"
+    },
+    {
+      "question": "What is 'Hydration' in the context of Server-Side Rendered (SSR) frontend applications?",
+      "options": [
+        "The process of updating outdated cached data in the browser.",
+        "Attaching client-side event listeners and interactive state to the static HTML sent by the server.",
+        "Compiling CSS-in-JS down to standard CSS files.",
+        "Refreshing the user's JWT access token automatically."
+      ],
+      "correctIdx": 1,
+      "explanation": "client-side event listeners and interactive state to the static HTML sent by the server."
+    },
+    {
+      "question": "You need a modal dialog to render visually above all other elements and escape CSS properties like 'overflow: hidden' defined by parent containers. Which framework feature is best suited for this?",
+      "options": [
+        "Error Boundaries",
+        "Context API",
+        "Portals (e.g., React Portals / Vue Teleport)",
+        "Component Fragments"
+      ],
+      "correctIdx": 2,
+      "explanation": "React Portals / Vue Teleport)"
+    },
+    {
+      "question": "Occasionally, you must access a real DOM node directly (e.g., to manually focus an input field or integrate a 3rd party charting library). What mechanism do frameworks provide for this?",
+      "options": [
+        "document.getElementById()",
+        "Refs / References",
+        "Inline event handlers",
+        "State variables"
+      ],
+      "correctIdx": 1,
+      "explanation": "References"
+    },
+    {
+      "question": "What is the core philosophy behind a one-way (unidirectional) data flow architecture?",
+      "options": [
+        "Data can only be passed from child components up to parent components.",
+        "Data flows down from the state, UI triggers actions, actions update the state, and the cycle repeats.",
+        "The UI directly mutates the state object bypassing any actions or reducers.",
+        "The backend server pushes data to the client, but the client cannot send data back."
+      ],
+      "correctIdx": 1,
+      "explanation": "flows down from the state, UI triggers actions, actions update the state, and the cycle repeats."
+    },
+    {
+      "question": "Which of the following is NOT a common reason to use a Global State Management tool (like Redux, Zustand, or Pinia)?",
+      "options": [
+        "Managing authentication status across the entire application.",
+        "Caching complex data fetched from an API.",
+        "Toggling a simple dropdown menu inside a single isolated component.",
+        "Managing a shopping cart accessible from multiple distinct pages."
+      ],
+      "correctIdx": 2,
+      "explanation": "a simple dropdown menu inside a single isolated component."
+    },
+    {
+      "question": "A deeply nested component throws a JavaScript error during rendering, crashing the entire application. Which architectural pattern should you use to catch this error and display a fallback UI instead of a white screen?",
+      "options": [
+        "Try/Catch blocks in every function",
+        "Error Boundaries",
+        "Global window.onerror listeners",
+        "State Reset hooks"
+      ],
+      "correctIdx": 1,
+      "explanation": "Boundaries"
+    },
+    {
+      "question": "When working with Single Page Applications (SPAs), how do you ensure that screen readers properly announce page transitions when a user navigates to a new route?",
+      "options": [
+        "SPAs handle this automatically without developer intervention.",
+        "By using a library to manage focus (e.g., shifting focus to the new main heading element upon route change).",
+        "By strictly using traditional <a> tags with full page reloads.",
+        "By changing the document's language tag temporarily."
+      ],
+      "correctIdx": 1,
+      "explanation": "using a library to manage focus (e.g., shifting focus to the new main heading element upon route change)."
+    },
+    {
+      "question": "You have multiple components that share the exact same complex logic (e.g., subscribing to a window resize event or managing a specific API fetch). How do you reuse this logic functionally?",
+      "options": [
+        "Copy and paste the logic into each component.",
+        "Extract the logic into a Custom Hook or a Composable function.",
+        "Attach the logic directly to the Global Window object.",
+        "Use a CSS class to share the logic."
+      ],
+      "correctIdx": 1,
+      "explanation": "the logic into a Custom Hook or a Composable function."
+    },
+    {
+      "question": "What is the role of tools like Vite or Webpack in modern frontend development?",
+      "options": [
+        "They act as the database for the frontend application.",
+        "They bundle, transpile, and optimize source code (JS, CSS, assets) for production deployment.",
+        "They manage the server-side routing logic.",
+        "They automatically write unit tests for UI components."
+      ],
+      "correctIdx": 1,
+      "explanation": "bundle, transpile, and optimize source code (JS, CSS, assets) for production deployment."
+    }
+  ],
+  "backend-architecture": [
+    {
+      "question": "What is the primary architectural constraint of a RESTful API regarding state?",
+      "options": [
+        "The server must store the client's session state in a database.",
+        "The API must be completely stateless; each request from the client must contain all information needed to process it.",
+        "The client must maintain a persistent WebSocket connection for all requests.",
+        "State can only be modified using the HTTP PUT method."
+      ],
+      "correctIdx": 1,
+      "explanation": "API must be completely stateless; each request from the client must contain all information needed to process it."
+    },
+    {
+      "question": "Which HTTP method should be used strictly to partially update an existing resource (e.g., updating only a user's email address)?",
+      "options": [
+        "POST",
+        "PUT",
+        "PATCH",
+        "UPDATE"
+      ],
+      "correctIdx": 2,
+      "explanation": "Option C is the correct answer."
+    },
+    {
+      "question": "In backend frameworks like Express.js or Django, what is the primary role of 'Middleware'?",
+      "options": [
+        "To establish the initial connection to the SQL database.",
+        "To intercept the request-response cycle to execute code (like authentication or logging) before the final route handler.",
+        "To serve static frontend files like HTML and CSS.",
+        "To compile backend code into machine language."
+      ],
+      "correctIdx": 1,
+      "explanation": "intercept the request-response cycle to execute code (like authentication or logging) before the final route handler."
+    },
+    {
+      "question": "How does JSON Web Token (JWT) authentication primarily differ from traditional session-based authentication?",
+      "options": [
+        "JWTs are stored in server memory, while sessions are stored in the client's browser.",
+        "JWTs are stateless and contain the user payload within the token itself, while session IDs require a database lookup on the server.",
+        "JWTs can only be used with HTTP GET requests.",
+        "JWTs are natively encrypted and cannot be decoded by the client."
+      ],
+      "correctIdx": 1,
+      "explanation": "are stateless and contain the user payload within the token itself, while session IDs require a database lookup on the server."
+    },
+    {
+      "question": "What is the purpose of CORS (Cross-Origin Resource Sharing) in web APIs?",
+      "options": [
+        "It compresses API responses to save bandwidth.",
+        "It is a security feature enforced by the browser to restrict which external domains are allowed to access the API.",
+        "It automatically translates API responses into different languages.",
+        "It allows the backend to query multiple databases simultaneously."
+      ],
+      "correctIdx": 1,
+      "explanation": "is a security feature enforced by the browser to restrict which external domains are allowed to access the API."
+    },
+    {
+      "question": "When securely storing user passwords in a backend database, which process is absolutely necessary before saving the data?",
+      "options": [
+        "Base64 Encoding",
+        "Reversing the string",
+        "Hashing and Salting (e.g., using bcrypt)",
+        "Compressing the string as a ZIP file"
+      ],
+      "correctIdx": 2,
+      "explanation": "and Salting (e.g., using bcrypt)"
+    },
+    {
+      "question": "In the MVC (Model-View-Controller) architecture, what is the specific role of the 'Controller'?",
+      "options": [
+        "Defining the database schema and interacting with the database.",
+        "Rendering the final HTML output sent to the user.",
+        "Receiving user input, handling the core business logic, and routing data between the Model and the View.",
+        "Managing the server's network ports and IP addresses."
+      ],
+      "correctIdx": 2,
+      "explanation": "user input, handling the core business logic, and routing data between the Model and the View."
+    },
+    {
+      "question": "Which HTTP status code should a backend API return to indicate that a user is NOT authenticated (e.g., missing or invalid JWT) to access an endpoint?",
+      "options": [
+        "400 Bad Request",
+        "401 Unauthorized",
+        "403 Forbidden",
+        "404 Not Found"
+      ],
+      "correctIdx": 1,
+      "explanation": "Unauthorized"
+    },
+    {
+      "question": "What is the main advantage of using WebSockets over standard HTTP REST requests?",
+      "options": [
+        "WebSockets automatically encrypt all data without needing HTTPS.",
+        "WebSockets allow for full-duplex, persistent, real-time bidirectional communication between client and server.",
+        "WebSockets consume zero server memory.",
+        "WebSockets are purely for transferring large video files."
+      ],
+      "correctIdx": 1,
+      "explanation": "allow for full-duplex, persistent, real-time bidirectional communication between client and server."
+    },
+    {
+      "question": "You need to prevent a single IP address from overwhelming your API by sending thousands of requests per second (a potential DDoS attack). Which architectural technique should you implement?",
+      "options": [
+        "Load Balancing",
+        "Data Pagination",
+        "Rate Limiting",
+        "Event Sourcing"
+      ],
+      "correctIdx": 2,
+      "explanation": "Limiting"
+    },
+    {
+      "question": "What is the fundamental difference between a Monolithic architecture and a Microservices architecture?",
+      "options": [
+        "Monoliths use SQL databases, while Microservices strictly use NoSQL.",
+        "Monoliths are built as a single unified deployable unit, whereas Microservices are small, independent, loosely coupled services.",
+        "Microservices are always faster than Monoliths.",
+        "Monoliths are written in Java, while Microservices are written in JavaScript."
+      ],
+      "correctIdx": 1,
+      "explanation": "are built as a single unified deployable unit, whereas Microservices are small, independent, loosely coupled services."
+    },
+    {
+      "question": "In Node.js, what is the 'Event Loop' fundamentally responsible for?",
+      "options": [
+        "Managing the CSS animations on the frontend.",
+        "Offloading heavy synchronous CPU computations to background threads.",
+        "Handling asynchronous, non-blocking I/O operations by delegating them to the system kernel when possible.",
+        "Formatting JSON responses."
+      ],
+      "correctIdx": 2,
+      "explanation": "asynchronous, non-blocking I/O operations by delegating them to the system kernel when possible."
+    },
+    {
+      "question": "When designing a REST API endpoint to retrieve a specific user by their unique ID, which URL structure is considered the industry standard?",
+      "options": [
+        "POST /getUser?id=123",
+        "GET /users/:id",
+        "GET /user/id/123",
+        "FETCH /api/users/find/"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "What is the primary purpose of an 'API Gateway' in a microservices or distributed backend architecture?",
+      "options": [
+        "It acts as a single entry point for clients, routing incoming requests to the appropriate underlying microservices.",
+        "It compiles all microservices into a single Monolith.",
+        "It serves as the primary relational database.",
+        "It manages the CI/CD deployment pipeline."
+      ],
+      "correctIdx": 0,
+      "explanation": "Option A is the correct answer."
+    },
+    {
+      "question": "Which of the following is a common strategy to mitigate CSRF (Cross-Site Request Forgery) attacks in stateful (cookie-based) backend applications?",
+      "options": [
+        "Ensuring the API only returns XML.",
+        "Implementing an anti-CSRF token (synchronizer token pattern) validated by the server on state-changing requests.",
+        "Using only GET requests for all API actions.",
+        "Disabling JavaScript in the client browser."
+      ],
+      "correctIdx": 1,
+      "explanation": "an anti-CSRF token (synchronizer token pattern) validated by the server on state-changing requests."
+    },
+    {
+      "question": "What does the 'N+1 query problem' refer to in backend development, specifically when using an ORM (Object-Relational Mapping) tool?",
+      "options": [
+        "An infinite loop occurring when restarting the server.",
+        "A performance anti-pattern where an application executes one database query to retrieve a list of items, and then N additional queries to retrieve related data for each item.",
+        "A security flaw allowing SQL injection.",
+        "A pagination error where the last page returns 1 extra item."
+      ],
+      "correctIdx": 1,
+      "explanation": "performance anti-pattern where an application executes one database query to retrieve a list of items, and then N additional queries to retrieve related data for each item."
+    },
+    {
+      "question": "When returning a massive list of 100,000 products from an API, which query parameters are most commonly implemented to control the data output and ensure server stability?",
+      "options": [
+        "?filter=all & sort=true",
+        "?limit=20 & offset=40 (or ?page=3 & size=20)",
+        "?min=0 & max=100000",
+        "?download=csv"
+      ],
+      "correctIdx": 1,
+      "explanation": "offset=40 (or ?page=3 & size=20)"
+    },
+    {
+      "question": "In backend development (e.g., Python/Django or Node.js), what are '.env' files or 'Environment Variables' typically used for?",
+      "options": [
+        "Storing the compiled machine code of the application.",
+        "Writing automated unit tests.",
+        "Securely storing sensitive configuration data (like database credentials or API keys) completely outside of the source code repository.",
+        "Defining the HTML layout of error pages."
+      ],
+      "correctIdx": 2,
+      "explanation": "storing sensitive configuration data (like database credentials or API keys) completely outside of the source code repository."
+    },
+    {
+      "question": "In the context of APIs, what is a 'Webhook'?",
+      "options": [
+        "A tool that scrapes data from other websites.",
+        "A user-defined HTTP POST callback triggered asynchronously by a specific event in a source system (e.g., payment successful).",
+        "A physical server hook used in data centers.",
+        "A database trigger that strictly runs SQL commands."
+      ],
+      "correctIdx": 1,
+      "explanation": "user-defined HTTP POST callback triggered asynchronously by a specific event in a source system (e.g., payment successful)."
+    },
+    {
+      "question": "You are building an API endpoint that creates a new user via a POST request. If the client's JSON payload is malformed or missing a required 'email' field, which HTTP status code should your server return?",
+      "options": [
+        "201 Created",
+        "400 Bad Request",
+        "404 Not Found",
+        "500 Internal Server Error"
+      ],
+      "correctIdx": 1,
+      "explanation": "Bad Request"
+    }
+  ],
+  "databases-devops": [
+    {
+      "question": "What is the fundamental difference between relational (SQL) and non-relational (NoSQL) databases regarding scaling?",
+      "options": [
+        "SQL databases generally scale horizontally, while NoSQL databases scale vertically.",
+        "SQL databases generally scale vertically (adding more power to one server), while NoSQL databases are designed to scale horizontally (adding more servers).",
+        "Neither can scale; they are fixed size.",
+        "Both scale exactly the same way using cloud functions."
+      ],
+      "correctIdx": 1,
+      "explanation": "databases generally scale vertically (adding more power to one server), while NoSQL databases are designed to scale horizontally (adding more servers)."
+    },
+    {
+      "question": "In a relational database, what is the primary purpose of creating an 'Index' on a specific column?",
+      "options": [
+        "To encrypt the data in that column.",
+        "To significantly speed up data retrieval (SELECT) operations based on that column, at the cost of slightly slower write (INSERT/UPDATE) operations.",
+        "To ensure no duplicate values can ever be entered.",
+        "To automatically translate the data into different formats."
+      ],
+      "correctIdx": 1,
+      "explanation": "significantly speed up data retrieval (SELECT) operations based on that column, at the cost of slightly slower write (INSERT/UPDATE) operations."
+    },
+    {
+      "question": "Relational databases follow ACID properties to guarantee transaction reliability. What does the 'A' (Atomicity) represent?",
+      "options": [
+        "Transactions execute simultaneously without interfering with each other.",
+        "Data is stored in atomic units like bytes.",
+        "A transaction is treated as a single, indivisible unit of work; either all of its operations succeed, or none of them do (rollback).",
+        "Data remains available even if the server crashes."
+      ],
+      "correctIdx": 2,
+      "explanation": "transaction is treated as a single, indivisible unit of work; either all of its operations succeed, or none of them do (rollback)."
+    },
+    {
+      "question": "You are designing a system that requires extremely fast, in-memory data retrieval for session management and caching. Which technology is best suited for this?",
+      "options": [
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "SQLite"
+      ],
+      "correctIdx": 2,
+      "explanation": "Option C is the correct answer."
+    },
+    {
+      "question": "What is the core architectural difference between a Docker Container and a traditional Virtual Machine (VM)?",
+      "options": [
+        "VMs share the host operating system's kernel, while Containers require their own full guest OS.",
+        "Containers share the host operating system's kernel making them lightweight and fast to start, whereas VMs require a full, separate guest OS.",
+        "Containers can only run on Linux, VMs only on Windows.",
+        "There is no difference; they are synonymous terms."
+      ],
+      "correctIdx": 1,
+      "explanation": "share the host operating system's kernel making them lightweight and fast to start, whereas VMs require a full, separate guest OS."
+    },
+    {
+      "question": "In a Dockerfile, what is the fundamental difference between the RUN command and the CMD command?",
+      "options": [
+        "RUN is executed when the container starts, CMD is executed during the image build process.",
+        "RUN executes commands during the image build process to install dependencies, while CMD specifies the default command to execute when a container starts running.",
+        "RUN only works for root users, CMD works for all users.",
+        "RUN is for Linux containers, CMD is for Windows containers."
+      ],
+      "correctIdx": 1,
+      "explanation": "executes commands during the image build process to install dependencies, while CMD specifies the default command to execute when a container starts running."
+    },
+    {
+      "question": "What is the primary purpose of 'Docker Compose'?",
+      "options": [
+        "To compile source code into machine code.",
+        "To define and run multi-container Docker applications using a single YAML configuration file.",
+        "To manage database migrations.",
+        "To write unit tests for containers."
+      ],
+      "correctIdx": 1,
+      "explanation": "define and run multi-container Docker applications using a single YAML configuration file."
+    },
+    {
+      "question": "What is the primary objective of Continuous Integration (CI) in a DevOps pipeline?",
+      "options": [
+        "To deploy code directly to production without human review.",
+        "To automatically format CSS and HTML files.",
+        "To frequently merge code changes into a central repository, where automated builds and tests run to detect integration errors early.",
+        "To manage the physical hardware in a data center."
+      ],
+      "correctIdx": 2,
+      "explanation": "frequently merge code changes into a central repository, where automated builds and tests run to detect integration errors early."
+    },
+    {
+      "question": "In Git version control, how does `git rebase` primarily differ from `git merge` when integrating a feature branch into the main branch?",
+      "options": [
+        "Merge deletes the feature branch, rebase keeps it.",
+        "Merge creates a non-linear history with a specific merge commit, while rebase rewrites the commit history to create a perfectly linear progression.",
+        "Rebase only works on local repositories, merge works on remote.",
+        "Merge is faster than rebase."
+      ],
+      "correctIdx": 1,
+      "explanation": "creates a non-linear history with a specific merge commit, while rebase rewrites the commit history to create a perfectly linear progression."
+    },
+    {
+      "question": "Which deployment strategy involves running two identical production environments (one active, one idle) to facilitate zero-downtime deployments and instant rollbacks?",
+      "options": [
+        "Canary Deployment",
+        "Rolling Update",
+        "Blue/Green Deployment",
+        "A/B Testing"
+      ],
+      "correctIdx": 2,
+      "explanation": "Deployment"
+    },
+    {
+      "question": "What is the role of a 'Reverse Proxy' (like Nginx or HAProxy) in a production web environment?",
+      "options": [
+        "To act as a primary database server.",
+        "To sit in front of backend servers, intercepting client requests, handling SSL termination, and distributing traffic (load balancing).",
+        "To compile frontend JavaScript code.",
+        "To prevent SQL injection directly in the database."
+      ],
+      "correctIdx": 1,
+      "explanation": "sit in front of backend servers, intercepting client requests, handling SSL termination, and distributing traffic (load balancing)."
+    },
+    {
+      "question": "What does 'Infrastructure as Code' (IaC) refer to in modern DevOps practices?",
+      "options": [
+        "Writing backend business logic in bash scripts.",
+        "",
+        "refer to in modern DevOps practices?A) Writing backend business logic in bash scripts.B) Managing and provisioning computing infrastructure through machine-readable definition files (e.g., Terraform or AWS CloudFormation) rather than physical hardware configuration.C) Storing database passwords in GitHub.",
+        "Automatically writing code using AI."
+      ],
+      "correctIdx": 1,
+      "explanation": "and provisioning computing infrastructure through machine-readable definition files (e.g., Terraform or AWS CloudFormation) rather than physical hardware configuration."
+    },
+    {
+      "question": "According to the CAP Theorem for distributed data stores, a system can only guarantee two out of three characteristics simultaneously. What are these three?",
+      "options": [
+        "Consistency, Availability, Partition Tolerance",
+        "Concurrency, Accuracy, Performance",
+        "Caching, Authorization, Protocols",
+        "Compute, Analytics, Persistence"
+      ],
+      "correctIdx": 0,
+      "explanation": "Availability, Partition Tolerance"
+    },
+    {
+      "question": "In cloud computing terminology, services like Heroku or AWS Elastic Beanstalk\u2014where the provider manages the servers, OS, and runtime, and you only deploy your code\u2014fall under which category?",
+      "options": [
+        "IaaS (Infrastructure as a Service)",
+        "SaaS (Software as a Service)",
+        "PaaS (Platform as a Service)",
+        "DaaS (Desktop as a Service)"
+      ],
+      "correctIdx": 2,
+      "explanation": "as a Service)"
+    },
+    {
+      "question": "What is the concept of 'Serverless' architecture (e.g., AWS Lambda)?",
+      "options": [
+        "Applications that run completely offline without the internet.",
+        "Applications deployed on hardware without an operating system.",
+        "A cloud computing execution model where the cloud provider dynamically manages the allocation of server resources, billing only for the actual compute time used by functions.",
+        "Websites that only use HTML and CSS."
+      ],
+      "correctIdx": 2,
+      "explanation": "cloud computing execution model where the cloud provider dynamically manages the allocation of server resources, billing only for the actual compute time used by functions."
+    },
+    {
+      "question": "You have a massive table containing millions of user records, and your application is running slow. Which database technique involves splitting this single large table into smaller, more manageable pieces across multiple databases?",
+      "options": [
+        "Normalization",
+        "Sharding (Horizontal Partitioning)",
+        "Indexing",
+        "Vacuuming"
+      ],
+      "correctIdx": 1,
+      "explanation": "Partitioning)"
+    },
+    {
+      "question": "What is the primary purpose of a 'Load Balancer'?",
+      "options": [
+        "To compress images on the fly.",
+        "To efficiently distribute incoming network traffic across a group of backend servers, ensuring no single server bears too much demand.",
+        "To automatically backup the database every hour.",
+        "To monitor the application for memory leaks."
+      ],
+      "correctIdx": 1,
+      "explanation": "efficiently distribute incoming network traffic across a group of backend servers, ensuring no single server bears too much demand."
+    },
+    {
+      "question": "In MongoDB (a NoSQL database), data is stored in BSON format. What is the SQL equivalent to a MongoDB 'Collection' and a 'Document'?",
+      "options": [
+        "Database and Row",
+        "Table and Row",
+        "Column and Field",
+        "Index and Key"
+      ],
+      "correctIdx": 1,
+      "explanation": "and Row"
+    },
+    {
+      "question": "Which of the following is a key characteristic of the '12-Factor App' methodology for building modern web apps?",
+      "options": [
+        "Store configuration (like database credentials) directly inside the codebase.",
+        "Run the application as one or more stateless processes, relying on a backing service (like a DB) to persist data.",
+        "Avoid using package managers; manually commit all dependency files.",
+        "Maintain different codebases for development, staging, and production."
+      ],
+      "correctIdx": 1,
+      "explanation": "the application as one or more stateless processes, relying on a backing service (like a DB) to persist data."
+    },
+    {
+      "question": "What is a 'Canary Deployment'?",
+      "options": [
+        "Releasing a new feature only to internal employees for a week.",
+        "Releasing a new application version to a small subset of users before rolling it out to the entire infrastructure, minimizing the impact of potential bugs.",
+        "Deploying the application to a cloud provider in a different geographic region.",
+        "Completely replacing the old servers with new hardware."
+      ],
+      "correctIdx": 1,
+      "explanation": "a new application version to a small subset of users before rolling it out to the entire infrastructure, minimizing the impact of potential bugs."
+    }
+  ],
+  "final-assessment": [
+    {
+      "question": "In a full-stack application, what is the most secure way to store a JSON Web Token (JWT) on the client side to prevent Cross-Site Scripting (XSS) attacks from stealing the token?",
+      "options": [
+        "In the browser's LocalStorage.",
+        "In the browser's SessionStorage.",
+        "In an HttpOnly, Secure cookie.",
+        "In a global JavaScript variable (e.g., window.token)."
+      ],
+      "correctIdx": 2,
+      "explanation": "an HttpOnly, Secure cookie."
+    },
+    {
+      "question": "You are building an e-commerce dashboard. The product listing page loads very slowly because the backend is querying the database for product details, then running an additional query for EVERY single product to fetch its reviews. What is this performance anti-pattern called?",
+      "options": [
+        "The N+1 Query Problem",
+        "Database Deadlock",
+        "Memory Leak",
+        "Event Loop Blocking"
+      ],
+      "correctIdx": 0,
+      "explanation": "N+1 Query Problem"
+    },
+    {
+      "question": "Which of the following scenarios is the best use case for implementing GraphQL over a traditional REST API?",
+      "options": [
+        "You need to upload massive 4K video files.",
+        "Your frontend clients (mobile and web) require vastly different data shapes and you want to prevent over-fetching and under-fetching of data.",
+        "You need strict, built-in HTTP caching for every endpoint.",
+        "You are building a simple, single-page static website."
+      ],
+      "correctIdx": 1,
+      "explanation": "frontend clients (mobile and web) require vastly different data shapes and you want to prevent over-fetching and under-fetching of data."
+    },
+    {
+      "question": "What is the primary advantage of Server-Side Rendering (SSR) (e.g., Next.js or Nuxt.js) compared to a standard Client-Side Rendered (CSR) Single Page Application?",
+      "options": [
+        "SSR completely eliminates the need for a backend database.",
+        "SSR provides better initial page load performance (FCP) and significantly improved Search Engine Optimization (SEO).",
+        "SSR applications do not require JavaScript to be enabled on the browser for heavy interactivity.",
+        "SSR is natively immune to all cyber attacks."
+      ],
+      "correctIdx": 1,
+      "explanation": "provides better initial page load performance (FCP) and significantly improved Search Engine Optimization (SEO)."
+    },
+    {
+      "question": "A user uploads a high-resolution profile picture to your application. Where is the most scalable and cost-effective place to store this image file in a production environment?",
+      "options": [
+        "Directly inside a MySQL database as a BLOB.",
+        "In the local file system of the backend Node.js/Python server.",
+        "In a cloud object storage service like AWS S3 or Google Cloud Storage.",
+        "Encoded as a Base64 string in Redis."
+      ],
+      "correctIdx": 2,
+      "explanation": "a cloud object storage service like AWS S3 or Google Cloud Storage."
+    },
+    {
+      "question": "When a browser makes an API request to a different domain (e.g., frontend on localhost:3000 calling backend on api.example.com), the browser sometimes sends an HTTP OPTIONS request first. What is this called?",
+      "options": [
+        "A Preflight Request (CORS)",
+        "A WebSocket Handshake",
+        "A DNS Lookup",
+        "An SSL Certificate Validation"
+      ],
+      "correctIdx": 0,
+      "explanation": "Preflight Request (CORS)"
+    },
+    {
+      "question": "You need to implement a feature where the backend generates a PDF report, which takes about 3 minutes to process. How should you architect this to avoid blocking the main server thread and timing out the user's HTTP request?",
+      "options": [
+        "Use a massive `while` loop until the PDF is ready.",
+        "Increase the HTTP timeout limit to 10 minutes on the load balancer.",
+        "Use a Message Queue (like RabbitMQ or Redis/Celery) to process the PDF asynchronously in a background worker, and notify the client when it's done.",
+        "Force the client to refresh the page every 5 seconds."
+      ],
+      "correctIdx": 2,
+      "explanation": "a Message Queue (like RabbitMQ or Redis/Celery) to process the PDF asynchronously in a background worker, and notify the client when it's done."
+    },
+    {
+      "question": "What is the core purpose of implementing a 'Service Worker' in a modern web application?",
+      "options": [
+        "To multithread the DOM rendering process.",
+        "To intercept network requests, enabling robust caching strategies, offline capabilities, and push notifications (Progressive Web App features).",
+        "To securely hash passwords on the client side.",
+        "To automatically translate the website into different languages."
+      ],
+      "correctIdx": 1,
+      "explanation": "intercept network requests, enabling robust caching strategies, offline capabilities, and push notifications (Progressive Web App features)."
+    },
+    {
+      "question": "In JavaScript's Event Loop, which queue has a higher priority and will be executed first: the Macrotask Queue (e.g., setTimeout) or the Microtask Queue (e.g., Promise.then)?",
+      "options": [
+        "Macrotask Queue",
+        "Microtask Queue",
+        "They have equal priority; they execute based on chronological creation time.",
+        "It depends on the user's operating system."
+      ],
+      "correctIdx": 1,
+      "explanation": "Queue"
+    },
+    {
+      "question": "You are designing a financial application where transferring money between two accounts must be perfectly accurate. If the deduction from Account A succeeds but the addition to Account B fails, the whole process must revert. What database concept guarantees this?",
+      "options": [
+        "Sharding",
+        "Eventual Consistency",
+        "ACID Transactions",
+        "Data Indexing"
+      ],
+      "correctIdx": 2,
+      "explanation": "Transactions"
+    },
+    {
+      "question": "Which testing strategy is specifically designed to spin up a headless browser, click through the actual UI, and test the entire stack (Frontend + Backend + Database) as a real user would?",
+      "options": [
+        "Unit Testing",
+        "Integration Testing",
+        "End-to-End (E2E) Testing (e.g., using Cypress or Playwright)",
+        "Static Analysis (e.g., using ESLint)"
+      ],
+      "correctIdx": 2,
+      "explanation": "Testing (e.g., using Cypress or Playwright)"
+    },
+    {
+      "question": "What does 'Idempotency' mean in the context of REST API design (e.g., for PUT or DELETE methods)?",
+      "options": [
+        "The request requires authentication.",
+        "Making the exact same request multiple times will have the same effect on the server's state as making it just once.",
+        "The request payload is fully encrypted.",
+        "The response will always return a 200 OK status."
+      ],
+      "correctIdx": 1,
+      "explanation": "the exact same request multiple times will have the same effect on the server's state as making it just once."
+    },
+    {
+      "question": "You push new code to your main branch, which automatically triggers a pipeline that builds your Docker image, runs all tests, and deploys the new container to AWS without human intervention. What is this process called?",
+      "options": [
+        "Continuous Integration and Continuous Deployment (CI/CD)",
+        "Agile Scrum Development",
+        "Test-Driven Development (TDD)",
+        "Monolithic Deployment"
+      ],
+      "correctIdx": 0,
+      "explanation": "Integration and Continuous Deployment (CI/CD)"
+    },
+    {
+      "question": "A user reports that clicking a specific button crashes the app, but you cannot reproduce the bug on your local machine. Which tool/concept should be integrated into your production app to catch and report these unhandled exceptions along with stack traces?",
+      "options": [
+        "Google Analytics",
+        "Error Tracking & Monitoring tools (e.g., Sentry or Datadog)",
+        "Webpack Bundle Analyzer",
+        "Docker Compose"
+      ],
+      "correctIdx": 1,
+      "explanation": "Tracking & Monitoring tools (e.g., Sentry or Datadog)"
+    },
+    {
+      "question": "In OAuth 2.0 (e.g., 'Log in with Google'), what is the purpose of the 'Refresh Token'?",
+      "options": [
+        "To refresh the browser page automatically.",
+        "To obtain a new Access Token when the current Access Token expires, without requiring the user to log in again.",
+        "To clear the user's cache and cookies.",
+        "To reset the user's password."
+      ],
+      "correctIdx": 1,
+      "explanation": "obtain a new Access Token when the current Access Token expires, without requiring the user to log in again."
+    },
+    {
+      "question": "Why is it considered a major security risk to interpolate user-submitted data directly into a raw SQL query string (e.g., `SELECT * FROM users WHERE name = '${userInput}'`)?",
+      "options": [
+        "It slows down the database significantly.",
+        "It leaves the application vulnerable to SQL Injection (SQLi) attacks.",
+        "It causes the database to use excessive memory.",
+        "It violates RESTful API principles."
+      ],
+      "correctIdx": 1,
+      "explanation": "leaves the application vulnerable to SQL Injection (SQLi) attacks."
+    },
+    {
+      "question": "Your Single Page Application (SP",
+      "options": [
+        "has a massive JavaScript bundle (5MB). To improve the initial load time, you split the code so that the 'Admin Dashboard' JS is only downloaded when the user actually navigates to the /admin route. What is this called?A) Tree Shaking",
+        "Code Splitting / Lazy Loading",
+        "Minification",
+        "Server-Side Rendering"
+      ],
+      "correctIdx": 1,
+      "explanation": "Splitting / Lazy Loading"
+    },
+    {
+      "question": "What is the fundamental difference between HTTP/1.1 and HTTP/2?",
+      "options": [
+        "HTTP/2 is only for secure HTTPS connections, HTTP/1.1 is for insecure HTTP.",
+        "HTTP/2 introduces multiplexing, allowing multiple requests and responses to be sent concurrently over a single TCP connection, eliminating head-of-line blocking.",
+        "HTTP/2 uses UDP instead of TCP.",
+        "HTTP/1.1 supports JSON, while HTTP/2 only supports XML."
+      ],
+      "correctIdx": 1,
+      "explanation": "introduces multiplexing, allowing multiple requests and responses to be sent concurrently over a single TCP connection, eliminating head-of-line blocking."
+    },
+    {
+      "question": "You are defining the schema for a relational database. To ensure data integrity and reduce redundancy, you split data into multiple related tables (e.g., separating Users and Orders) and use Foreign Keys. What is this database design process called?",
+      "options": [
+        "Sharding",
+        "Normalization",
+        "Indexing",
+        "Replication"
+      ],
+      "correctIdx": 1,
+      "explanation": "Option B is the correct answer."
+    },
+    {
+      "question": "In a microservices architecture, Service A needs to communicate with Service B. Instead of hardcoding Service B's IP address into Service A, Service A queries a central registry to find out where Service B is currently running. What is this pattern called?",
+      "options": [
+        "Service Discovery",
+        "Load Balancing",
+        "Event Sourcing",
+        "Rate Limiting"
+      ],
+      "correctIdx": 0,
+      "explanation": "Discovery"
+    },
+    {
+      "question": "When building a RESTful API, which HTTP status code appropriately indicates that a resource has been permanently moved to a new URL?",
+      "options": [
+        "201 Created",
+        "301 Moved Permanently",
+        "404 Not Found",
+        "500 Internal Server Error"
+      ],
+      "correctIdx": 1,
+      "explanation": "Moved Permanently"
+    },
+    {
+      "question": "In React (or functional UI frameworks), why is it important to return a 'cleanup function' from a `useEffect` hook that sets up a subscription or event listener?",
+      "options": [
+        "It triggers an immediate re-render.",
+        "It prevents memory leaks by removing the listener when the component unmounts.",
+        "It encrypts the data being listened to.",
+        "It forces the component to become a Higher Order Component."
+      ],
+      "correctIdx": 1,
+      "explanation": "prevents memory leaks by removing the listener when the component unmounts."
+    },
+    {
+      "question": "Which SQL JOIN clause returns all records from the left table, and the matched records from the right table?",
+      "options": [
+        "INNER JOIN",
+        "RIGHT JOIN",
+        "LEFT JOIN",
+        "FULL OUTER JOIN"
+      ],
+      "correctIdx": 2,
+      "explanation": "JOIN"
+    },
+    {
+      "question": "In backend development (Node.js/Python), what is the primary benefit of processing large files (like a 2GB video) using 'Streams' instead of reading the entire file into memory at once?",
+      "options": [
+        "Streams automatically convert videos to MP4.",
+        "Streams process data in small chunks, drastically reducing RAM consumption and preventing server crashes.",
+        "Streams guarantee the file is free of viruses.",
+        "Streams allow files to be executed as code."
+      ],
+      "correctIdx": 1,
+      "explanation": "process data in small chunks, drastically reducing RAM consumption and preventing server crashes."
+    },
+    {
+      "question": "What are the three standard parts of a JSON Web Token (JWT) string, separated by dots (.)?",
+      "options": [
+        "User, Password, Salt",
+        "Header, Payload, Signature",
+        "Token, Expiry, Domain",
+        "Public Key, Private Key, Algorithm"
+      ],
+      "correctIdx": 1,
+      "explanation": "Payload, Signature"
+    },
+    {
+      "question": "While a Microservices architecture offers independent scalability and deployment, what is considered its most significant drawback compared to a Monolith?",
+      "options": [
+        "They can only be written in Java.",
+        "Increased complexity in network communication, distributed tracing, and maintaining data consistency across services.",
+        "They do not support CI/CD pipelines.",
+        "They mandate the use of XML instead of JSON."
+      ],
+      "correctIdx": 1,
+      "explanation": "complexity in network communication, distributed tracing, and maintaining data consistency across services."
+    },
+    {
+      "question": "In Git, you accidentally committed some code but haven't pushed it to the remote repository yet. How can you undo the commit while keeping your file changes intact in your working directory?",
+      "options": [
+        "git reset --hard HEAD~1",
+        "git reset --soft HEAD~1",
+        "git commit --amend",
+        "git rm --cached"
+      ],
+      "correctIdx": 1,
+      "explanation": "reset --soft HEAD~1"
+    },
+    {
+      "question": "Why should you never mutate state directly in React (e.g., `state.user.name = 'John'`)?",
+      "options": [
+        "Direct mutation causes an infinite loop.",
+        "React relies on state immutability to detect changes and trigger re-renders; mutating it bypasses this lifecycle.",
+        "It automatically triggers a full page reload.",
+        "JavaScript strictly forbids modifying object properties."
+      ],
+      "correctIdx": 1,
+      "explanation": "relies on state immutability to detect changes and trigger re-renders; mutating it bypasses this lifecycle."
+    },
+    {
+      "question": "What is the primary function of a Content Delivery Network (CDN) like Cloudflare or AWS CloudFront?",
+      "options": [
+        "To compile backend code.",
+        "To cache static assets (images, CSS, JS) on edge servers globally, serving them to users from the geographically closest location for faster load times.",
+        "To manage the primary SQL database.",
+        "To write unit tests automatically."
+      ],
+      "correctIdx": 1,
+      "explanation": "cache static assets (images, CSS, JS) on edge servers globally, serving them to users from the geographically closest location for faster load times."
+    },
+    {
+      "question": "What is Server-Sent Events (SSE)?",
+      "options": [
+        "A fully bidirectional real-time protocol like WebSockets.",
+        "A standard that allows a web server to push continuous updates to a client over a single, uni-directional HTTP connection.",
+        "An XML-based SOAP protocol.",
+        "A secure way to store passwords in a database."
+      ],
+      "correctIdx": 1,
+      "explanation": "standard that allows a web server to push continuous updates to a client over a single, uni-directional HTTP connection."
+    },
+    {
+      "question": "When hashing passwords securely, what is the purpose of adding a 'salt' to the password before hashing?",
+      "options": [
+        "To make the password shorter.",
+        "To ensure two identical passwords do not produce the same hash, defending against Rainbow Table attacks.",
+        "To compress the password string.",
+        "To allow the backend admin to reverse the hash and see the password."
+      ],
+      "correctIdx": 1,
+      "explanation": "ensure two identical passwords do not produce the same hash, defending against Rainbow Table attacks."
+    },
+    {
+      "question": "In the context of database caching (like Redis), what is a 'Cache Miss'?",
+      "options": [
+        "When the cache memory is completely full.",
+        "When the application requests data from the cache, but the data is not found, requiring a fallback query to the primary database.",
+        "When the cache server crashes.",
+        "When data is successfully written to the cache."
+      ],
+      "correctIdx": 1,
+      "explanation": "the application requests data from the cache, but the data is not found, requiring a fallback query to the primary database."
+    },
+    {
+      "question": "What is Kubernetes primarily used for in a DevOps ecosystem?",
+      "options": [
+        "To write source code.",
+        "To automate the deployment, scaling, and management of containerized applications (Container Orchestration).",
+        "To serve as a high-performance NoSQL database.",
+        "To manage Git repositories."
+      ],
+      "correctIdx": 1,
+      "explanation": "automate the deployment, scaling, and management of containerized applications (Container Orchestration)."
+    },
+    {
+      "question": "Why is API Versioning (e.g., `/api/v1/users` vs `/api/v2/users`) a critical best practice in backend development?",
+      "options": [
+        "It prevents hackers from finding the API.",
+        "It allows developers to make breaking changes to the API structure without instantly breaking existing client applications that rely on the older version.",
+        "It is required by SSL certificates.",
+        "It automatically generates documentation."
+      ],
+      "correctIdx": 1,
+      "explanation": "allows developers to make breaking changes to the API structure without instantly breaking existing client applications that rely on the older version."
+    },
+    {
+      "question": "A JavaScript Closure is highly useful for implementing which of the following programming patterns?",
+      "options": [
+        "Multithreading",
+        "Data Encapsulation / Private Variables",
+        "CSS Animations",
+        "SQL Database Connections"
+      ],
+      "correctIdx": 1,
+      "explanation": "Encapsulation / Private Variables"
+    },
+    {
+      "question": "In backend development, what does ORM (Object-Relational Mapping) like Prisma, Sequelize, or SQLAlchemy do?",
+      "options": [
+        "It converts relational databases into NoSQL document stores.",
+        "It allows developers to interact with a relational database using object-oriented code in their native programming language, rather than writing raw SQL queries.",
+        "It formats JSON objects to send over the network.",
+        "It manages server memory allocation."
+      ],
+      "correctIdx": 1,
+      "explanation": "allows developers to interact with a relational database using object-oriented code in their native programming language, rather than writing raw SQL queries."
+    },
+    {
+      "question": "When writing unit tests for a service that fetches data from an external 3rd-party API, you shouldn't make real network calls during the test. What technique should you use instead?",
+      "options": [
+        "Code Splitting",
+        "Mocking / Stubbing",
+        "E2E Testing",
+        "Tree Shaking"
+      ],
+      "correctIdx": 1,
+      "explanation": "Stubbing"
+    },
+    {
+      "question": "Which CSS property dictates how remaining space in a flex container is distributed among its items?",
+      "options": [
+        "flex-direction",
+        "flex-wrap",
+        "justify-content",
+        "align-items"
+      ],
+      "correctIdx": 2,
+      "explanation": "Option C is the correct answer."
+    },
+    {
+      "question": "What is a 'Promise' in JavaScript?",
+      "options": [
+        "An object representing the eventual completion (or failure) of an asynchronous operation and its resulting value.",
+        "A strict contract that a function will always return a string.",
+        "A built-in DOM element for creating pop-ups.",
+        "A synchronous loop statement."
+      ],
+      "correctIdx": 0,
+      "explanation": "object representing the eventual completion (or failure) of an asynchronous operation and its resulting value."
+    },
+    {
+      "question": "In modern web accessibility (a11y), what is the primary purpose of the `alt` attribute on an `<img>` tag?",
+      "options": [
+        "To resize the image automatically.",
+        "To provide alternative text for screen readers and in case the image fails to load.",
+        "To add a tooltip when hovering over the image.",
+        "To define the image's source URL."
+      ],
+      "correctIdx": 1,
+      "explanation": "provide alternative text for screen readers and in case the image fails to load."
+    }
+  ]
+}

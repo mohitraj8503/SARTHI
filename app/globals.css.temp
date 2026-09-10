@@ -1,0 +1,109 @@
+@import '../styles/design-tokens.css';
+
+/* SARTHI Premium Dashboard System */
+@layer base {
+  :root {
+    --primary-action: #D4956A;
+    --primary-dark: #2A3828;
+    --dashboard-bg: #F9F8F6;
+    --card-border: #EAE6DF;
+    --text-main: #1F2937;
+    --text-muted: #5D705C;
+
+    /* Premium Gradients */
+    --grad-premium: linear-gradient(135deg, #2A3828 0%, #1C2B4A 100%);
+    --grad-gold: linear-gradient(135deg, #D4956A 0%, #B37D56 100%);
+    --grad-obsidian: linear-gradient(180deg, rgba(31, 41, 55, 0) 0%, rgba(17, 24, 39, 0.8) 100%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2.5s infinite linear;
+  background: linear-gradient(to right, #F7F4EF 4%, #EAE6DF 25%, #F7F4EF 36%);
+  background-size: 1000px 100%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.shimmer-premium {
+  animation: shimmer 3s infinite linear;
+  background: linear-gradient(to right, rgba(var(--primary), 0.03) 4%, rgba(var(--primary), 0.08) 25%, rgba(var(--primary), 0.03) 36%);
+  background-size: 1000px 100%;
+}
+
+.dashboard-card-hover {
+  @apply transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/10;
+}
+
+.dashboard-card-highlight {
+  @apply relative overflow-hidden rounded-[32px] border border-white/10;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+  background: var(--grad-premium);
+}
+
+.dashboard-card-highlight::after {
+  content: '';
+  @apply absolute inset-0 opacity-20 pointer-events-none;
+  background: radial-gradient(circle at top right, var(--primary-action), transparent 70%);
+}
+
+.btn-interactive {
+  @apply active:scale-95 transition-all duration-200 hover:brightness-110 shadow-sm hover:shadow-md;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    height: auto;
+    min-height: 100%;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100%;
+    height: auto;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    @apply bg-background text-foreground tracking-tight selection:bg-[#10B981]/10 selection:text-[#10B981];
+    line-height: 1.6;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }

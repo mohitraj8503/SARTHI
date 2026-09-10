@@ -1,0 +1,407 @@
+/* ================================================
+   Liquid Glass Calculator — style.css
+   Palette: 4 sections only
+   · Background  → deep navy  #090c18
+   · Numbers     → frosted glass (neutral blue-white)
+   · Operators   → indigo-tinted glass
+   · Utility     → warm amber glass
+   · Equals      → solid violet-indigo hero
+   ================================================ */
+
+/* ─── Custom Properties ─────────────────────────── */
+:root {
+  /* Background */
+  --bg:           #090c18;
+  --bg-orb-a:     #1e2a6e;   /* deep indigo */
+  --bg-orb-b:     #2e1065;   /* deep violet */
+  --bg-orb-c:     #0c2340;   /* deep blue   */
+
+  /* Glass card */
+  --card-bg:      rgba(255, 255, 255, 0.055);
+  --card-border:  rgba(255, 255, 255, 0.13);
+  --card-shine:   rgba(255, 255, 255, 0.07);
+
+  /* Display */
+  --display-bg:   rgba(5, 8, 22, 0.55);
+  --display-border: rgba(255, 255, 255, 0.08);
+
+  /* Text */
+  --text:         #e8edf8;
+  --text-dim:     rgba(232, 237, 248, 0.45);
+
+  /* Button sections */
+  --num-bg:       rgba(190, 210, 255, 0.09);
+  --num-border:   rgba(180, 200, 255, 0.14);
+  --num-hover:    rgba(190, 210, 255, 0.18);
+  --num-shine:    rgba(220, 235, 255, 0.12);
+
+  --op-bg:        rgba(100, 80, 220, 0.18);
+  --op-border:    rgba(140, 120, 255, 0.22);
+  --op-hover:     rgba(100, 80, 220, 0.30);
+  --op-color:     #c4b8ff;
+
+  --util-bg:      rgba(230, 160, 30, 0.15);
+  --util-border:  rgba(255, 190, 60, 0.20);
+  --util-hover:   rgba(230, 160, 30, 0.26);
+  --util-color:   #fcd97a;
+
+  --eq-from:      #5b21b6;
+  --eq-to:        #7c3aed;
+
+  /* Radii */
+  --r-card: 28px;
+  --r-btn:  16px;
+  --r-disp: 18px;
+
+  /* Transition */
+  --t: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Background: 3 soft deep orbs only ─────────── */
+.bg-orbs {
+  position: fixed; inset: 0;
+  pointer-events: none; overflow: hidden; z-index: 0;
+  background: linear-gradient(rgba(9, 12, 24, 0.45), rgba(9, 12, 24, 0.45)), url('https://cdn.pixabay.com/photo/2023/08/04/22/59/sunset-8170058_1280.jpg') no-repeat center center;
+  background-size: cover;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); opacity: 0.35;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.orb-1 {
+  width: 560px; height: 560px;
+  background: var(--bg-orb-a);
+  top: -180px; left: -160px;
+  animation-duration: 16s;
+}
+.orb-2 {
+  width: 440px; height: 440px;
+  background: var(--bg-orb-b);
+  bottom: -140px; right: -120px;
+  animation-duration: 12s;
+  animation-delay: -5s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: var(--bg-orb-c);
+  top: 42%; left: 48%;
+  opacity: 0.28;
+  animation-duration: 20s;
+  animation-delay: -10s;
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(35px, 25px) scale(1.08); }
+}
+
+/* ─── Layout ─────────────────────────────────────── */
+.calculator-wrapper {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 24px 16px;
+  min-height: 100vh;
+}
+
+/* ─── Calculator Card — Liquid Glass ────────────── */
+.calculator {
+  width: 100%; max-width: 360px;
+  padding: 22px;
+  display: flex; flex-direction: column; gap: 18px;
+  border-radius: var(--r-card);
+
+  /* Liquid glass layers */
+  background:
+    /* top-edge highlight line */
+    linear-gradient(180deg,
+      rgba(255,255,255,0.10) 0px,
+      rgba(255,255,255,0.00) 1px) top / 100% 2px no-repeat,
+    /* body fill */
+    rgba(255,255,255,0.06);
+  backdrop-filter: blur(48px) saturate(220%) brightness(1.05);
+  -webkit-backdrop-filter: blur(48px) saturate(220%) brightness(1.05);
+  border: 1px solid var(--card-border);
+  box-shadow:
+    /* outer depth */
+    0 40px 90px rgba(0, 0, 0, 0.75),
+    0 12px 32px rgba(0, 0, 0, 0.50),
+    /* inner top-left highlight */
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.14),
+    inset 1px 0   0 rgba(255, 255, 255, 0.05),
+    /* inner bottom shadow for depth */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* ─── Display ────────────────────────────────────── */
+.display {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.00) 1px) top / 100% 1px no-repeat,
+    var(--display-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--display-border);
+  border-radius: var(--r-disp);
+  padding: 18px 22px 16px;
+  min-height: 108px;
+  display: flex; flex-direction: column;
+  align-items: flex-end; justify-content: flex-end;
+  gap: 5px; overflow: hidden;
+  box-shadow:
+    inset 0 2px 12px rgba(0, 0, 0, 0.40),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.expression {
+  font-size: 0.9rem; font-weight: 400;
+  color: var(--text-dim);
+  min-height: 1.35em;
+  letter-spacing: 0.04em;
+  word-break: break-all; text-align: right;
+}
+
+.result {
+  font-size: 2.8rem; font-weight: 300;
+  color: var(--text);
+  letter-spacing: -0.03em; line-height: 1;
+  word-break: break-all; text-align: right;
+  transition: color 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Pop spring on = */
+.result.pop {
+  animation: resultPop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes resultPop {
+  0%   { transform: scale(0.88); opacity: 0.7; }
+  65%  { transform: scale(1.07); }
+  100% { transform: scale(1);    opacity: 1;   }
+}
+
+/* Soft glow on result after equals */
+.result.glow { color: #b4a9ff; }
+
+/* Error */
+.result.error { font-size: 1.55rem; color: #ff8585; }
+
+/* ─── Button Grid ────────────────────────────────── */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* ─── Base Button — Liquid Glass ────────────────── */
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem; font-weight: 500;
+  color: var(--text);
+  border: none;
+  border-radius: var(--r-btn);
+  cursor: pointer;
+  height: 66px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: transform var(--t), box-shadow var(--t), background var(--t);
+}
+
+/* Inner top-highlight (the "liquid" wetness) */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.14) 0%,
+    rgba(255,255,255,0.00) 100%);
+  border-radius: var(--r-btn) var(--r-btn) 0 0;
+  pointer-events: none;
+}
+
+/* Shimmer sweep on hover */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+    transparent 20%,
+    rgba(255,255,255,0.12) 50%,
+    transparent 80%);
+  opacity: 0;
+  transition: opacity var(--t);
+  border-radius: inherit;
+}
+.btn:hover::after  { opacity: 1; }
+.btn:active::after { opacity: 0; }
+
+/* Press down ripple */
+.btn-ripple {
+  position: absolute;
+  width: 80px; height: 80px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleBurst 0.5s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleBurst {
+  to { transform: scale(4); opacity: 0; }
+}
+
+.btn:focus-visible {
+  outline: 2px solid rgba(180, 169, 255, 0.8);
+  outline-offset: 3px;
+}
+
+.btn-wide { grid-column: span 2; }
+
+/* ─── Section 1: Number Buttons ──────────────────── */
+.btn-number {
+  background: var(--num-bg);
+  border: 1px solid var(--num-border);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 2px 8px rgba(0,0,0,0.28);
+}
+.btn-number:hover {
+  background: var(--num-hover);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    0 6px 18px rgba(0,0,0,0.38);
+}
+.btn-number:active {
+  transform: translateY(1px) scale(0.95);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.30);
+}
+
+/* ─── Section 2: Operator Buttons ───────────────── */
+.btn-operator {
+  background: var(--op-bg);
+  border: 1px solid var(--op-border);
+  color: var(--op-color);
+  font-size: 1.3rem;
+  box-shadow:
+    inset 0 1px 0 rgba(160,140,255,0.18),
+    0 2px 10px rgba(80,60,200,0.25);
+}
+.btn-operator:hover {
+  background: var(--op-hover);
+  color: #ddd5ff;
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(160,140,255,0.22),
+    0 6px 20px rgba(80,60,200,0.35);
+}
+.btn-operator:active {
+  transform: translateY(1px) scale(0.95);
+}
+/* Active operator: subtle ring, no rainbow */
+.btn-operator.active-op {
+  background: rgba(100, 80, 220, 0.36);
+  box-shadow:
+    inset 0 1px 0 rgba(200,180,255,0.20),
+    0 0 0 2px rgba(160,140,255,0.50),
+    0 4px 16px rgba(80,60,200,0.35);
+}
+
+/* ─── Section 3: Utility Buttons (C, ⌫) ─────────── */
+.btn-utility {
+  background: var(--util-bg);
+  border: 1px solid var(--util-border);
+  color: var(--util-color);
+  font-size: 1.15rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255,220,80,0.14),
+    0 2px 8px rgba(140,90,0,0.22);
+}
+.btn-utility:hover {
+  background: var(--util-hover);
+  color: #ffe49a;
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,220,80,0.18),
+    0 6px 18px rgba(140,90,0,0.32);
+}
+.btn-utility:active {
+  transform: translateY(1px) scale(0.95);
+}
+
+/* Wiggle on Clear */
+.btn-utility.wiggle { animation: wiggle 0.32s ease; }
+@keyframes wiggle {
+  0%  { transform: rotate(0deg); }
+  20% { transform: rotate(-7deg) scale(1.08); }
+  45% { transform: rotate(7deg) scale(1.08); }
+  70% { transform: rotate(-4deg); }
+  90% { transform: rotate(3deg); }
+  100%{ transform: rotate(0deg); }
+}
+
+/* ─── Section 4: Equals Button ───────────────────── */
+.btn-equals {
+  background: linear-gradient(145deg, var(--eq-from), var(--eq-to));
+  color: #fff;
+  font-size: 1.45rem; font-weight: 600;
+  border: 1px solid rgba(160, 120, 255, 0.30);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.20),
+    0 4px 20px rgba(90, 30, 180, 0.50),
+    0 1px 4px rgba(0,0,0,0.40);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.btn-equals:hover {
+  background: linear-gradient(145deg, #6d28d9, #8b5cf6);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    0 8px 28px rgba(90, 30, 180, 0.60),
+    0 2px 6px rgba(0,0,0,0.40);
+}
+.btn-equals:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow:
+    inset 0 2px 10px rgba(0,0,0,0.30),
+    0 2px 10px rgba(90,30,180,0.40);
+}
+
+/* Boom on = press */
+.btn-equals.boom { animation: boom 0.28s ease; }
+@keyframes boom {
+  0%  { transform: scale(1); }
+  35% { transform: scale(0.90); }
+  70% { transform: scale(1.10); }
+  100%{ transform: scale(1); }
+}
+
+/* ─── Confetti ───────────────────────────────────── */
+/* Only 3 accent colors — matches our palette */
+.confetti-particle {
+  position: fixed; top: 50%; left: 50%;
+  width: 9px; height: 9px;
+  pointer-events: none; z-index: 999; opacity: 1;
+  animation: confettiFall 1.1s ease-out forwards;
+}
+@keyframes confettiFall {
+  0%   { transform: translate(0,0) rotate(0deg) scale(1);           opacity: 1; }
+  100% { transform: translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(0.3); opacity: 0; }
+}
+
+/* ─── Responsive ─────────────────────────────────── */
+@media (max-width: 400px) {
+  .calculator { padding: 16px; gap: 13px; }
+  .btn { height: 56px; font-size: 1rem; border-radius: 13px; }
+  .result { font-size: 2.3rem; }
+  .buttons { gap: 8px; }
+}
+
+@media (min-width: 600px) {
+  .calculator { max-width: 400px; padding: 26px; }
+  .btn { height: 72px; }
+  .result { font-size: 3.1rem; }
+}

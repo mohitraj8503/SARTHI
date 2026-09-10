@@ -1,0 +1,31 @@
+<header>
+    <meta name="robots" content="noindex">
+</header>
+<script src='https://www.recaptcha.net/recaptcha/api.js?onload=recaptchaOnLoad&render=explicit'></script>
+<h6>Download</h6>
+<div>
+    <p>
+        
+            As a registered user, no captcha is presented to you.
+            <a class='show-entry-point-modal' data-w="442" rel="nofollow" href="/accounts/register/?source=&amp;next=&amp;modal">Sign up, it's free!</a>
+        
+    </p>
+    
+        <form action="/videos/download/video-10339_large.mp4" method="post" class="pure-form ajax_form" data-target="#cboxLoadedContent">
+            <input type='hidden' name='csrfmiddlewaretoken' value='ThW9RWfL6zVOQBd2sql502FHi6luQj04z1e02wplkdJ9FsAB9cWpOCcXNVwqgzcQ' />
+            <div>
+                
+                <div id="download-recaptcha"></div>
+                <div style="margin:15px 0 0"><input class="pure-button button-green" type="submit" value="Download"></div>
+            </div>
+        </form>
+    
+</div>
+<script>
+    function recaptchaOnLoad() {
+        grecaptcha.render('download-recaptcha', { 'sitekey' : '' });
+        resized();
+      };
+      setTimeout(function(){ resized(); }, 500);
+      setTimeout(function(){ resized(); }, 2000);
+</script>

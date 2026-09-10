@@ -1,0 +1,122 @@
+---
+id: "py-l-1-1"
+title: "How Python Reads Your Code (Execution Model)"
+duration: 15
+type: "interactive-lesson"
+xp: 50
+---
+
+# THE HOOK: The $40,000 Out-of-Order Dashboard
+
+A high-frequency trading platform updated their status monitoring dashboard. They deployed a clean, single-file script designed to check database health and then announce the portal status.
+
+However, due to a minor copy-paste sequence mistake, the script printed:
+`SYSTEM STATUS: PORTAL ONLINE`
+before executing the database check. The database check failed silently due to a network timeout, but because the dashboard script crashed *after* printing the success message, external status checkers marked the system as completely healthy.
+
+This tiny sequence mismatch caused a silent 4-hour database outage, costing the firm **$40,000** in unrouted transactions.
+
+To prevent this, you must understand the exact mechanics of Python's execution timeline.
+
+<MemoryBridge>
+Welcome to your engineering onboarding. Every professional system begins with a single line of execution. As you proceed through the certification path, remember: Python does not run your files all at once. It executes code as a sequential timeline. 
+</MemoryBridge>
+
+---
+
+# THE PREDICTION
+
+Before we analyze how Python executes commands, let's test your structural intuition.
+
+<PredictionGate
+  question="If we execute the script shown below, what is the exact sequence of messages that will appear in the developer console?"
+  code={`print("STEP 2: Syncing database replicas...")
+print("STEP 1: Booting telemetry daemon...")
+print("STEP 3: Portal socket open.")`}
+  options={[
+    "STEP 1: Booting telemetry daemon... followed by STEP 2 and STEP 3",
+    "STEP 2: Syncing database replicas... followed by STEP 1 and STEP 3",
+    "All three statements run concurrently",
+    "The code crashes because STEP 1 is written after STEP 2"
+  ]}
+  correctIndex={1}
+  explanation="Python strictly executes code line-by-line, top-to-bottom. The interpreter does not look ahead to sort strings or check numbers; it simply runs line 1, then line 2, then line 3. Therefore, STEP 2 prints first."
+/>
+
+---
+
+# THE CONCEPT: The Sequential Interpreter
+
+When you write Python, you write human-readable text. But computers only understand **binary machine code** (zeros and ones).
+
+Python bridge this gap using a program called the **Interpreter**.
+
+```text
++-------------------+      +-------------------+      +-------------------+
+|  Your Python Code | ---> | Python Interpreter| ---> |   Machine CPU     |
+|  (print("Hello")) |      | (Translates line) |      | (Executes Binary) |
++-------------------+      +-------------------+      +-------------------+
+```
+
+### The Line-by-Line Execution Rule
+Unlike **compiled** languages (like C++ or Rust), which translate the entire codebase into machine code before running, Python translates and executes your script **line-by-line, on the fly**.
+
+* **Sequential Execution:** The interpreter maintains an internal instruction pointer. It reads line 1, translates it, executes it, and only then proceeds to line 2.
+* **Stop-on-Failure:** If line 10 contains a syntax error, Python will successfully run lines 1 through 9. The moment the interpreter lands on line 10, it halts execution immediately and raises a traceback error. It will not attempt to run line 11.
+
+---
+
+# THE ACTIVE SANDBOX
+
+Now, put this theory into practice. Below is a broken deployment script for the TechTomorrow Student Portal CLI. 
+
+Currently, the script reports that the portal is online before the database configuration verification completes. This creates a race condition that can mask connection failures.
+
+Your task is to re-order the execution statements so that database verification executes and logs *before* the portal is declared active.
+
+<LiveSandbox
+  id="py-execution-sandbox"
+  initialCode={`# TODO: Re-order the print statements so that
+# the database verification occurs before the portal goes online.
+
+print("SYSTEM STATUS: PORTAL ONLINE")
+print("STATUS: DATABASE VERIFICATION COMPLETE")
+`}
+  expectedOutput="STATUS: DATABASE VERIFICATION COMPLETE\nSYSTEM STATUS: PORTAL ONLINE"
+  hints={[
+    "Look at the sequential execution order. Line 4 currently runs first, printing PORTAL ONLINE.",
+    "Cut and paste the print('STATUS: DATABASE VERIFICATION COMPLETE') statement and move it above print('SYSTEM STATUS: PORTAL ONLINE').",
+    "Ensure there are no extra leading spaces on either line, as spacing is structural in Python."
+  ]}
+/>
+
+<ImpactFeedback
+  message="Sequence stabilized! By moving the database verification statement to the top, you ensure that anyone checking the log output sees verification status first. You have averted a silent system fail-state."
+/>
+
+---
+
+# THE INSIGHT: Tradeoff Analysis
+
+As a Systems Architect, you must weigh language capabilities when designing systems. Python's interpreted nature has clear trade-offs:
+
+<TradeoffAnalysis
+  title="Interpreted Execution (Python) vs. Compiled Execution (C++/Go)"
+  pros={[
+    "Rapid Prototyping: You do not need to wait for a build/compile phase. You write code and run it immediately.",
+    "Dynamic Evaluation: Code can be dynamically typed and generated at runtime.",
+    "Platform Portability: The same script can run on macOS, Linux, or Windows without being recompiled."
+  ]}
+  cons={[
+    "Execution Speed: Line-by-line translation introduces runtime overhead, making Python slower than compiled languages.",
+    "Late-Stage Failures: Type mismatches or spelling errors are only discovered when the interpreter evaluates that specific line at runtime, which might occur hours into a batch process."
+  ]}
+/>
+
+---
+
+# THE SHIFT: You are a Logic Architect
+
+You have just unlocked the first core capability: **Understanding runtime behavior**. 
+
+You no longer view code as a static document. You see it as a dynamic, line-by-line execution stream controlled by the interpreter. You are now a **Logic Architect**.

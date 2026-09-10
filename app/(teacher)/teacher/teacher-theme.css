@@ -1,0 +1,232 @@
+/* ==========================================
+ * SARTHI - TEACHER STUDIO THEME 🌿
+ * Warm Cream + Dark Forest Green
+ * ==========================================
+ */
+
+:root {
+    /* Core Palette */
+    --teacher-forest: #1A3C2E;
+    --teacher-forest-mid: #2D6A4F;
+    --teacher-cream: #F5F0E8;
+    --teacher-white: #FFFFFF;
+    --teacher-gold: #E8B84B;
+    --teacher-red: #E74C3C;
+    --teacher-sage: #5A6A5A; /* Darkened for WCAG AA compliance - was #5D705C */
+    --teacher-border: #E8E2D9;
+
+    /* Sidebar Specifics */
+    --sidebar-forest: #1A3C2E;
+    --sidebar-active-bg: rgba(255, 255, 255, 0.12);
+    --sidebar-active-border: #4CAF76;
+    
+    /* Text Colors - WCAG AA Compliant */
+    --teacher-text-primary: #1A3C2E;
+    --teacher-text-secondary: #3D5A4A; /* Darkened from #1A3C2E/70 for better contrast */
+    --teacher-text-muted: #5A6A5A; /* Darkened for accessibility */
+}
+
+.teacher-studio {
+    background-color: var(--teacher-cream);
+    color: var(--teacher-forest);
+    min-height: 100 screen;
+}
+
+/* Base transitions */
+.teacher-studio * {
+    transition: all 0.2s ease;
+}
+
+/* Card Styles */
+.teacher-card {
+    background-color: var(--teacher-white);
+    border: 1px solid var(--teacher-border);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.teacher-card:hover {
+    box-shadow: 0 4px 20px rgba(26, 60, 46, 0.10);
+    transform: translateY(-2px);
+}
+
+/* Button Variants */
+.btn-teacher-primary {
+    background-color: var(--teacher-forest);
+    color: white;
+    border-radius: 9999px;
+    padding: 10px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.btn-teacher-primary:hover {
+    background-color: var(--teacher-forest-mid);
+}
+
+.btn-teacher-gold {
+    background-color: var(--teacher-gold);
+    color: white;
+    border-radius: 9999px;
+    padding: 10px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.btn-teacher-red {
+    background-color: var(--teacher-red);
+    color: white;
+    border-radius: 9999px;
+    padding: 10px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.btn-teacher-outline {
+    border: 1px solid var(--teacher-forest);
+    color: var(--teacher-forest);
+    border-radius: 9999px;
+    padding: 10px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.btn-teacher-outline:hover {
+    background-color: var(--teacher-forest);
+    color: white;
+}
+
+/* Pill Tabs */
+.teacher-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 4px;
+    background-color: var(--teacher-white);
+    border: 1px solid var(--teacher-border);
+    border-radius: 9999px;
+    width: fit-content;
+}
+
+.teacher-tab {
+    padding: 8px 20px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--teacher-sage);
+}
+
+.teacher-tab.active {
+    background-color: var(--teacher-forest);
+    color: white;
+}
+
+/* Input Styles */
+.teacher-input {
+    background-color: var(--teacher-white);
+    border: 1px solid var(--teacher-border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--teacher-forest);
+}
+
+.teacher-input:focus {
+    outline: none;
+    border: 2px solid var(--teacher-forest-mid);
+}
+
+/* Navigation Item */
+.teacher-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75); /* Increased from 0.7 for better contrast */
+}
+
+.teacher-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Increased from 0.1 */
+    color: white;
+}
+
+.teacher-nav-item.active {
+    background-color: var(--sidebar-active-bg);
+    color: white;
+    border-left: 3px solid var(--sidebar-active-border);
+    font-weight: 500;
+}
+
+/* Focus Styles for Accessibility */
+.teacher-nav-item:focus,
+.teacher-input:focus,
+.btn-teacher-primary:focus,
+.btn-teacher-gold:focus,
+.btn-teacher-outline:focus {
+    outline: 2px solid var(--teacher-gold);
+    outline-offset: 2px;
+}
+
+/* Skip Link Focus Style */
+.skip-link:focus {
+    background-color: var(--teacher-gold);
+    color: var(--teacher-forest);
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
+/* Animations */
+@keyframes pulse-soft {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(0.98); }
+}
+
+.animate-pulse-slow {
+    animation: pulse-soft 3s infinite ease-in-out;
+}
+
+@keyframes ripple {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 2s infinite;
+}
+
+/* Glassmorphism helpers */
+.glass-teacher {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.shadow-premium {
+    box-shadow: 0 25px 50px -12px rgba(26, 60, 46, 0.15);
+}
+

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Masterclass Certificate of Completion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Cormorant+Garamond:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: landscape;
+            margin: 0;
+        }
+
+        html, body {
+            width: 1050px;
+            height: 787.5px;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background-image: url('/python-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Inner Glassmorphism Card matching AI Glassmorphism Template */
+        .certificate-card {
+            width: 930px;
+            height: 685px;
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2.5px solid rgba(255, 255, 255, 0.88);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            padding: 42px 52px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 5px;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo-img {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 1.2px;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 9px;
+            font-weight: 600;
+            color: #64748b;
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+
+        .msme-logo-img {
+            height: 46px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Title Area */
+        .title-section {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .main-title {
+            font-size: 34px;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .subtitle-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .title-line {
+            height: 1px;
+            width: 140px;
+            background: linear-gradient(90deg, transparent, #cbd5e1);
+        }
+
+        .title-line.right {
+            background: linear-gradient(90deg, #cbd5e1, transparent);
+        }
+
+        /* Line divider directly after PYTHON CERTIFICATE OF COMPLETION */
+        .title-divider-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 280px;
+            margin: 14px auto 0 auto;
+        }
+
+        .title-divider-line {
+            width: 100%;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent 0%, #cbd5e1 25%, #3b82f6 50%, #cbd5e1 75%, transparent 100%);
+        }
+
+        .title-divider-dot {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Recipient Section */
+        .recipient-section {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .certifies-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .recipient-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 46px;
+            font-weight: 700;
+            color: #000000;
+            margin: 4px 0 14px 0;
+            letter-spacing: 0.5px;
+            line-height: 1.15;
+        }
+
+        .description {
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+            line-height: 1.75;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* Specialization */
+        .specialization-section {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 13.5px;
+            color: #334155;
+        }
+
+        .specialization-section strong {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Footer Section - Standardized Executive Layout with Values ABOVE line */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 15px;
+            padding: 10px 10px 0 10px;
+            border-top: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 190px;
+        }
+
+        .footer-column.center {
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-column.right {
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .footer-value-above {
+            height: 44px;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 2px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-column.center .footer-value-above {
+            justify-content: center;
+        }
+
+        .footer-column.right .footer-value-above {
+            justify-content: flex-end;
+        }
+
+        .signature-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        .footer-column-line {
+            width: 100%;
+            height: 1.5px;
+            background-color: #cbd5e1;
+            margin: 2px 0 6px 0;
+        }
+
+        .footer-primary-text {
+            font-size: 13px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-sub-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Dedicated Print Rules for Landscape PDF Export - High Contrast Glass Print */
+        @media print {
+            @page {
+                size: 1050px 787.5px;
+                margin: 0;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            html, body {
+                width: 1050px !important;
+                height: 787.5px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+
+            .certificate-card {
+                width: 930px !important;
+                height: 685px !important;
+                padding: 42px 52px !important;
+                background: #ffffff !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border: 2.5px solid rgba(255, 255, 255, 0.95) !important;
+                border-radius: 28px !important;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-card">
+        <!-- Header -->
+        <div class="header">
+            <div class="brand-container">
+                <img src="/sarthi-logo.png" alt="SARTHI Logo" class="brand-logo-img">
+                <div class="brand-text">
+                    <div class="brand-name">SARTHI</div>
+                    <div class="tagline">INNOVATE TODAY</div>
+                </div>
+            </div>
+            
+            <img src="/msme-logo.png" alt="MSME Logo" class="msme-logo-img">
+        </div>
+
+        <!-- Title Area -->
+        <div class="title-section">
+            <div class="main-title">PYTHON CERTIFICATE</div>
+            <div class="subtitle-wrapper">
+                <div class="title-line left"></div>
+                <div class="subtitle">OF COMPLETION</div>
+                <div class="title-line right"></div>
+            </div>
+
+            <!-- Decorative Divider Line -->
+            <div class="title-divider-container">
+                <div class="title-divider-line"></div>
+                <div class="title-divider-dot"></div>
+            </div>
+        </div>
+
+        <!-- Recipient Area -->
+        <div class="recipient-section">
+            <div class="certifies-text">THIS CERTIFIES THAT</div>
+            <div class="recipient-name">John Doe</div>
+            <div class="description">
+                has successfully completed a comprehensive program in Python Masterclass & Automation,<br>
+                covering core and advanced modules in data structures, algorithms,<br>
+                backend development, and automation engineering.
+            </div>
+        </div>
+
+        <!-- Specialization -->
+        <div class="specialization-section">
+            <strong>Specialization:</strong> Python Full-Stack & Automation
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-column">
+                <div class="footer-value-above">13.08.2025</div>
+                <div class="footer-column-line"></div>
+                <div class="footer-sub-label">DATE OF ISSUE</div>
+            </div>
+            
+            <div class="footer-column center">
+                <div class="footer-value-above">TT-PM-2026-04819</div>
+                <div class="footer-column-line"></div>
+                <div class="footer-sub-label">CERTIFICATE ID</div>
+            </div>
+            
+            <div class="footer-column right">
+                <div class="footer-value-above signature-wrapper">
+                    <img src="/signature-mukul-pandey.png" alt="Dr. Mukul Pandey Signature" class="signature-img">
+                </div>
+                <div class="footer-column-line"></div>
+                <div class="footer-primary-text">Dr. Mukul Pandey</div>
+                <div class="footer-sub-label">CEO & FOUNDER</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

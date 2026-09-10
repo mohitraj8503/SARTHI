@@ -1,0 +1,152 @@
+/* ==========================================
+ * SARTHI - ADMIN LIGHT THEME 🌞
+ * Cool White + Deep Slate Blue + Gold
+ * ==========================================
+ */
+
+:root {
+  /* Core Palette */
+  --admin-page-bg: #F0F2F8;
+  /* Cool White/Blue-Grey */
+  --admin-sidebar-bg: #1C2B4A;
+  /* Deep Slate Blue / Navy */
+  --admin-card-bg: #FFFFFF;
+  /* Pure White */
+
+  /* Text Colors */
+  --admin-text-primary: #1C2B4A;
+  /* Deep Navy */
+  --admin-text-secondary: #5A6A85;
+  /* Cool Slate Gray - darkened for WCAG AA compliance */
+  --admin-text-sidebar-inactive: #8A9AB8;
+  /* Muted Periwinkle - darkened for WCAG AA compliance */
+  --admin-text-sidebar-active: #FFFFFF;
+  /* White */
+
+  /* Accents */
+  --admin-gold: #E8B84B;
+  /* Warm Gold */
+  --admin-navy: #1C2B4A;
+  /* Deep Navy (Primary Accent) */
+  --admin-red: #E74C3C;
+  /* Live/Urgent Red */
+
+  /* Status/Tint Colors */
+  --admin-tint-blue: #EBF0FA;
+  --admin-tint-gold: #FDF6E3;
+  --admin-tint-green: #E8F8F0;
+  --admin-tint-red: #FDECEA;
+
+  /* Borders & Shadows */
+  --admin-border: #E2E8F4;
+  /* Subtle Cool Border */
+  --admin-shadow: 0 2px 16px rgba(28, 43, 74, 0.08);
+  /* Navy-tinted soft shadow */
+}
+
+/* Base Styles */
+body {
+  background-color: var(--admin-page-bg);
+  color: var(--admin-text-primary);
+}
+
+/* Sidebar Custom Scrollbar */
+.admin-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-gold);
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(232, 184, 75, 0.2);
+  color: var(--admin-navy);
+}
+
+/* Global Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes pulse-soft {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s infinite ease-in-out;
+}
+
+/* Slide in from right animation */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* Floating Animations for Premium Background Atmosphere */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float-delayed {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 10s ease-in-out infinite;
+}
+
+.shadow-glow {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+

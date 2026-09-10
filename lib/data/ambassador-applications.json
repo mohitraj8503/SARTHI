@@ -1,0 +1,32 @@
+[
+  {
+    "id": "amb_1784214499436",
+    "firstName": "Mohit",
+    "lastName": "Raj",
+    "email": "mohitraj8503@gmail.com",
+    "phone": "9999999999",
+    "dob": "2000-01-01",
+    "gender": "Male",
+    "country": "India",
+    "state": "Jharkhand",
+    "city": "Jamshedpur",
+    "collegeName": "ARKA JAIN University",
+    "degreeProgram": "B.Tech",
+    "gradMonth": "May",
+    "gradYear": "2026",
+    "essayWelcome": "This is a simulation ambassador statement of purpose essay.",
+    "linkedinUrl": "https://linkedin.com/in/mohit",
+    "githubUrl": "https://github.com/mohit",
+    "skills": [
+      "React",
+      "Next.js",
+      "TailwindCSS"
+    ],
+    "status": "APPROVED",
+    "referralCode": "TT-MOHIT-E54S",
+    "registrationsCount": 0,
+    "taskStatus": "IN_PROGRESS",
+    "createdAt": "2026-07-16T15:08:19.436Z",
+    "dateApproved": "2026-07-16T15:08:19.436Z"
+  }
+]

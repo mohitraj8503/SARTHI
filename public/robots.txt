@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/admin
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://techtomorrow.in/sitemap.xml

@@ -1,0 +1,10 @@
+'use client';
+
+import { useState, useEffect, useCallback, memo, useMemo } from 'react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Loader2, ArrowRight, BookOpen, Heart } from 'lucide-react';
+import { m, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { useAuth } from '@/components/AuthProvider';
+import { useToast } from '@/components/ToastProvider';
