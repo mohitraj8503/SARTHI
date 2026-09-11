@@ -207,7 +207,7 @@ export default function AboutPage() {
               The People Behind <span className="text-[#2D6A4F]">SARTHI.</span>
             </h2>
             <p className="text-[#5D705C] text-sm md:text-base font-medium max-w-2xl mx-auto mt-3">
-              Conceptualized, engineered, and delivered by Team <strong className="text-[#1A3C2E] font-semibold">Catalytic Coders</strong> from <strong className="text-[#1A3C2E] font-semibold">ARKA JAIN University, Jharkhand</strong> to empower the India Meteorological Department&apos;s digital workforce.
+              Conceptualized, engineered, and delivered by Team <strong className="text-[#1A3C2E] font-semibold">Catalytic Coders</strong> from <strong className="text-[#1A3C2E] font-semibold">ARKA JAIN University, Jharkhand</strong>{' '}to empower the India Meteorological Department&apos;s digital workforce.
             </p>
           </div>
 
@@ -223,7 +223,7 @@ export default function AboutPage() {
                 name="Mohit Raj"
                 role="Team Leader & Lead Full Stack Platform Architect"
                 institution="ARKA JAIN University, Jharkhand"
-                description="Led system architecture and core engineering of the SARTHI centralized capacity-building LMS portal for IMD, delivering role-based workflows, analytics pipelines, and secure cloud infrastructure."
+                description="Lead system architecture and core engineering of the SARTHI centralized capacity-building LMS portal for IMD, delivering role-based workflows, analytics pipelines, and secure cloud infrastructure."
                 canFlip={true}
                 socials={[
                   { platform: "Email", url: "mailto:mohitraj8503@gmail.com", label: "mohitraj8503@gmail.com" },
@@ -257,6 +257,8 @@ export default function AboutPage() {
             {/* 3. Ranjan Singh */}
             <div className="w-full max-w-[380px]">
               <TeamCard
+                photoUrl="/images/team/ranjan-singh.jpg"
+                imageObjectPosition="object-top"
                 initials="RS"
                 bg="#1F5C1F"
                 badge="🎨 FRONTEND & UI ARCHITECTURE"
@@ -275,13 +277,15 @@ export default function AboutPage() {
             {/* 4. Nisha Chand */}
             <div className="w-full max-w-[380px]">
               <TeamCard
+                photoUrl="/images/team/nisha-chand.jpg"
+                imageObjectPosition="object-top"
                 initials="NC"
                 bg="#245842"
                 badge="📋 RESEARCH & TECH DOCS"
                 name="Nisha Chand"
                 role="Research, Competency & Tech Docs"
                 institution="ARKA JAIN University, Jharkhand"
-                description="Led domain requirements research, competency matrix alignment with IMD operational guidelines, curriculum benchmarks, and comprehensive technical documentation."
+                description="Lead domain requirements research, competency matrix alignment with IMD operational guidelines, curriculum benchmarks, and comprehensive technical documentation."
                 canFlip={true}
                 socials={[
                   { platform: "Email", url: "mailto:nisha144chand@gmail.com", label: "nisha144chand@gmail.com" },
@@ -293,6 +297,8 @@ export default function AboutPage() {
             {/* 5. Trisha Singh */}
             <div className="w-full max-w-[380px]">
               <TeamCard
+                photoUrl="/images/team/trisha-singh.jpg"
+                imageObjectPosition="object-top"
                 initials="TS"
                 bg="#1B4D3E"
                 badge="✨ UI/UX & COURSE DESIGN"
@@ -311,6 +317,8 @@ export default function AboutPage() {
             {/* 6. Janvi Sinha */}
             <div className="w-full max-w-[380px]">
               <TeamCard
+                photoUrl="/images/team/janvi-sinha.png"
+                imageObjectPosition="object-top"
                 initials="JS"
                 bg="#235A46"
                 badge="🔬 QA & DATA VERIFICATION"
@@ -369,7 +377,7 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode, title: stri
         {icon}
       </div>
       <h3 className="text-[17px] font-bold text-[#1A3C2E] mb-3">{title}</h3>
-      <p className="text-[#5D705C] text-[14px] leading-[1.6] font-medium">{text}</p>
+      <p className="text-[#5D705C] font-inter text-[14px] leading-[1.6] font-normal tracking-normal">{text}</p>
     </div>
   );
 }
@@ -468,21 +476,20 @@ function TeamCard({
             {/* Top row: Avatar & Badge */}
             <div className="w-full flex items-start justify-between gap-3 mb-4">
               <div
-                className="w-[84px] h-[84px] rounded-full overflow-hidden shrink-0 relative border-2 border-[#1A3C2E]/10 shadow-sm"
-                style={{ backgroundColor: bg }}
+                className="w-[96px] h-[96px] rounded-full overflow-hidden shrink-0 relative border-2 border-[#1A3C2E]/15 shadow-md ring-2 ring-[#2D6A4F]/10 bg-[#1A3C2E]"
               >
                 {photoUrl ? (
-                  <Image
+                  <img
                     src={photoUrl}
                     alt={name}
-                    width={300}
-                    height={300}
-                    quality={95}
-                    unoptimized
                     className={`w-full h-full object-cover ${imageObjectPosition}`}
+                    style={{ imageRendering: '-webkit-optimize-contrast' }}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-white text-[28px] font-bold tracking-wider">
+                  <div 
+                    className="w-full h-full flex items-center justify-center text-white text-[28px] font-bold tracking-wider"
+                    style={{ backgroundColor: bg }}
+                  >
                     {initials}
                   </div>
                 )}
