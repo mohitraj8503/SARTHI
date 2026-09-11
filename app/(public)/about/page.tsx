@@ -431,7 +431,7 @@ function TeamCard({
   initials,
   bg = '#1A3C2E',
   photoUrl,
-  imageObjectPosition = 'object-cover',
+  imageObjectPosition = 'object-top',
   name,
   role,
   badge,
@@ -451,7 +451,7 @@ function TeamCard({
 
   return (
     <div
-      className={`group w-full h-[480px] ${canFlip ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`group w-full h-[520px] ${canFlip ? 'cursor-pointer' : 'cursor-default'}`}
       onClick={handleFlip}
       style={{ perspective: '1200px' }}
     >
@@ -463,105 +463,94 @@ function TeamCard({
         }}
       >
 
-        {/* FRONT SIDE - Modern CourseCard Aesthetic */}
-        <div
-          className={`absolute inset-0 bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/60 hover:border-emerald-100 flex flex-col justify-between p-6 ${isFlipped ? 'pointer-events-none' : ''}`}
+        {/* FRONT SIDE - True CourseCard Design System */}
+        <article
+          className={`absolute inset-0 bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/50 hover:border-emerald-100 flex flex-col justify-between ${isFlipped ? 'pointer-events-none' : ''}`}
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <div className="relative z-10 flex flex-col items-start h-full">
-
-            {/* Top row: Avatar & Dynamic Badges */}
-            <div className="w-full flex items-start justify-between gap-4 mb-4">
-              <div
-                className="w-[96px] h-[96px] sm:w-[104px] sm:h-[104px] rounded-2xl overflow-hidden shrink-0 relative border-2 border-white shadow-lg ring-2 ring-emerald-500/20 group-hover:scale-105 transition-transform duration-500 bg-slate-900"
+          {/* Visual Anchor: Full-width Hero Thumbnail with Floating Badges */}
+          <div className="relative aspect-[16/10] bg-slate-900 overflow-hidden rounded-t-3xl shrink-0">
+            {photoUrl ? (
+              <img
+                src={photoUrl}
+                alt={name}
+                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 absolute inset-0 ${imageObjectPosition}`}
+                style={{ imageRendering: '-webkit-optimize-contrast' }}
+              />
+            ) : (
+              <div 
+                className="w-full h-full flex items-center justify-center text-white text-4xl font-black tracking-wider"
+                style={{ backgroundColor: bg }}
               >
-                {photoUrl ? (
-                  <img
-                    src={photoUrl}
-                    alt={name}
-                    className={`w-full h-full object-cover ${imageObjectPosition}`}
-                    style={{ imageRendering: '-webkit-optimize-contrast' }}
-                  />
-                ) : (
-                  <div 
-                    className="w-full h-full flex items-center justify-center text-white text-[28px] font-bold tracking-wider"
-                    style={{ backgroundColor: bg }}
-                  >
-                    {initials}
-                  </div>
-                )}
+                {initials}
               </div>
+            )}
 
-              <div className="flex flex-col items-end gap-1.5 pt-1">
-                {badge && (
-                  <span className="px-3 py-1 bg-emerald-50 text-[#2D6A4F] text-[9.5px] font-black uppercase tracking-widest rounded-full shadow-xs border border-emerald-200/50">
-                    {badge}
-                  </span>
-                )}
-                <span className="px-2.5 py-0.5 bg-slate-100 text-slate-600 text-[9.5px] font-bold uppercase tracking-wider rounded-full">
-                  SARTHI Core
-                </span>
-              </div>
+            {/* Dynamic Badges Overlaid on Hero Thumbnail (CourseCard Style) */}
+            <div className="absolute top-3 left-3 flex gap-2 z-10">
+              <span className="px-3 py-1 bg-emerald-500 text-white text-[9.5px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-emerald-900/20">
+                Team
+              </span>
             </div>
 
-            {/* Content Section */}
-            <div className="mb-auto space-y-2.5 w-full">
+            {badge && (
+              <div className="absolute top-3 right-3 z-10">
+                <span className="px-3 py-1 bg-white/95 backdrop-blur-md text-slate-900 text-[9.5px] font-black uppercase tracking-widest rounded-full shadow-sm border border-slate-200/60">
+                  {badge.replace(/^[\p{Emoji}\s]+/gu, '')}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Content Section (CourseCard Style) */}
+          <div className="p-6 flex-1 flex flex-col justify-between space-y-3">
+            <div className="space-y-2">
               <div>
-                <h3 className="text-xl font-black text-slate-900 leading-tight group-hover:text-emerald-800 transition-colors font-inter">
+                <h3 className="text-xl font-black text-slate-900 line-clamp-1 leading-tight group-hover:text-emerald-800 transition-colors font-inter">
                   {name}
                 </h3>
-                <div className="text-[11px] font-bold text-[#2D6A4F] tracking-[0.5px] uppercase mt-0.5">
+                <div className="text-[11px] font-bold text-[#2D6A4F] tracking-[0.5px] uppercase mt-1">
                   {role}
                 </div>
               </div>
 
               {institution && (
-                <div className="flex items-center gap-1.5 text-[11.5px] text-slate-500 font-semibold pt-0.5">
+                <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
                   <span className="text-[#2D6A4F]">🏛️</span>
                   <span className="truncate">{institution}</span>
                 </div>
               )}
 
               {description && (
-                <p className="text-slate-600 font-inter text-[13px] leading-[1.6] font-normal tracking-normal line-clamp-4 pt-1">
+                <p className="text-slate-600 text-[13px] leading-relaxed line-clamp-3 font-normal font-inter pt-0.5">
                   {description}
                 </p>
               )}
-
-              {quote && (
-                <div className="relative mt-2 p-2.5 bg-[#F5F0E8]/70 border border-[#E8E2D9] rounded-xl">
-                  <p className="text-[#1A3C2E] text-[12px] italic font-medium leading-[1.5]">
-                    &ldquo;{quote}&rdquo;
-                  </p>
-                </div>
-              )}
             </div>
 
-            {/* Bottom Commercial / Interactive Row (CourseCard Style) */}
+            {/* Commercial / Interactive Action Bottom Row (CourseCard Style) */}
             {canFlip && (
-              <div className="w-full flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
-                <div className="flex items-center gap-1.5">
+              <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                    SIH Finalist
-                  </span>
+                  <span>SIH Finalist</span>
                 </div>
 
                 <div
-                  className="h-10 px-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-[0.16em] 
+                  className="h-10 px-5 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-[0.18em] 
                              flex items-center justify-center gap-1.5 transition-all shadow-md shadow-slate-900/10
-                             group-hover:bg-[#1A3C2E] group-hover:shadow-emerald-900/20 active:scale-95"
+                             group-hover:bg-emerald-900 hover:bg-emerald-900 active:scale-95"
                 >
                   Connect <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
             )}
           </div>
-        </div>
+        </article>
 
-        {/* BACK SIDE - Modern Dark Emerald / Obsidian Style */}
+        {/* BACK SIDE - Modern Slate-900 Style */}
         <div
-          className={`absolute inset-0 bg-[#0B1E16] text-white rounded-3xl p-6 border border-emerald-900/40 shadow-2xl flex flex-col justify-between ${isFlipped ? 'pointer-events-auto' : 'pointer-events-none'}`}
+          className={`absolute inset-0 bg-slate-900 text-white rounded-3xl p-6 border border-slate-800 shadow-2xl flex flex-col justify-between ${isFlipped ? 'pointer-events-auto' : 'pointer-events-none'}`}
           style={{
             transform: 'rotateY(180deg)',
             backfaceVisibility: 'hidden'
@@ -569,13 +558,13 @@ function TeamCard({
         >
           <div>
             <div className="flex items-center justify-between gap-2 mb-1">
-              <h3 className="text-white text-[19px] font-black font-inter">Connect with {name.split(' ')[0]}</h3>
-              <span className="text-[10px] font-black px-2.5 py-1 rounded-full bg-white/10 text-[#E8B84B] uppercase tracking-wider border border-white/10">
+              <h3 className="text-white text-xl font-black font-inter">Connect with {name.split(' ')[0]}</h3>
+              <span className="text-[10px] font-black px-3 py-1 rounded-full bg-white/10 text-[#E8B84B] uppercase tracking-wider border border-white/10">
                 Catalytic Coders
               </span>
             </div>
-            <p className="text-white/70 text-xs font-medium">ARKA JAIN University • SIH ID: 126479</p>
-            <div className="h-[2px] w-12 bg-gradient-to-r from-[#E8B84B] to-emerald-400 mt-2.5 rounded-full" />
+            <p className="text-slate-400 text-xs font-medium mt-1">ARKA JAIN University • SIH ID: 126479</p>
+            <div className="h-[2px] w-12 bg-gradient-to-r from-[#E8B84B] to-emerald-400 mt-3 rounded-full" />
           </div>
 
           <div className="flex flex-col gap-2.5 my-auto">
@@ -610,7 +599,7 @@ function TeamCard({
                   target={isMail || isPhone ? '_self' : '_blank'}
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-3 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 rounded-xl px-3.5 py-2.5 transition-all z-20 relative cursor-pointer group/link"
+                  className="flex items-center gap-3 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 rounded-xl px-4 py-2.5 transition-all z-20 relative cursor-pointer group/link"
                   title={displayLabel}
                 >
                   {social.platform === 'LinkedIn' && <LinkedinIcon className="w-4 h-4 text-[#0077B5] fill-current shrink-0" />}
@@ -619,7 +608,7 @@ function TeamCard({
                   {social.platform === 'GitHub' && <GithubIcon className="w-4 h-4 text-white shrink-0" />}
                   {social.platform === 'Portfolio' && <Globe className="w-4 h-4 text-[#2D6A4F] shrink-0" />}
 
-                  <span className="text-white/90 text-[12.5px] font-medium truncate group-hover/link:text-white">
+                  <span className="text-white text-[13px] font-medium truncate group-hover/link:text-emerald-300">
                     {displayLabel}
                   </span>
                 </a>
@@ -627,7 +616,7 @@ function TeamCard({
             })}
           </div>
 
-          <div className="pt-3 border-t border-white/10 text-white/60 text-[11px] flex items-center justify-between">
+          <div className="pt-3 border-t border-slate-800 text-slate-400 text-xs flex items-center justify-between">
             <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer font-bold">
               <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" /> Flip Back
             </span>
