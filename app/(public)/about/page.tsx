@@ -219,10 +219,10 @@ export default function AboutPage() {
                 imageObjectPosition="50% 20%"
                 initials="MR"
                 bg="#1A3C2E"
-                badge="⚡ TEAM LEADER & ARCHITECT"
+                domain="SYSTEM ARCHITECTURE"
+                badge="TEAM LEADER"
                 name="Mohit Raj"
-                role="Team Leader & Lead Full Stack Platform Architect"
-                institution="ARKA JAIN University, Jharkhand"
+                role="Lead Full Stack Platform Architect"
                 description="Lead system architecture and core engineering of the SARTHI centralized capacity-building LMS portal for IMD, delivering role-based workflows, analytics pipelines, and secure cloud infrastructure."
                 canFlip={true}
                 socials={[
@@ -241,10 +241,10 @@ export default function AboutPage() {
                 imageObjectPosition="50% 18%"
                 initials="KR"
                 bg="#2D6A4F"
-                badge="🛠️ CORE PLATFORM & BACKEND"
+                domain="BACKEND & APIS"
+                badge="CORE PLATFORM"
                 name="Krish Rishikesh"
                 role="Core Systems & Backend Engineer"
-                institution="ARKA JAIN University, Jharkhand"
                 description="Architected scalable backend APIs, database schemas, and microservice integrations ensuring fault-tolerant data synchronisation and robust session security across ministerial nodes."
                 canFlip={true}
                 socials={[
@@ -261,10 +261,10 @@ export default function AboutPage() {
                 imageObjectPosition="50% 22%"
                 initials="RS"
                 bg="#1F5C1F"
-                badge="🎨 FRONTEND & UI ARCHITECTURE"
+                domain="FRONTEND & UI/UX"
+                badge="FRONTEND ARCHITECT"
                 name="Ranjan Singh"
                 role="Frontend Architecture & Interactive UI"
-                institution="ARKA JAIN University, Jharkhand"
                 description="Spearheaded responsive interface engineering, design systems, and interactive LMS learning modules, ensuring high accessibility and intuitive desktop-to-mobile user journeys."
                 canFlip={true}
                 socials={[
@@ -281,10 +281,10 @@ export default function AboutPage() {
                 imageObjectPosition="50% 18%"
                 initials="NC"
                 bg="#245842"
-                badge="📋 RESEARCH & TECH DOCS"
+                domain="RESEARCH & CURRICULUM"
+                badge="TECH RESEARCH"
                 name="Nisha Chand"
                 role="Research, Competency & Tech Docs"
-                institution="ARKA JAIN University, Jharkhand"
                 description="Lead domain requirements research, competency matrix alignment with IMD operational guidelines, curriculum benchmarks, and comprehensive technical documentation."
                 canFlip={true}
                 socials={[
@@ -301,10 +301,10 @@ export default function AboutPage() {
                 imageObjectPosition="50% 20%"
                 initials="TS"
                 bg="#1B4D3E"
-                badge="✨ UI/UX & COURSE DESIGN"
+                domain="DESIGN & PROTOTYPING"
+                badge="UI/UX DESIGN"
                 name="Trisha Singh"
                 role="UI/UX & Meteorological Course Design"
-                institution="ARKA JAIN University, Jharkhand"
                 description="Crafted cohesive design prototypes, user journey workflows, and instructional layouts for specialized weather forecasting, radar data analysis, and climate training modules."
                 canFlip={true}
                 socials={[
@@ -321,10 +321,10 @@ export default function AboutPage() {
                 imageObjectPosition="50% 28%"
                 initials="JS"
                 bg="#235A46"
-                badge="🔬 QA & DATA VERIFICATION"
+                domain="QA & RELIABILITY"
+                badge="DATA VERIFICATION"
                 name="Janvi Sinha"
                 role="QA & Data Verification Engineer"
-                institution="ARKA JAIN University, Jharkhand"
                 description="Directed quality assurance pipelines, automated assessment validation, cross-browser compatibility testing, and data verification routines across all LMS modules."
                 canFlip={true}
                 socials={[
@@ -417,12 +417,12 @@ interface TeamCardProps {
   bg?: string;
   photoUrl?: string;
   imageObjectPosition?: string;
+  domain?: string;
   name: string;
   role: string;
   badge?: string;
   description?: string;
   quote?: string;
-  institution?: string;
   canFlip?: boolean;
   socials?: { platform: string; url: string; label?: string }[];
 }
@@ -431,13 +431,13 @@ function TeamCard({
   initials,
   bg = '#1A3C2E',
   photoUrl,
-  imageObjectPosition = 'object-top',
+  imageObjectPosition = '50% 20%',
+  domain = 'ENGINEERING',
   name,
   role,
   badge,
   description,
   quote,
-  institution = 'ARKA JAIN University, Jharkhand',
   canFlip = false,
   socials = []
 }: TeamCardProps) {
@@ -451,7 +451,7 @@ function TeamCard({
 
   return (
     <div
-      className={`group w-full h-[520px] ${canFlip ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`group w-full h-[510px] ${canFlip ? 'cursor-pointer' : 'cursor-default'}`}
       onClick={handleFlip}
       style={{ perspective: '1200px' }}
     >
@@ -463,97 +463,91 @@ function TeamCard({
         }}
       >
 
-        {/* FRONT SIDE - True CourseCard Design System */}
+        {/* FRONT SIDE - High-End Classy CourseCard Design */}
         <article
-          className={`absolute inset-0 bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/50 hover:border-emerald-100 flex flex-col justify-between ${isFlipped ? 'pointer-events-none' : ''}`}
+          className={`absolute inset-0 bg-white rounded-[24px] border border-[#E8E2D9] overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_rgba(26,60,46,0.09)] flex flex-col justify-between ${isFlipped ? 'pointer-events-none' : ''}`}
           style={{ backfaceVisibility: 'hidden' }}
         >
-          {/* Visual Anchor: Full-width Hero Thumbnail with Floating Badges */}
-          <div className="relative aspect-[16/10] bg-slate-900 overflow-hidden rounded-t-3xl shrink-0">
-            {photoUrl ? (
-              <img
-                src={photoUrl}
-                alt={name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 absolute inset-0"
-                style={{
-                  objectPosition: imageObjectPosition || '50% 20%',
-                  imageRendering: '-webkit-optimize-contrast'
-                }}
-              />
-            ) : (
-              <div 
-                className="w-full h-full flex items-center justify-center text-white text-4xl font-black tracking-wider"
-                style={{ backgroundColor: bg }}
-              >
-                {initials}
-              </div>
-            )}
-
-            {/* Dynamic Badges Overlaid on Hero Thumbnail (CourseCard Style) */}
-            <div className="absolute top-3 left-3 flex gap-2 z-10">
-              <span className="px-3 py-1 bg-emerald-500 text-white text-[9.5px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-emerald-900/20">
-                Team
-              </span>
-            </div>
-
-            {badge && (
-              <div className="absolute top-3 right-3 z-10">
-                <span className="px-3 py-1 bg-white/95 backdrop-blur-md text-slate-900 text-[9.5px] font-black uppercase tracking-widest rounded-full shadow-sm border border-slate-200/60">
-                  {badge.replace(/^[\p{Emoji}\s]+/gu, '')}
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Content Section (CourseCard Style) */}
-          <div className="p-6 flex-1 flex flex-col justify-between space-y-3">
-            <div className="space-y-2">
-              <div>
-                <h3 className="text-xl font-black text-slate-900 line-clamp-1 leading-tight group-hover:text-emerald-800 transition-colors font-inter">
-                  {name}
-                </h3>
-                <div className="text-[11px] font-bold text-[#2D6A4F] tracking-[0.5px] uppercase mt-1">
-                  {role}
-                </div>
-              </div>
-
-              {institution && (
-                <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                  <span className="text-[#2D6A4F]">🏛️</span>
-                  <span className="truncate">{institution}</span>
+          {/* Framed Visual Anchor Photo with Rounded Inset */}
+          <div className="p-3 pb-0 shrink-0">
+            <div className="relative aspect-[16/11] rounded-[18px] overflow-hidden bg-slate-900">
+              {photoUrl ? (
+                <img
+                  src={photoUrl}
+                  alt={name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 absolute inset-0"
+                  style={{
+                    objectPosition: imageObjectPosition || '50% 20%',
+                    imageRendering: '-webkit-optimize-contrast'
+                  }}
+                />
+              ) : (
+                <div 
+                  className="w-full h-full flex items-center justify-center text-white text-4xl font-black tracking-wider"
+                  style={{ backgroundColor: bg }}
+                >
+                  {initials}
                 </div>
               )}
 
+              {/* Single Classy Frosted Glass Badge */}
+              {badge && (
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="px-3 py-1 bg-black/45 backdrop-blur-md border border-white/25 rounded-full text-[9px] font-black text-white uppercase tracking-[0.14em] shadow-sm">
+                    {badge}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Content Section */}
+          <div className="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              {domain && (
+                <div className="text-[10px] font-extrabold text-[#2D6A4F] uppercase tracking-[0.15em] mb-1">
+                  {domain}
+                </div>
+              )}
+
+              <h3 className="text-[20px] font-black text-[#1A3C2E] leading-tight group-hover:text-[#2D6A4F] transition-colors font-inter">
+                {name}
+              </h3>
+
+              <div className="text-[12px] font-medium text-[#5D705C] mt-0.5 mb-2.5 leading-snug">
+                {role}
+              </div>
+
               {description && (
-                <p className="text-slate-600 text-[13px] leading-relaxed line-clamp-3 font-normal font-inter pt-0.5">
+                <p className="text-[#5D705C] text-[13px] leading-[1.6] line-clamp-3 font-normal font-inter">
                   {description}
                 </p>
               )}
             </div>
 
-            {/* Commercial / Interactive Action Bottom Row (CourseCard Style) */}
+            {/* Bottom Row */}
             {canFlip && (
-              <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
-                <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+              <div className="pt-3 border-t border-[#E8E2D9] mt-auto flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#5D705C] uppercase tracking-wider">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>SIH Finalist</span>
+                  <span>SIH 2026</span>
                 </div>
 
                 <div
-                  className="h-10 px-5 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-[0.18em] 
-                             flex items-center justify-center gap-1.5 transition-all shadow-md shadow-slate-900/10
-                             group-hover:bg-emerald-900 hover:bg-emerald-900 active:scale-95"
+                  className="h-8 px-4 bg-[#1A3C2E] text-white rounded-full font-bold text-[10.5px] uppercase tracking-wider 
+                             flex items-center gap-1.5 transition-all shadow-sm
+                             group-hover:bg-[#2D6A4F] hover:bg-[#2D6A4F] active:scale-95"
                 >
-                  Connect <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+                  Connect <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
             )}
           </div>
         </article>
 
-        {/* BACK SIDE - Modern Slate-900 Style */}
+        {/* BACK SIDE - Modern Dark Emerald Style */}
         <div
-          className={`absolute inset-0 bg-slate-900 text-white rounded-3xl p-6 border border-slate-800 shadow-2xl flex flex-col justify-between ${isFlipped ? 'pointer-events-auto' : 'pointer-events-none'}`}
+          className={`absolute inset-0 bg-[#1A3C2E] text-white rounded-[24px] p-6 border border-[#2D6A4F]/60 shadow-2xl flex flex-col justify-between ${isFlipped ? 'pointer-events-auto' : 'pointer-events-none'}`}
           style={{
             transform: 'rotateY(180deg)',
             backfaceVisibility: 'hidden'
@@ -566,7 +560,7 @@ function TeamCard({
                 Catalytic Coders
               </span>
             </div>
-            <p className="text-slate-400 text-xs font-medium mt-1">ARKA JAIN University • SIH ID: 126479</p>
+            <p className="text-white/70 text-xs font-medium mt-1">ARKA JAIN University • SIH ID: 126479</p>
             <div className="h-[2px] w-12 bg-gradient-to-r from-[#E8B84B] to-emerald-400 mt-3 rounded-full" />
           </div>
 
@@ -619,7 +613,7 @@ function TeamCard({
             })}
           </div>
 
-          <div className="pt-3 border-t border-slate-800 text-slate-400 text-xs flex items-center justify-between">
+          <div className="pt-3 border-t border-white/15 text-white/70 text-xs flex items-center justify-between">
             <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer font-bold">
               <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" /> Flip Back
             </span>
