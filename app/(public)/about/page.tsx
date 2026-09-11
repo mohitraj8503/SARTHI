@@ -372,12 +372,12 @@ export default function AboutPage() {
 
 function FeatureCard({ icon, title, text }: { icon: React.ReactNode, title: string, text: string }) {
   return (
-    <div className="bg-white border border-[#E8E2D9] rounded-[16px] p-7 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-shadow">
-      <div className="w-12 h-12 bg-[#E8F5EE] rounded-[10px] flex items-center justify-center mb-6">
+    <div className="group bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 hover:border-emerald-100 transition-all duration-300 hover:-translate-y-1">
+      <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-[#2D6A4F] mb-6 group-hover:scale-110 group-hover:bg-emerald-100/80 transition-all shadow-xs">
         {icon}
       </div>
-      <h3 className="text-[17px] font-bold text-[#1A3C2E] mb-3">{title}</h3>
-      <p className="text-[#5D705C] font-inter text-[14px] leading-[1.6] font-normal tracking-normal">{text}</p>
+      <h3 className="text-xl font-black text-slate-900 mb-3 group-hover:text-[#2D6A4F] transition-colors font-inter">{title}</h3>
+      <p className="text-slate-600 font-inter text-[14px] leading-relaxed font-normal">{text}</p>
     </div>
   );
 }
@@ -385,8 +385,8 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode, title: stri
 function MissionPoint({ text }: { text: string }) {
   return (
     <li className="flex items-center gap-3">
-      <div className="w-2 h-2 rounded-full bg-[#2D6A4F]" />
-      <span className="text-[#1A3C2E] font-medium">{text}</span>
+      <div className="w-2.5 h-2.5 rounded-full bg-[#2D6A4F] shrink-0" />
+      <span className="text-[#1A3C2E] font-semibold text-[15px]">{text}</span>
     </li>
   );
 }
@@ -394,8 +394,8 @@ function MissionPoint({ text }: { text: string }) {
 function StatItem({ number, label }: { number: string, label: string }) {
   return (
     <div className="text-center px-4">
-      <div className="text-[48px] font-bold text-[#1A3C2E] mb-1">{number}</div>
-      <div className="text-[11px] font-bold text-[#5D705C] uppercase tracking-[2px]">{label}</div>
+      <div className="text-[46px] font-black text-slate-900 mb-1 tracking-tight">{number}</div>
+      <div className="text-[11px] font-bold text-slate-500 uppercase tracking-[2px]">{label}</div>
     </div>
   );
 }
@@ -451,9 +451,9 @@ function TeamCard({
 
   return (
     <div
-      className={`group w-full h-[460px] ${canFlip ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`group w-full h-[480px] ${canFlip ? 'cursor-pointer' : 'cursor-default'}`}
       onClick={handleFlip}
-      style={{ perspective: '1000px' }}
+      style={{ perspective: '1200px' }}
     >
       <div
         className="relative w-full h-full transition-transform duration-700"
@@ -463,20 +463,17 @@ function TeamCard({
         }}
       >
 
-        {/* FRONT SIDE */}
+        {/* FRONT SIDE - Modern CourseCard Aesthetic */}
         <div
-          className={`absolute inset-0 bg-white border border-[#E8E2D9] rounded-[20px] p-6 flex flex-col justify-between shadow-[0_2px_16px_rgba(26,60,46,0.07)] transition-all duration-300 hover:border-[#2D6A4F]/30 hover:shadow-[0_8px_24px_rgba(26,60,46,0.12)] ${isFlipped ? 'pointer-events-none' : ''}`}
+          className={`absolute inset-0 bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/60 hover:border-emerald-100 flex flex-col justify-between p-6 ${isFlipped ? 'pointer-events-none' : ''}`}
           style={{ backfaceVisibility: 'hidden' }}
         >
-          {/* Subtle accent line at the top */}
-          <div className="absolute top-0 left-6 right-6 h-[3px] rounded-b-full bg-gradient-to-r from-transparent via-[#2D6A4F]/30 to-transparent" />
-
           <div className="relative z-10 flex flex-col items-start h-full">
 
-            {/* Top row: Avatar & Badge */}
-            <div className="w-full flex items-start justify-between gap-3 mb-4">
+            {/* Top row: Avatar & Dynamic Badges */}
+            <div className="w-full flex items-start justify-between gap-4 mb-4">
               <div
-                className="w-[96px] h-[96px] rounded-full overflow-hidden shrink-0 relative border-2 border-[#1A3C2E]/15 shadow-md ring-2 ring-[#2D6A4F]/10 bg-[#1A3C2E]"
+                className="w-[96px] h-[96px] sm:w-[104px] sm:h-[104px] rounded-2xl overflow-hidden shrink-0 relative border-2 border-white shadow-lg ring-2 ring-emerald-500/20 group-hover:scale-105 transition-transform duration-500 bg-slate-900"
               >
                 {photoUrl ? (
                   <img
@@ -495,31 +492,38 @@ function TeamCard({
                 )}
               </div>
 
-              {badge && (
-                <div className="pt-1 text-right">
-                  <span className="inline-block bg-[#E8F5EE] text-[#1A3C2E] border border-[#C5D5C0] text-[9.5px] font-extrabold tracking-wider px-2.5 py-1 rounded-full uppercase shadow-xs">
+              <div className="flex flex-col items-end gap-1.5 pt-1">
+                {badge && (
+                  <span className="px-3 py-1 bg-emerald-50 text-[#2D6A4F] text-[9.5px] font-black uppercase tracking-widest rounded-full shadow-xs border border-emerald-200/50">
                     {badge}
                   </span>
-                </div>
-              )}
+                )}
+                <span className="px-2.5 py-0.5 bg-slate-100 text-slate-600 text-[9.5px] font-bold uppercase tracking-wider rounded-full">
+                  SARTHI Core
+                </span>
+              </div>
             </div>
 
-            {/* Content Container */}
-            <div className="mb-auto space-y-2 w-full">
+            {/* Content Section */}
+            <div className="mb-auto space-y-2.5 w-full">
               <div>
-                <h3 className="text-[19px] font-bold text-[#1A3C2E] leading-snug">{name}</h3>
-                <div className="text-[11px] font-bold text-[#2D6A4F] tracking-[0.5px] uppercase mt-0.5">{role}</div>
+                <h3 className="text-xl font-black text-slate-900 leading-tight group-hover:text-emerald-800 transition-colors font-inter">
+                  {name}
+                </h3>
+                <div className="text-[11px] font-bold text-[#2D6A4F] tracking-[0.5px] uppercase mt-0.5">
+                  {role}
+                </div>
               </div>
 
               {institution && (
-                <div className="flex items-center gap-1.5 text-[11px] text-[#5D705C] font-medium pt-0.5">
+                <div className="flex items-center gap-1.5 text-[11.5px] text-slate-500 font-semibold pt-0.5">
                   <span className="text-[#2D6A4F]">🏛️</span>
                   <span className="truncate">{institution}</span>
                 </div>
               )}
 
               {description && (
-                <p className="text-[#4A5D49] font-inter text-[12.5px] leading-[1.55] font-normal tracking-normal line-clamp-4 pt-1">
+                <p className="text-slate-600 font-inter text-[13px] leading-[1.6] font-normal tracking-normal line-clamp-4 pt-1">
                   {description}
                 </p>
               )}
@@ -533,22 +537,31 @@ function TeamCard({
               )}
             </div>
 
+            {/* Bottom Commercial / Interactive Row (CourseCard Style) */}
             {canFlip && (
-              <div className="relative z-10 flex items-center justify-between w-full text-[#5D705C] text-[11.5px] font-medium mt-auto group-hover:text-[#2D6A4F] transition-colors pt-3 border-t border-[#F0EBE1]">
-                <span className="flex items-center gap-1.5">
-                  Click to view contacts &amp; links <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </span>
-                <span className="text-[10px] font-bold text-[#2D6A4F] bg-[#E8F5EE] px-2 py-0.5 rounded-full">
-                  Team Member
-                </span>
+              <div className="w-full flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    SIH Finalist
+                  </span>
+                </div>
+
+                <div
+                  className="h-10 px-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-[0.16em] 
+                             flex items-center justify-center gap-1.5 transition-all shadow-md shadow-slate-900/10
+                             group-hover:bg-[#1A3C2E] group-hover:shadow-emerald-900/20 active:scale-95"
+                >
+                  Connect <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* BACK SIDE */}
+        {/* BACK SIDE - Modern Dark Emerald / Obsidian Style */}
         <div
-          className={`absolute inset-0 bg-[#1A3C2E] rounded-[20px] p-6 flex flex-col justify-between shadow-xl ${isFlipped ? 'pointer-events-auto' : 'pointer-events-none'}`}
+          className={`absolute inset-0 bg-[#0B1E16] text-white rounded-3xl p-6 border border-emerald-900/40 shadow-2xl flex flex-col justify-between ${isFlipped ? 'pointer-events-auto' : 'pointer-events-none'}`}
           style={{
             transform: 'rotateY(180deg)',
             backfaceVisibility: 'hidden'
@@ -556,13 +569,13 @@ function TeamCard({
         >
           <div>
             <div className="flex items-center justify-between gap-2 mb-1">
-              <h3 className="text-white text-[18px] font-bold">Connect with {name.split(' ')[0]}</h3>
-              <span className="text-[9.5px] font-bold px-2 py-0.5 rounded bg-white/10 text-[#E8B84B] uppercase tracking-wider">
+              <h3 className="text-white text-[19px] font-black font-inter">Connect with {name.split(' ')[0]}</h3>
+              <span className="text-[10px] font-black px-2.5 py-1 rounded-full bg-white/10 text-[#E8B84B] uppercase tracking-wider border border-white/10">
                 Catalytic Coders
               </span>
             </div>
             <p className="text-white/70 text-xs font-medium">ARKA JAIN University • SIH ID: 126479</p>
-            <div className="h-[2px] w-12 bg-[#E8B84B] mt-2.5 rounded-full" />
+            <div className="h-[2px] w-12 bg-gradient-to-r from-[#E8B84B] to-emerald-400 mt-2.5 rounded-full" />
           </div>
 
           <div className="flex flex-col gap-2.5 my-auto">
@@ -597,7 +610,7 @@ function TeamCard({
                   target={isMail || isPhone ? '_self' : '_blank'}
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-3 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 rounded-[10px] px-3.5 py-2.5 transition-all z-20 relative cursor-pointer group/link"
+                  className="flex items-center gap-3 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 rounded-xl px-3.5 py-2.5 transition-all z-20 relative cursor-pointer group/link"
                   title={displayLabel}
                 >
                   {social.platform === 'LinkedIn' && <LinkedinIcon className="w-4 h-4 text-[#0077B5] fill-current shrink-0" />}
@@ -614,11 +627,11 @@ function TeamCard({
             })}
           </div>
 
-          <div className="pt-3 border-t border-white/10 text-white/50 text-[11px] flex items-center justify-between">
-            <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer">
-              <ArrowLeft className="w-3 h-3" /> Click to flip back
+          <div className="pt-3 border-t border-white/10 text-white/60 text-[11px] flex items-center justify-between">
+            <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer font-bold">
+              <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" /> Flip Back
             </span>
-            <span className="text-[10px] text-[#E8B84B] font-mono font-medium">SIH 2026</span>
+            <span className="text-[10px] text-[#E8B84B] font-mono font-bold tracking-wider">SIH 2026</span>
           </div>
         </div>
 
