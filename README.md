@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/images/sarthi-logo.png" alt="SARTHI IMD Logo" width="440" style="margin-bottom: 20px;" />
+  <img src="./public/images/sarthi-logo-white-banner.png" alt="SARTHI IMD Logo" width="460" style="margin-bottom: 20px;" />
 
   # 🛰️ SARTHI (सारथी)
   ### *Centralized Learning Management & Meteorological Competency Development Platform*
