@@ -216,7 +216,7 @@ export default function AboutPage() {
             <div className="w-full max-w-[380px]">
               <TeamCard
                 photoUrl="/images/team/mohit-raj.jpg"
-                imageObjectPosition="object-top"
+                imageObjectPosition="50% 20%"
                 initials="MR"
                 bg="#1A3C2E"
                 badge="⚡ TEAM LEADER & ARCHITECT"
@@ -238,7 +238,7 @@ export default function AboutPage() {
             <div className="w-full max-w-[380px]">
               <TeamCard
                 photoUrl="/images/team/krish-rishikesh.jpg"
-                imageObjectPosition="object-top"
+                imageObjectPosition="50% 18%"
                 initials="KR"
                 bg="#2D6A4F"
                 badge="🛠️ CORE PLATFORM & BACKEND"
@@ -258,7 +258,7 @@ export default function AboutPage() {
             <div className="w-full max-w-[380px]">
               <TeamCard
                 photoUrl="/images/team/ranjan-singh.jpg"
-                imageObjectPosition="object-top"
+                imageObjectPosition="50% 22%"
                 initials="RS"
                 bg="#1F5C1F"
                 badge="🎨 FRONTEND & UI ARCHITECTURE"
@@ -278,7 +278,7 @@ export default function AboutPage() {
             <div className="w-full max-w-[380px]">
               <TeamCard
                 photoUrl="/images/team/nisha-chand.jpg"
-                imageObjectPosition="object-top"
+                imageObjectPosition="50% 18%"
                 initials="NC"
                 bg="#245842"
                 badge="📋 RESEARCH & TECH DOCS"
@@ -298,7 +298,7 @@ export default function AboutPage() {
             <div className="w-full max-w-[380px]">
               <TeamCard
                 photoUrl="/images/team/trisha-singh.jpg"
-                imageObjectPosition="object-top"
+                imageObjectPosition="50% 20%"
                 initials="TS"
                 bg="#1B4D3E"
                 badge="✨ UI/UX & COURSE DESIGN"
@@ -318,7 +318,7 @@ export default function AboutPage() {
             <div className="w-full max-w-[380px]">
               <TeamCard
                 photoUrl="/images/team/janvi-sinha.png"
-                imageObjectPosition="object-top"
+                imageObjectPosition="50% 28%"
                 initials="JS"
                 bg="#235A46"
                 badge="🔬 QA & DATA VERIFICATION"
@@ -474,8 +474,11 @@ function TeamCard({
               <img
                 src={photoUrl}
                 alt={name}
-                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 absolute inset-0 ${imageObjectPosition}`}
-                style={{ imageRendering: '-webkit-optimize-contrast' }}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 absolute inset-0"
+                style={{
+                  objectPosition: imageObjectPosition || '50% 20%',
+                  imageRendering: '-webkit-optimize-contrast'
+                }}
               />
             ) : (
               <div 
