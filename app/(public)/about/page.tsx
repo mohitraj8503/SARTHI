@@ -13,7 +13,6 @@ export default function AboutPage() {
   return (
     <div
       className="min-h-screen bg-[#F5F0E8] text-[#1A3C2E] font-sans selection:bg-[#2D6A4F] selection:text-white overflow-x-hidden"
-      style={{ zoom: '112%' }}
     >
       <BrandStoryModal isOpen={isBrandStoryOpen} onClose={() => setIsBrandStoryOpen(false)} />
 
@@ -216,6 +215,8 @@ export default function AboutPage() {
             {/* 1. Mohit Raj - Project Lead */}
             <div className="w-full max-w-[380px]">
               <TeamCard
+                photoUrl="/images/team/mohit-raj.jpg"
+                imageObjectPosition="object-top"
                 initials="MR"
                 bg="#1A3C2E"
                 badge="⚡ TEAM LEADER & ARCHITECT"
@@ -236,6 +237,8 @@ export default function AboutPage() {
             {/* 2. Krish Rishikesh */}
             <div className="w-full max-w-[380px]">
               <TeamCard
+                photoUrl="/images/team/krish-rishikesh.jpg"
+                imageObjectPosition="object-top"
                 initials="KR"
                 bg="#2D6A4F"
                 badge="🛠️ CORE PLATFORM & BACKEND"
@@ -509,7 +512,7 @@ function TeamCard({
               )}
 
               {description && (
-                <p className="text-[#5D705C] text-[12.5px] leading-[1.5] font-medium line-clamp-4 pt-1">
+                <p className="text-[#4A5D49] font-inter text-[12.5px] leading-[1.55] font-normal tracking-normal line-clamp-4 pt-1">
                   {description}
                 </p>
               )}
@@ -608,7 +611,7 @@ function TeamCard({
             <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer">
               <ArrowLeft className="w-3 h-3" /> Click to flip back
             </span>
-            <span className="text-[10px] text-[#E8B84B] font-mono font-medium">SIH 2024</span>
+            <span className="text-[10px] text-[#E8B84B] font-mono font-medium">SIH 2026</span>
           </div>
         </div>
 
