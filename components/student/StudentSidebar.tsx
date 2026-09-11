@@ -65,7 +65,6 @@ export default function StudentSidebar({ user: propUser }: { user?: SidebarProps
     const communityNav = [
         { name: 'Community Chat', href: '/dashboard/messages', icon: MessageSquare },
         { name: 'Articles & Blogs', href: '/dashboard/blogs', icon: Newspaper },
-        ...(isMain ? [{ name: 'Ambassador', href: '/dashboard/ambassador', icon: Users }] : []),
         { name: 'Settings', href: '/dashboard/settings', icon: Settings },
     ];
 
@@ -96,7 +95,6 @@ export default function StudentSidebar({ user: propUser }: { user?: SidebarProps
         { title: 'Achievements & XP Ranks', category: 'Navigation', href: '/dashboard/grades', icon: Award, keywords: 'achievements grades xp level streak badges certificate rewards' },
         { title: 'Community Chat & Faculty', category: 'Navigation', href: '/dashboard/messages', icon: MessageSquare, keywords: 'community chat messages faculty mentor support discussion' },
         { title: 'Articles & Blogs Studio', category: 'Navigation', href: '/dashboard/blogs', icon: Newspaper, keywords: 'articles blogs posts writing publications author' },
-        { title: 'Student Ambassador Drive', category: 'Navigation', href: '/dashboard/ambassador', icon: Users, keywords: 'ambassador campus referral code drive rewards share' },
         { title: 'Account Settings & Profile', category: 'Navigation', href: '/dashboard/settings', icon: Settings, keywords: 'settings account profile password security academic college' },
         { title: 'AI & Deep Learning for NWP', category: 'Course', href: '/courses/ai-ml-numerical-weather-prediction', icon: BookOpen, keywords: 'nwp weather numerical ai machine learning pinns imd' },
         { title: 'Doppler Weather Radar (DWR) Operations', category: 'Course', href: '/courses/doppler-weather-radar-nowcasting', icon: BookOpen, keywords: 'radar doppler nowcasting reflectivity dwr' },
@@ -107,7 +105,7 @@ export default function StudentSidebar({ user: propUser }: { user?: SidebarProps
     ];
 
     const searchItems = !isMain 
-        ? rawSearchItems.filter(item => item.href !== '/dashboard/internship' && item.href !== '/dashboard/ambassador')
+        ? rawSearchItems.filter(item => item.href !== '/dashboard/internship')
         : rawSearchItems;
 
     const filteredSearchResults = searchQuery.trim() === '' ? [] : searchItems.filter(item => {

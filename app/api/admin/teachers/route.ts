@@ -101,23 +101,27 @@ export async function GET(request: NextRequest) {
       })
     ]);
 
-    const transformedUsers = users.map(t => ({
-      id: t.id,
-      name: t.name,
-      email: t.email,
-      image: t.image,
-      role: t.role,
-      status: t.teacher?.status || 'inactive',
-      teacherId: t.teacher?.teacherId || t.enrollmentNumber || 'NO-ID',
-      createdAt: t.createdAt,
-      verified: t.teacher?.status === 'verified',
-      _count: {
-        courses: t._count.courses,
-        students: t.teacher?.totalStudents || 0
-      },
-      revenue: t.teacher?.totalEarnings || 0,
-      isApplication: false
-    }));
+    const transformedUsers = users.map(t => {
+      const isVerified = t.teacher?.status === 'verified' || t.teacher?.status === 'APPROVED' || t.status === 'ACTIVE' || t.status === 'APPROVED';
+      const status = isVerified ? 'verified' : (t.teacher?.status || t.status || 'inactive').toLowerCase();
+      return {
+        id: t.id,
+        name: t.name,
+        email: t.email,
+        image: t.image,
+        role: t.role,
+        status,
+        teacherId: t.teacher?.teacherId || t.enrollmentNumber || 'FAC-IMD-001',
+        createdAt: t.createdAt,
+        verified: isVerified,
+        _count: {
+          courses: t._count?.courses || 0,
+          students: t.teacher?.totalStudents || 0
+        },
+        revenue: t.teacher?.totalEarnings || 0,
+        isApplication: false
+      };
+    });
 
     // Map applications to the same format
     const transformedApps = apps.map(app => ({

@@ -110,27 +110,12 @@ export const StudentRow = React.memo(({
                 </button>
               </div>
 
-              {/* Platform Segment Badge */}
-              <span className={cn(
-                "text-[9px] font-black uppercase px-2 py-0.5 rounded-md border tracking-wider",
-                student.platformSegment === 'JUNIOR'
-                  ? "bg-amber-50 text-amber-800 border-amber-300"
-                  : student.platformSegment === 'PENDING'
-                  ? "bg-purple-50 text-purple-800 border-purple-300"
-                  : "bg-emerald-50 text-emerald-800 border-emerald-300"
-              )}>
-                {student.platformSegment === 'JUNIOR' 
-                  ? '🎒 JUNIOR' 
-                  : student.platformSegment === 'PENDING'
-                  ? '⏳ PENDING'
-                  : '🎓 MAIN'}
-              </span>
               {student.educationLevel ? (
-                <span className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded hidden sm:inline-block">
+                <span className="text-[9px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md hidden sm:inline-block">
                   {student.educationLevel.replace('_', ' ')}
                 </span>
               ) : (
-                <span className="text-[9px] font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded hidden sm:inline-block">
+                <span className="text-[9px] font-bold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md hidden sm:inline-block">
                   Profile Incomplete
                 </span>
               )}
@@ -296,14 +281,6 @@ export const StudentCard = React.memo(({
             <div className="flex items-center gap-1.5 mt-0.5">
               <span className="text-[10px] text-slate-500 font-mono font-bold">
                 {student.enrollmentNumber || student.studentId || "ID PENDING"}
-              </span>
-              <span className={cn(
-                "text-[8px] font-black uppercase px-1.5 py-0.5 rounded border",
-                student.platformSegment === 'JUNIOR'
-                  ? "bg-amber-50 text-amber-800 border-amber-300"
-                  : "bg-emerald-50 text-emerald-800 border-emerald-300"
-              )}>
-                {student.platformSegment === 'JUNIOR' ? '🎒 JUNIOR' : '🎓 MAIN'}
               </span>
             </div>
           </div>

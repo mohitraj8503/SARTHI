@@ -244,29 +244,6 @@ export default function StudentsPage() {
           </div>
           
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-shrink-0 w-full lg:w-auto">
-            {/* Segment Toggle: All | Main | Junior */}
-            <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-200/80">
-              {[
-                { id: 'all', label: 'All' },
-                { id: 'main', label: '🎓 Main' },
-                { id: 'junior', label: '🎒 Junior' },
-                { id: 'pending', label: '⏳ Pending' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setSegment(tab.id as any)}
-                  className={cn(
-                    "px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all",
-                    segment === tab.id
-                      ? "bg-white text-slate-900 shadow-sm border border-slate-200/60"
-                      : "text-slate-500 hover:text-slate-900"
-                  )}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
             <div className="relative w-full sm:w-auto">
               <select
                 value={filter}

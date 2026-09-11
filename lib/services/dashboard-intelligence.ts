@@ -104,9 +104,9 @@ export async function getDashboardIntelligence() {
   }
 
   // Drop-off analysis - Fixed calculation
-  dropOffs.forEach(course => {
-    const active = course.enrollments.length;
-    const completed = course._count.enrollments;
+  (dropOffs || []).forEach((course: any) => {
+    const active = course?.enrollments?.length || 0;
+    const completed = course?._count?.enrollments || 0;
     const dropOffRate = active > 0 ? ((active - completed) / active) * 100 : 0;
 
     if (dropOffRate > 60 && active >= 5) { // More than 60% drop-off with at least 5 active users

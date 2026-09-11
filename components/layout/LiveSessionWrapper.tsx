@@ -45,7 +45,7 @@ export default function LiveSessionWrapper({
       <main 
         id="main-content" 
         className={cn(
-          "flex-1 min-h-screen overflow-auto pt-20 lg:pt-0 transition-[margin-left] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+          "flex-1 overflow-auto pt-20 lg:pt-0 transition-[margin-left] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
           sidebarWidth === "280px" ? "lg:ml-[280px]" : (sidebarWidth.startsWith('lg:') ? sidebarWidth : "")
         )}
         style={!sidebarWidth.startsWith('lg:') && sidebarWidth !== "280px" ? { marginLeft: isMobile ? '0px' : sidebarWidth } : {}}

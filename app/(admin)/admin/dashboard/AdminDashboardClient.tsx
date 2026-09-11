@@ -213,7 +213,7 @@ export default function AdminDashboardClient({ initialData, currentTab = 'dashbo
           <MentorEmailPortal students={students} />
         </div>
       ) : (
-        <div className="space-y-10 pb-20">          {/* Header Section with Standardized Typography and Actions */}
+        <div className="space-y-10 pb-6">          {/* Header Section with Standardized Typography and Actions */}
           <header className="max-w-[1600px] mx-auto flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6 lg:gap-8 border-b border-slate-100 pb-8 mb-10">
             <div className="space-y-1.5 text-left relative">
               <div className="flex items-center gap-2 mb-4 sm:mb-5">

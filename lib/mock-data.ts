@@ -269,30 +269,39 @@ export const MOCK_TEACHERS: any[] = [
   {
     id: 'teacher_trainer_demo',
     userId: 'user_trainer_demo',
+    teacherId: 'FAC-IMD-001',
     title: 'Senior Meteorological Faculty & Technical Trainer',
     bio: 'Lead instructor for Atmospheric Sciences and Operational Forecasting modules at IMD Capacity Building Division.',
-    status: 'APPROVED',
+    status: 'verified',
     canCreateCourses: true,
+    totalStudents: 120,
+    totalEarnings: 45000,
     createdAt: new Date(),
     updatedAt: new Date(),
   },
   {
     id: 'teacher_trainer_sarthi',
     userId: 'user_trainer_sarthi',
+    teacherId: 'FAC-IMD-002',
     title: 'Faculty Trainer',
     bio: 'IMD Capacity Building Trainer',
-    status: 'APPROVED',
+    status: 'verified',
     canCreateCourses: true,
+    totalStudents: 85,
+    totalEarnings: 32000,
     createdAt: new Date(),
     updatedAt: new Date(),
   },
   {
     id: 'teacher_faculty_demo',
     userId: 'user_faculty_demo',
+    teacherId: 'FAC-IMD-003',
     title: 'Faculty Trainer',
     bio: 'IMD Faculty Trainer',
-    status: 'APPROVED',
+    status: 'verified',
     canCreateCourses: true,
+    totalStudents: 95,
+    totalEarnings: 38000,
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -525,6 +534,18 @@ export const createMockProxy = (data: any[]) => {
           }
           if (relationKey === 'certification') {
             result.certification = { title: 'Full Stack Web Development Mastery', description: 'Verified pathway professional credential.' };
+          }
+          if (relationKey === 'teacher') {
+            result.teacher = MOCK_TEACHERS.find(t => t.userId === item.id) || {
+              id: `teacher_${item.id}`,
+              userId: item.id,
+              teacherId: item.enrollmentNumber || 'FAC-IMD-001',
+              title: 'Instructor',
+              status: 'verified',
+              canCreateCourses: true,
+              totalStudents: 100,
+              totalEarnings: 40000
+            };
           }
         }
       }

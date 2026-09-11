@@ -61,7 +61,6 @@ export default function AdminSidebar() {
       subItems: [
         { name: 'Students', href: '/admin/students', id: 'students' },
         { name: 'Teachers', href: '/admin/teachers', id: 'teachers' },
-        { name: 'Ambassadors', href: '/admin/student-ambassadors', id: 'ambassadors' },
       ]
     },
     {
@@ -109,7 +108,6 @@ export default function AdminSidebar() {
     { title: 'Broadcast Email Portal', category: 'Control', href: '/admin/dashboard?tab=email', icon: Mail, keywords: 'email broadcast newsletter notification mailing' },
     { title: 'Student Roster & Directory', category: 'Users', href: '/admin/students', icon: Users, keywords: 'students learners roster users list verify profile' },
     { title: 'Teacher & Instructor Roster', category: 'Users', href: '/admin/teachers', icon: Users, keywords: 'teachers faculty instructors mentors roster' },
-    { title: 'Campus Ambassadors', category: 'Users', href: '/admin/student-ambassadors', icon: Users, keywords: 'ambassadors referrals campus partners' },
     { title: 'Course Management Catalog', category: 'Content', href: '/admin/courses', icon: BookOpen, keywords: 'courses syllabus modules curriculum catalog' },
     { title: 'Content & Review Moderation', category: 'Content', href: '/admin/moderation', icon: BookOpen, keywords: 'moderation reviews flag reports comments' },
     { title: 'Blog Writer Access & Posts', category: 'Content', href: '/admin/blogs', icon: BookOpen, keywords: 'blogs articles writer studio posts author' },

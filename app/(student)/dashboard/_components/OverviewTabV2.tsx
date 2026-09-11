@@ -45,32 +45,14 @@ export default function OverviewTabV2({ data, isLoading }: OverviewTabV2Props) {
     const currentDayIndex = new Date().getDay();
     const todayVision = DAILY_VISIONS[currentDayIndex];
 
-    const [ambassadorProfile, setAmbassadorProfile] = React.useState<any>(null);
     const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
     const [feedbackText, setFeedbackText] = useState('');
     const [rating, setRating] = useState(5);
     const [hoverRating, setHoverRating] = useState(0);
     const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
-    React.useEffect(() => {
-        const checkAmbassador = async () => {
-            try {
-                const res = await fetch('/api/student-ambassadors/me');
-                if (res.ok) {
-                    const data = await res.json();
-                    if ((data.status === 'APPROVED' || data.status === 'PENDING') && data.application) {
-                        setAmbassadorProfile({ ...data.application, status: data.status });
-                    }
-                }
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        checkAmbassador();
-    }, []);
-
     return (
-        <main className="min-h-screen bg-[#F8FAFC] px-4 md:px-10 pb-20 relative overflow-hidden pt-6" id="main-content">
+        <main className="bg-[#F8FAFC] px-4 md:px-10 pb-8 relative overflow-hidden pt-6 flex-1" id="main-content">
             {/* Top Ambient Glows */}
             <div className="pointer-events-none absolute -top-20 right-10 w-72 h-72 bg-emerald-200/30 blur-[90px] rounded-full" />
             <div className="pointer-events-none absolute top-72 -left-20 w-72 h-72 bg-indigo-200/20 blur-[100px] rounded-full" />
@@ -399,24 +381,6 @@ export default function OverviewTabV2({ data, isLoading }: OverviewTabV2Props) {
                         </div>
                         <div className="absolute -right-10 -bottom-10 w-36 h-36 bg-amber-400/10 rounded-full blur-[70px]" />
                     </div>
-
-                    {/* Student Ambassador Widget */}
-                    {ambassadorProfile && (
-                        <div className="bg-white rounded-[32px] p-8 border border-[#EAF0F7] shadow-[0_12px_35px_rgba(15,23,42,0.06)] relative overflow-hidden">
-                            <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-3">Student Ambassador</h4>
-                            <h3 className="text-lg font-black text-slate-900 tracking-tight leading-snug mb-2">
-                                {ambassadorProfile.status === 'PENDING' ? 'Application Under Review' : 'Campus Drive Active'}
-                            </h3>
-                            <p className="text-slate-500 text-xs font-medium mb-6">
-                                {ambassadorProfile.status === 'PENDING' 
-                                    ? 'Our team is reviewing your ambassador application.'
-                                    : `Referral Code: ${ambassadorProfile.referralCode}`}
-                            </p>
-                            <Link href="/dashboard/ambassador" className="text-[10px] font-black text-emerald-600 hover:text-emerald-700 uppercase tracking-[0.2em] flex items-center gap-1.5 transition-colors">
-                                View Portal <ArrowRight className="w-3.5 h-3.5" />
-                            </Link>
-                        </div>
-                    )}
 
                     {/* Quick Direct Workflows */}
                     <div className="bg-white rounded-[32px] p-8 border border-[#EAF0F7] shadow-[0_12px_35px_rgba(15,23,42,0.06)] space-y-6">
