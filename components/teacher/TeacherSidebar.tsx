@@ -113,11 +113,9 @@ export default function TeacherSidebar() {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#1B4332] z-[110] flex items-center justify-between px-4 text-white border-b border-white/10">
-        <Link href="/" className="flex items-center gap-2">
-           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm">
-             <Image src="/sarthi-logo.png" alt="TT" width={20} height={20} className="w-full h-full object-contain" />
-           </div>
-           <span className="font-bold text-sm tracking-tight">Teacher Studio</span>
+        <Link href="/" className="flex flex-col">
+           <span className="font-black text-base tracking-tight text-white leading-tight">SARTHI</span>
+           <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Teacher Studio</span>
         </Link>
         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 -mr-2">
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -138,18 +136,13 @@ export default function TeacherSidebar() {
       )} role="navigation">
       {/* Logo Area */}
       <div className="py-10 px-8">
-          <Link href="/" className="group flex items-center gap-3 transition-transform active:scale-95">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-lg">
-                <Image src="/sarthi-logo.png" alt="TT" width={28} height={28} className="w-full h-full object-contain" />
-              </div>
-              <div>
-                <span className="text-xl font-black text-white tracking-tight block leading-tight">
-                    SARTHI
-                </span>
-                <span className="text-xs font-black text-emerald-400 uppercase tracking-[0.2em] leading-none mt-1 block">
-                    TEACHER STUDIO
-                </span>
-              </div>
+          <Link href="/" className="group flex flex-col transition-transform active:scale-95">
+              <span className="text-xl font-black text-white tracking-tight block leading-tight">
+                  SARTHI
+              </span>
+              <span className="text-xs font-black text-emerald-400 uppercase tracking-[0.2em] leading-none mt-1 block">
+                  TEACHER STUDIO
+              </span>
           </Link>
       </div>
 

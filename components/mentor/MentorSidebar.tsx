@@ -123,29 +123,17 @@ export default function MentorSidebar() {
                     className={cn("flex items-center transition-none", isCollapsed ? "justify-center" : "gap-3")} 
                     aria-label="SARTHI Home" 
                 >
-                    <div className={cn(
-                        "bg-white rounded-xl flex items-center justify-center relative shrink-0 transition-all duration-300",
-                        isCollapsed ? "w-9 h-9 p-1" : "w-10 h-10 p-1.5"
-                    )}>
-                        <Image 
-                            src="/sarthi-logo.png" 
-                            alt="TT Logo" 
-                            width={40}
-                            height={40}
-                            priority
-                            quality={100}
-                            className="w-full h-full object-contain" 
-                        />
-                    </div>
-                    {!isCollapsed && (
+                    {!isCollapsed ? (
                         <div className="logo-text overflow-hidden whitespace-nowrap pr-2">
-                            <span className="text-base font-black text-white tracking-tighter block font-outfit italic uppercase leading-none">
+                            <span className="text-xl font-black text-white tracking-tight block leading-tight">
                                 SARTHI
                             </span>
-                            <span className="text-[9px] font-black text-[#22C55E] uppercase tracking-[0.15em] leading-none mt-1.5 block">
+                            <span className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.2em] leading-none mt-1 block">
                                 MENTOR PORTAL
                             </span>
                         </div>
+                    ) : (
+                        <span className="text-xl font-black text-white tracking-tight">S</span>
                     )}
                 </Link>
             </div>

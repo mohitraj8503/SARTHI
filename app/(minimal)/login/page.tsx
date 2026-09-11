@@ -238,13 +238,72 @@ export default function LoginPage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="w-full md:w-[90%] lg:w-[480px] bg-white/97 rounded-[24px] border border-white/80 shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_24px_48px_rgba(0,0,0,0.06)] py-8 px-6 sm:py-[44px] sm:px-[40px] flex flex-col mb-6 sm:mb-0"
           >
-            <div className="mb-6">
+            <div className="mb-5">
               <h2 className="text-[22px] font-semibold text-[#111827] tracking-tight">
                 Log in to your account
               </h2>
               <p className="text-[13px] text-[#6B7280] mt-1 font-medium">
                 Welcome back! Please enter your details.
               </p>
+
+              {/* Quick Demo Role Switcher / Shortcuts */}
+              <div className="mt-3.5 pt-3 border-t border-gray-100">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-bold text-[#2D6A4F] uppercase tracking-[1px] flex items-center gap-1">
+                    <span>⚡</span> Quick Demo Login
+                  </span>
+                  <span className="text-[9.5px] text-gray-400 font-medium">1-Click Fill</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData({ email: 'student.demo@imd.gov.in', password: 'StudentDemo@123' });
+                      setError('');
+                    }}
+                    className={`px-2 py-2 rounded-xl text-xs font-semibold transition-all border text-center flex flex-col items-center justify-center gap-0.5 cursor-pointer ${
+                      formData.email === 'student.demo@imd.gov.in'
+                        ? 'bg-emerald-50 border-emerald-500 text-emerald-900 shadow-xs ring-1 ring-emerald-400/30 font-bold'
+                        : 'bg-[#F9FAFB] hover:bg-emerald-50/50 border-[#E5E7EB] hover:border-emerald-200 text-slate-700'
+                    }`}
+                  >
+                    <span className="text-sm">🎓</span>
+                    <span className="truncate w-full text-[10.5px]">Student / Trainee</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData({ email: 'trainer.demo@imd.gov.in', password: 'TrainerDemo@123' });
+                      setError('');
+                    }}
+                    className={`px-2 py-2 rounded-xl text-xs font-semibold transition-all border text-center flex flex-col items-center justify-center gap-0.5 cursor-pointer ${
+                      formData.email === 'trainer.demo@imd.gov.in'
+                        ? 'bg-emerald-50 border-emerald-500 text-emerald-900 shadow-xs ring-1 ring-emerald-400/30 font-bold'
+                        : 'bg-[#F9FAFB] hover:bg-emerald-50/50 border-[#E5E7EB] hover:border-emerald-200 text-slate-700'
+                    }`}
+                  >
+                    <span className="text-sm">👨‍🏫</span>
+                    <span className="truncate w-full text-[10.5px]">Faculty Trainer</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData({ email: 'admin.demo@imd.gov.in', password: 'AdminDemo@123' });
+                      setError('');
+                    }}
+                    className={`px-2 py-2 rounded-xl text-xs font-semibold transition-all border text-center flex flex-col items-center justify-center gap-0.5 cursor-pointer ${
+                      formData.email === 'admin.demo@imd.gov.in' || formData.email === 'admin@imd.gov.in'
+                        ? 'bg-emerald-50 border-emerald-500 text-emerald-900 shadow-xs ring-1 ring-emerald-400/30 font-bold'
+                        : 'bg-[#F9FAFB] hover:bg-emerald-50/50 border-[#E5E7EB] hover:border-emerald-200 text-slate-700'
+                    }`}
+                  >
+                    <span className="text-sm">🛡️</span>
+                    <span className="truncate w-full text-[10.5px]">IMD Admin</span>
+                  </button>
+                </div>
+              </div>
             </div>
 
             {error && (

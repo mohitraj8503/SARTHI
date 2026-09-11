@@ -157,24 +157,13 @@ export default function AdminSidebar() {
       >
       {/* Logo Area */}
       <div className="py-10 px-8">
-          <Link href="/" className="group flex items-center gap-3 transition-transform active:scale-95">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-lg relative">
-                <Image 
-                  src="/sarthi-logo.png" 
-                  alt="TT Logo" 
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain" 
-                />
-              </div>
-              <div>
-                <span className="text-xl font-black text-white tracking-tight block leading-tight">
-                    SARTHI
-                </span>
-                <span className="text-xs font-black text-emerald-400 uppercase tracking-[0.2em] leading-none mt-1 block">
-                    ADMIN CONSOLE
-                </span>
-              </div>
+          <Link href="/" className="group flex flex-col transition-transform active:scale-95">
+              <span className="text-xl font-black text-white tracking-tight block leading-tight">
+                  SARTHI
+              </span>
+              <span className="text-xs font-black text-emerald-400 uppercase tracking-[0.2em] leading-none mt-1 block">
+                  ADMIN CONSOLE
+              </span>
           </Link>
       </div>
 

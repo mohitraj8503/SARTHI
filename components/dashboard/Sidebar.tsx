@@ -86,18 +86,12 @@ export default function Sidebar() {
       <div className="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-white/5 to-transparent pointer-events-none opacity-30" />
       
       <div className="mb-10 pl-2">
-        <Link href="/" className="flex items-center gap-3 group transition-all active:scale-95">
-          <div className="relative w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-lg border border-white/10 overflow-hidden">
-            <Image 
-              src="/images/sarthi_logo.jpg" 
-              alt="SARTHI" 
-              width={32} 
-              height={32} 
-              className="object-contain"
-            />
-          </div>
-          <span className="text-[18px] font-outfit font-bold text-white tracking-tight leading-none">
+        <Link href="/" className="flex flex-col gap-1 group transition-all active:scale-95">
+          <span className="text-[20px] font-outfit font-black text-white tracking-tight leading-none">
             SARTHI
+          </span>
+          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em]">
+            STUDENT PORTAL
           </span>
         </Link>
       </div>

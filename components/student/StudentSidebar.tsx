@@ -154,10 +154,7 @@ export default function StudentSidebar({ user: propUser }: { user?: SidebarProps
                     isCollapsed ? "px-4 justify-center" : "px-8 justify-between"
                 )}>
                     <Link href="/" className="group flex items-center gap-3 transition-transform active:scale-95" onClick={close}>
-                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-lg shrink-0">
-                            <Image src="/sarthi-logo.png" alt="TT" width={28} height={28} className="w-full h-full object-contain" />
-                        </div>
-                        {!isCollapsed && (
+                        {!isCollapsed ? (
                             <div>
                                 <span className="text-xl font-black text-white tracking-tight block leading-tight">
                                     SARTHI
@@ -166,6 +163,8 @@ export default function StudentSidebar({ user: propUser }: { user?: SidebarProps
                                     STUDENT PORTAL
                                 </span>
                             </div>
+                        ) : (
+                            <span className="text-xl font-black text-white tracking-tight">S</span>
                         )}
                     </Link>
 
